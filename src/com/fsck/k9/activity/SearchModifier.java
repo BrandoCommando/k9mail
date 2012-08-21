@@ -1,6 +1,6 @@
 package com.fsck.k9.activity;
 
-import com.fsck.k9.R;
+import org.brandroid.k9.R;
 import com.fsck.k9.mail.Flag;
 
 /**

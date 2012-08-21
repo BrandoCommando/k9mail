@@ -28,7 +28,7 @@ public class EmailAddressAdapter extends ResourceCursorAdapter {
     private final Contacts mContacts;
 
     public EmailAddressAdapter(Context context) {
-        super(context, R.layout.recipient_dropdown_item, null);
+        super(context, org.brandroid.k9.R.layout.recipient_dropdown_item, null);
         mContacts = Contacts.getInstance(context.getApplicationContext());
     }
 
@@ -42,8 +42,8 @@ public class EmailAddressAdapter extends ResourceCursorAdapter {
 
     @Override
     public final void bindView(final View view, final Context context, final Cursor cursor) {
-        final TextView text1 = (TextView) view.findViewById(R.id.text1);
-        final TextView text2 = (TextView) view.findViewById(R.id.text2);
+        final TextView text1 = (TextView) view.findViewById(org.brandroid.k9.R.id.text1);
+        final TextView text2 = (TextView) view.findViewById(org.brandroid.k9.R.id.text2);
         text1.setText(mContacts.getName(cursor));
         text2.setText(mContacts.getEmail(cursor));
     }

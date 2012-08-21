@@ -23,6 +23,7 @@ import com.fsck.k9.mail.store.StorageManager;
 import com.fsck.k9.view.AttachmentView;
 import com.fsck.k9.view.SingleMessageView;
 import com.fsck.k9.view.AttachmentView.AttachmentFileDownloadCallback;
+import org.brandroid.k9.R;
 
 import java.io.File;
 import java.util.*;

@@ -19,6 +19,7 @@ import android.widget.EditText;
 import com.fsck.k9.*;
 import com.fsck.k9.activity.K9Activity;
 import com.fsck.k9.helper.Utility;
+import org.brandroid.k9.R;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;

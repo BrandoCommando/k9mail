@@ -38,6 +38,7 @@ import com.fsck.k9.mail.Message;
 import com.fsck.k9.mail.store.LocalStore.LocalFolder;
 import com.fsck.k9.mail.MessagingException;
 import com.fsck.k9.service.MailService;
+import org.brandroid.k9.R;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;

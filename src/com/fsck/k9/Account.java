@@ -78,13 +78,13 @@ public class Account implements BaseAccount {
     public static final String IDENTITY_DESCRIPTION_KEY = "description";
 
     public enum SortType {
-        SORT_DATE(R.string.sort_earliest_first, R.string.sort_latest_first, false),
-        SORT_ARRIVAL(R.string.sort_earliest_first, R.string.sort_latest_first, false),
-        SORT_SUBJECT(R.string.sort_subject_alpha, R.string.sort_subject_re_alpha, true),
-        SORT_SENDER(R.string.sort_sender_alpha, R.string.sort_sender_re_alpha, true),
-        SORT_UNREAD(R.string.sort_unread_first, R.string.sort_unread_last, true),
-        SORT_FLAGGED(R.string.sort_flagged_first, R.string.sort_flagged_last, true),
-        SORT_ATTACHMENT(R.string.sort_attach_first, R.string.sort_unattached_first, true);
+        SORT_DATE(org.brandroid.k9.R.string.sort_earliest_first, org.brandroid.k9.R.string.sort_latest_first, false),
+        SORT_ARRIVAL(org.brandroid.k9.R.string.sort_earliest_first, org.brandroid.k9.R.string.sort_latest_first, false),
+        SORT_SUBJECT(org.brandroid.k9.R.string.sort_subject_alpha, org.brandroid.k9.R.string.sort_subject_re_alpha, true),
+        SORT_SENDER(org.brandroid.k9.R.string.sort_sender_alpha, org.brandroid.k9.R.string.sort_sender_re_alpha, true),
+        SORT_UNREAD(org.brandroid.k9.R.string.sort_unread_first, org.brandroid.k9.R.string.sort_unread_last, true),
+        SORT_FLAGGED(org.brandroid.k9.R.string.sort_flagged_first, org.brandroid.k9.R.string.sort_flagged_last, true),
+        SORT_ATTACHMENT(org.brandroid.k9.R.string.sort_attach_first, org.brandroid.k9.R.string.sort_unattached_first, true);
 
         private int ascendingToast;
         private int descendingToast;
@@ -285,8 +285,8 @@ public class Account implements BaseAccount {
 
         Identity identity = new Identity();
         identity.setSignatureUse(true);
-        identity.setSignature(context.getString(R.string.default_signature));
-        identity.setDescription(context.getString(R.string.default_identity_description));
+        identity.setSignature(context.getString(org.brandroid.k9.R.string.default_signature));
+        identity.setDescription(context.getString(org.brandroid.k9.R.string.default_identity_description));
         identities.add(identity);
 
         mNotificationSetting = new NotificationSetting();

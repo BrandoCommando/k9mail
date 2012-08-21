@@ -23,8 +23,8 @@ public class SearchAccount implements BaseAccount, SearchSpecification, Serializ
      */
     public static SearchAccount createUnifiedInboxAccount(Context context) {
         SearchAccount unifiedInbox = new SearchAccount(context, true, null, null);
-        unifiedInbox.setDescription(context.getString(R.string.integrated_inbox_title));
-        unifiedInbox.setEmail(context.getString(R.string.integrated_inbox_detail));
+        unifiedInbox.setDescription(context.getString(org.brandroid.k9.R.string.integrated_inbox_title));
+        unifiedInbox.setEmail(context.getString(org.brandroid.k9.R.string.integrated_inbox_detail));
         return unifiedInbox;
     }
 
@@ -39,8 +39,8 @@ public class SearchAccount implements BaseAccount, SearchSpecification, Serializ
      */
     public static SearchAccount createAllMessagesAccount(Context context) {
         SearchAccount allMessages = new SearchAccount(context, false, null, null);
-        allMessages.setDescription(context.getString(R.string.search_all_messages_title));
-        allMessages.setEmail(context.getString(R.string.search_all_messages_detail));
+        allMessages.setDescription(context.getString(org.brandroid.k9.R.string.search_all_messages_title));
+        allMessages.setEmail(context.getString(org.brandroid.k9.R.string.search_all_messages_detail));
         return allMessages;
     }
 

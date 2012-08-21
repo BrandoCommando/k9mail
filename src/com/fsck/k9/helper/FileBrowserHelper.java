@@ -12,7 +12,7 @@ import android.text.InputType;
 import android.widget.EditText;
 
 import com.fsck.k9.K9;
-import com.fsck.k9.R;
+import org.brandroid.k9.R;
 
 public class FileBrowserHelper {
     /**
