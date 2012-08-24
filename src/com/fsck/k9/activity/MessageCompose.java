@@ -318,7 +318,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
     private long mDraftId = INVALID_DRAFT_ID;
 
     private Handler mHandler = new Handler() {
-        @Override
+        
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
             case MSG_PROGRESS_ON:
@@ -448,7 +448,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         context.startActivity(i);
     }
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
@@ -530,41 +530,41 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         // Disable the ability to click links in the quoted HTML page. I think this is a nice feature, but if someone
         // feels this should be a preference (or should go away all together), I'm ok with that too. -achen 20101130
         mQuotedHTML.setWebViewClient(new WebViewClient() {
-            @Override
+            
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return true;
             }
         });
 
         TextWatcher watcher = new TextWatcher() {
-            @Override
+            
             public void beforeTextChanged(CharSequence s, int start, int before, int after) {
                 /* do nothing */
             }
 
-            @Override
+            
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mDraftNeedsSaving = true;
             }
 
-            @Override
+            
             public void afterTextChanged(android.text.Editable s) { /* do nothing */ }
         };
 
         // For watching changes to the To:, Cc:, and Bcc: fields for auto-encryption on a matching
         // address.
         TextWatcher recipientWatcher = new TextWatcher() {
-            @Override
+            
             public void beforeTextChanged(CharSequence s, int start, int before, int after) {
                 /* do nothing */
             }
 
-            @Override
+            
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mDraftNeedsSaving = true;
             }
 
-            @Override
+            
             public void afterTextChanged(android.text.Editable s) {
                 final CryptoProvider crypto = mAccount.getCryptoProvider();
                 if (mAutoEncrypt && crypto.isAvailable(getApplicationContext())) {
@@ -581,18 +581,18 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         };
 
         TextWatcher sigwatcher = new TextWatcher() {
-            @Override
+            
             public void beforeTextChanged(CharSequence s, int start, int before, int after) {
                 /* do nothing */
             }
 
-            @Override
+            
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mDraftNeedsSaving = true;
                 mSignatureChanged = true;
             }
 
-            @Override
+            
             public void afterTextChanged(android.text.Editable s) { /* do nothing */ }
         };
 
@@ -607,17 +607,17 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         /* Yes, there really are poeple who ship versions of android without a contact picker */
         if (mContacts.hasContactPicker()) {
             mAddToFromContacts.setOnClickListener(new OnClickListener() {
-                @Override public void onClick(View v) {
+                 public void onClick(View v) {
                     doLaunchContactPicker(CONTACT_PICKER_TO);
                 }
             });
             mAddCcFromContacts.setOnClickListener(new OnClickListener() {
-                @Override public void onClick(View v) {
+                 public void onClick(View v) {
                     doLaunchContactPicker(CONTACT_PICKER_CC);
                 }
             });
             mAddBccFromContacts.setOnClickListener(new OnClickListener() {
-                @Override public void onClick(View v) {
+                 public void onClick(View v) {
                     doLaunchContactPicker(CONTACT_PICKER_BCC);
                 }
             });
@@ -760,7 +760,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         mCryptoSignatureUserIdRest = (TextView)findViewById(R.id.userIdRest);
         mEncryptCheckbox = (CheckBox)findViewById(R.id.cb_encrypt);
         mEncryptCheckbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-            @Override
+            
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 updateMessageFormat();
             }
@@ -777,7 +777,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         if (crypto.isAvailable(this)) {
             mEncryptLayout.setVisibility(View.VISIBLE);
             mCryptoSignatureCheckbox.setOnClickListener(new OnClickListener() {
-                @Override
+                
                 public void onClick(View v) {
                     CheckBox checkBox = (CheckBox) v;
                     if (checkBox.isChecked()) {
@@ -1006,14 +1006,14 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         updateMessageFormat();
     }
 
-    @Override
+    
     public void onResume() {
         super.onResume();
         mIgnoreOnPause = false;
         MessagingController.getInstance(getApplication()).addListener(mListener);
     }
 
-    @Override
+    
     public void onPause() {
         super.onPause();
         MessagingController.getInstance(getApplication()).removeListener(mListener);
@@ -1032,7 +1032,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
      * Bcc field,
      * Quoted text,
      */
-    @Override
+    
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         ArrayList<Uri> attachments = new ArrayList<Uri>();
@@ -1059,7 +1059,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         outState.putSerializable(STATE_KEY_QUOTED_TEXT_FORMAT, mQuotedTextFormat);
     }
 
-    @Override
+    
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         ArrayList<Parcelable> attachments = savedInstanceState.getParcelableArrayList(STATE_KEY_ATTACHMENTS);
@@ -1112,7 +1112,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         }
     }
 
-    @Override
+    
     public void onFocusChange(View view, boolean focused) {
         if (!focused) {
             updateTitle();
@@ -1901,7 +1901,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         mAttachments.addView(view);
     }
 
-    @Override
+    
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // if a CryptoSystem activity is returning, then mPreventDraftSaving was set to true
         mPreventDraftSaving = false;
@@ -2058,7 +2058,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         }
     }
 
-    @Override
+    
     public void onClick(View view) {
         switch (view.getId()) {
         case R.id.attachment_delete:
@@ -2137,7 +2137,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         }
     }
 
-    @Override
+    
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.send:
@@ -2174,7 +2174,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         return true;
     }
 
-    @Override
+    
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.message_compose_option, menu);
@@ -2194,7 +2194,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         return true;
     }
 
-    @Override
+    
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
 
@@ -2207,7 +2207,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         return true;
     }
 
-    @Override
+    
     public void onBackPressed() {
         if (mDraftNeedsSaving) {
             if (mEncryptCheckbox.isChecked()) {
@@ -2227,7 +2227,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
         }
     }
 
-    @Override
+    
     public Dialog onCreateDialog(int id) {
         switch (id) {
         case DIALOG_SAVE_OR_DISCARD_DRAFT_MESSAGE:
@@ -2235,14 +2235,14 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
                    .setTitle(R.string.save_or_discard_draft_message_dlg_title)
                    .setMessage(R.string.save_or_discard_draft_message_instructions_fmt)
             .setPositiveButton(R.string.save_draft_action, new DialogInterface.OnClickListener() {
-                @Override
+                
                 public void onClick(DialogInterface dialog, int whichButton) {
                     dismissDialog(DIALOG_SAVE_OR_DISCARD_DRAFT_MESSAGE);
                     onSave();
                 }
             })
             .setNegativeButton(R.string.discard_action, new DialogInterface.OnClickListener() {
-                @Override
+                
                 public void onClick(DialogInterface dialog, int whichButton) {
                     dismissDialog(DIALOG_SAVE_OR_DISCARD_DRAFT_MESSAGE);
                     onDiscard();
@@ -2254,7 +2254,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
                    .setTitle(R.string.refuse_to_save_draft_marked_encrypted_dlg_title)
                    .setMessage(R.string.refuse_to_save_draft_marked_encrypted_instructions_fmt)
             .setNeutralButton(R.string.okay_action, new DialogInterface.OnClickListener() {
-                @Override
+                
                 public void onClick(DialogInterface dialog, int whichButton) {
                     dismissDialog(DIALOG_REFUSE_TO_SAVE_DRAFT_MARKED_ENCRYPTED);
                 }
@@ -2265,7 +2265,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
                    .setTitle(R.string.continue_without_public_key_dlg_title)
                    .setMessage(R.string.continue_without_public_key_instructions_fmt)
             .setPositiveButton(R.string.continue_action, new DialogInterface.OnClickListener() {
-                @Override
+                
                 public void onClick(DialogInterface dialog, int whichButton) {
                     dismissDialog(DIALOG_CONTINUE_WITHOUT_PUBLIC_KEY);
                     mContinueWithoutPublicKey = true;
@@ -2273,7 +2273,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
                 }
             })
             .setNegativeButton(R.string.back_action, new DialogInterface.OnClickListener() {
-                @Override
+                
                 public void onClick(DialogInterface dialog, int whichButton) {
                     dismissDialog(DIALOG_CONTINUE_WITHOUT_PUBLIC_KEY);
                     mContinueWithoutPublicKey = false;
@@ -2285,13 +2285,13 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
                    .setTitle(R.string.confirm_discard_draft_message_title)
                    .setMessage(R.string.confirm_discard_draft_message)
             .setPositiveButton(R.string.cancel_action, new DialogInterface.OnClickListener() {
-                @Override
+                
                 public void onClick(DialogInterface dialog, int whichButton) {
                     dismissDialog(DIALOG_CONFIRM_DISCARD_ON_BACK);
                 }
             })
             .setNegativeButton(R.string.discard_action, new DialogInterface.OnClickListener() {
-                @Override
+                
                 public void onClick(DialogInterface dialog, int whichButton) {
                     dismissDialog(DIALOG_CONFIRM_DISCARD_ON_BACK);
                     Toast.makeText(MessageCompose.this,
@@ -2308,7 +2308,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
             builder.setTitle(R.string.send_as);
             final IdentityAdapter adapter = new IdentityAdapter(context, getLayoutInflater());
             builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
-                @Override
+                
                 public void onClick(DialogInterface dialog, int which) {
                     IdentityContainer container = (IdentityContainer) adapter.getItem(which);
                     onAccountChosen(container.account, container.identity);
@@ -2353,7 +2353,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
             if (body != null && body instanceof LocalAttachmentBody) {
                 final Uri uri = ((LocalAttachmentBody) body).getContentUri();
                 mHandler.post(new Runnable() {
-                    @Override
+                    
                     public void run() {
                         addAttachment(uri);
                     }
@@ -3104,7 +3104,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
     }
 
     class Listener extends MessagingListener {
-        @Override
+        
         public void loadMessageForViewStarted(Account account, String folder, String uid) {
             if ((mMessageReference == null) || !mMessageReference.uid.equals(uid)) {
                 return;
@@ -3113,7 +3113,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
             mHandler.sendEmptyMessage(MSG_PROGRESS_ON);
         }
 
-        @Override
+        
         public void loadMessageForViewFinished(Account account, String folder, String uid, Message message) {
             if ((mMessageReference == null) || !mMessageReference.uid.equals(uid)) {
                 return;
@@ -3122,7 +3122,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
             mHandler.sendEmptyMessage(MSG_PROGRESS_OFF);
         }
 
-        @Override
+        
         public void loadMessageForViewBodyAvailable(Account account, String folder, String uid, final Message message) {
             if ((mMessageReference == null) || !mMessageReference.uid.equals(uid)) {
                 return;
@@ -3130,7 +3130,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
 
             mSourceMessage = message;
             runOnUiThread(new Runnable() {
-                @Override
+                
                 public void run() {
                     // We check to see if we've previously processed the source message since this
                     // could be called when switching from HTML to text replies. If that happens, we
@@ -3153,7 +3153,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
             });
         }
 
-        @Override
+        
         public void loadMessageForViewFailed(Account account, String folder, String uid, Throwable t) {
             if ((mMessageReference == null) || !mMessageReference.uid.equals(uid)) {
                 return;
@@ -3162,7 +3162,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
             // TODO show network error
         }
 
-        @Override
+        
         public void messageUidChanged(Account account, String folder, String oldUid, String newUid) {
             // Track UID changes of the source message
             if (mMessageReference != null) {
@@ -3240,7 +3240,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
     }
 
     private class SendMessageTask extends AsyncTask<Void, Void, Void> {
-        @Override
+        
         protected Void doInBackground(Void... params) {
             /*
              * Create the message from all the data the user has entered.
@@ -3273,7 +3273,7 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
     }
 
     private class SaveMessageTask extends AsyncTask<Void, Void, Void> {
-        @Override
+        
         protected Void doInBackground(Void... params) {
             /*
              * Create the message from all the data the user has entered.
@@ -3464,42 +3464,42 @@ public class MessageCompose extends K9Activity implements OnClickListener, OnFoc
             mItems = items;
         }
 
-        @Override
+        
         public int getCount() {
             return mItems.size();
         }
 
-        @Override
+        
         public int getViewTypeCount() {
             return 2;
         }
 
-        @Override
+        
         public int getItemViewType(int position) {
             return (mItems.get(position) instanceof Account) ? 0 : 1;
         }
 
-        @Override
+        
         public boolean isEnabled(int position) {
             return (mItems.get(position) instanceof IdentityContainer);
         }
 
-        @Override
+        
         public Object getItem(int position) {
             return mItems.get(position);
         }
 
-        @Override
+        
         public long getItemId(int position) {
             return position;
         }
 
-        @Override
+        
         public boolean hasStableIds() {
             return false;
         }
 
-        @Override
+        
         public View getView(int position, View convertView, ViewGroup parent) {
             Object item = mItems.get(position);
 

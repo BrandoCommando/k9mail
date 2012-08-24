@@ -70,7 +70,7 @@ public class TimePickerPreference extends DialogPreference implements
      *
      * @see android.preference.DialogPreference#onCreateDialogView()
      */
-    @Override
+    
     protected View onCreateDialogView() {
 
         TimePicker tp = new TimePicker(getContext());
@@ -91,7 +91,7 @@ public class TimePickerPreference extends DialogPreference implements
      * android.widget.TimePicker.OnTimeChangedListener#onTimeChanged(android
      * .widget.TimePicker, int, int)
      */
-    @Override
+    
     public void onTimeChanged(final TimePicker view, final int hour, final int minute) {
 
         persistString(String.format("%02d:%02d", hour, minute));
@@ -102,7 +102,7 @@ public class TimePickerPreference extends DialogPreference implements
      * If not a positive result, restore the original value
      * before going to super.onDialogClosed(positiveResult).
      */
-    @Override
+    
     protected void onDialogClosed(boolean positiveResult) {
 
         if (!positiveResult) {
@@ -115,7 +115,7 @@ public class TimePickerPreference extends DialogPreference implements
     /**
      * @see android.preference.Preference#setDefaultValue(java.lang.Object)
      */
-    @Override
+    
     public void setDefaultValue(final Object defaultValue) {
         // BUG this method is never called if you use the 'android:defaultValue' attribute in your XML preference file, not sure why it isn't
 

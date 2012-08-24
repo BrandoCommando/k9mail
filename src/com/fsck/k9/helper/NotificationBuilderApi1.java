@@ -31,62 +31,62 @@ public class NotificationBuilderApi1 extends NotificationBuilder {
         super(context);
     }
 
-    @Override
+    
     public void setSmallIcon(int icon) {
         mSmallIcon = icon;
     }
 
-    @Override
+    
     public void setWhen(long when) {
         mWhen = when;
     }
 
-    @Override
+    
     public void setTicker(CharSequence tickerText) {
         mTickerText = tickerText;
     }
 
-    @Override
+    
     public void setContentTitle(CharSequence title) {
         mContentTitle = title;
     }
 
-    @Override
+    
     public void setContentText(CharSequence text) {
         mContentText = text;
     }
 
-    @Override
+    
     public void setContentIntent(PendingIntent intent) {
         mContentIntent = intent;
     }
 
-    @Override
+    
     public void setNumber(int number) {
         mNumber = number;
     }
 
-    @Override
+    
     public void setOngoing(boolean ongoing) {
         mOngoing = ongoing;
     }
 
-    @Override
+    
     public void setAutoCancel(boolean autoCancel) {
         mAutoCancel = autoCancel;
     }
 
-    @Override
+    
     public void setSound(Uri sound) {
         mSoundUri = sound;
     }
 
-    @Override
+    
     public void setVibrate(long[] pattern) {
         mVibrationPattern = pattern;
     }
 
-    @Override
+    
     public void setLights(int argb, int onMs, int offMs) {
         mBlinkLed = true;
         mLedColor = argb;
@@ -95,7 +95,7 @@ public class NotificationBuilderApi1 extends NotificationBuilder {
     }
 
     @SuppressWarnings("deprecation")
-    @Override
+    
     public Notification getNotification() {
         Notification notification = new Notification(mSmallIcon, mTickerText, mWhen);
         notification.number = mNumber;

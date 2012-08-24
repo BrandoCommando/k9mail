@@ -21,12 +21,12 @@ public class FolderInfoHolder implements Comparable<FolderInfoHolder> {
     public Folder folder;
     public boolean pushActive;
 
-    @Override
+    
     public boolean equals(Object o) {
         return this.name.equals(((FolderInfoHolder)o).name);
     }
 
-    @Override
+    
     public int hashCode() {
         return name.hashCode();
     }

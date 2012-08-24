@@ -178,7 +178,7 @@ public class AccountSettings extends K9PreferenceActivity {
         context.startActivity(i);
     }
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -234,7 +234,7 @@ public class AccountSettings extends K9PreferenceActivity {
         mAccountQuotePrefix.setSummary(mAccount.getQuotePrefix());
         mAccountQuotePrefix.setText(mAccount.getQuotePrefix());
         mAccountQuotePrefix.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
+            
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 final String value = newValue.toString();
                 mAccountQuotePrefix.setSummary(value);
@@ -255,7 +255,7 @@ public class AccountSettings extends K9PreferenceActivity {
         mComposingScreen = (PreferenceScreen) findPreference(PREFERENCE_SCREEN_COMPOSING);
 
         Preference.OnPreferenceChangeListener quoteStyleListener = new Preference.OnPreferenceChangeListener() {
-            @Override
+            
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 final QuoteStyle style = QuoteStyle.valueOf(newValue.toString());
                 int index = mQuoteStyle.findIndexOfValue(newValue.toString());
@@ -562,7 +562,7 @@ public class AccountSettings extends K9PreferenceActivity {
         mAccountVibrateTimes.setValue(String.valueOf(mAccount.getNotificationSetting().getVibrateTimes()));
         mAccountVibrateTimes.setSummary(String.valueOf(mAccount.getNotificationSetting().getVibrateTimes()));
         mAccountVibrateTimes.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-            @Override
+            
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 final String value = newValue.toString();
                 mAccountVibrateTimes.setSummary(value);
@@ -800,7 +800,7 @@ public class AccountSettings extends K9PreferenceActivity {
         mAccount.save(Preferences.getPreferences(this));
     }
 
-    @Override
+    
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
@@ -812,7 +812,7 @@ public class AccountSettings extends K9PreferenceActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @Override
+    
     protected void onPause() {
         saveSettings();
         super.onPause();
@@ -845,7 +845,7 @@ public class AccountSettings extends K9PreferenceActivity {
         showDialog(DIALOG_COLOR_PICKER_LED);
     }
 
-    @Override
+    
     public Dialog onCreateDialog(int id) {
         Dialog dialog = null;
 
@@ -877,7 +877,7 @@ public class AccountSettings extends K9PreferenceActivity {
         return dialog;
     }
 
-    @Override
+    
     public void onPrepareDialog(int id, Dialog dialog) {
         switch (id) {
             case DIALOG_COLOR_PICKER_ACCOUNT: {
@@ -933,7 +933,7 @@ public class AccountSettings extends K9PreferenceActivity {
         String[] allFolderValues;
         String[] allFolderLabels;
 
-        @Override
+        
         protected Void doInBackground(Void... params) {
             try {
                 folders = mAccount.getLocalStore().getPersonalNamespaces(false);
@@ -966,7 +966,7 @@ public class AccountSettings extends K9PreferenceActivity {
             return null;
         }
 
-        @Override
+        
         protected void onPreExecute() {
             mAutoExpandFolder = (ListPreference)findPreference(PREFERENCE_AUTO_EXPAND_FOLDER);
             mAutoExpandFolder.setEnabled(false);
@@ -992,7 +992,7 @@ public class AccountSettings extends K9PreferenceActivity {
             }
         }
 
-        @Override
+        
         protected void onPostExecute(Void res) {
             initListPreference(mAutoExpandFolder, mAccount.getAutoExpandFolderName(), allFolderLabels, allFolderValues);
             mAutoExpandFolder.setEnabled(true);

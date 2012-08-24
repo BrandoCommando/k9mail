@@ -94,7 +94,7 @@ public class Base64OutputStream extends FilterOutputStream {
     /**
      * Writes the specified <code>byte</code> to this output stream.
      */
-    @Override
+    
     public void write(int i) throws IOException {
         singleByte[0] = (byte) i;
         write(singleByte, 0, 1);
@@ -113,7 +113,7 @@ public class Base64OutputStream extends FilterOutputStream {
      * @throws NullPointerException if the byte array parameter is null
      * @throws IndexOutOfBoundsException if offset, len or buffer size are invalid
      */
-    @Override
+    
     public void write(byte b[], int offset, int len) throws IOException {
         if (b == null) {
             throw new NullPointerException();
@@ -160,7 +160,7 @@ public class Base64OutputStream extends FilterOutputStream {
      *
      * @throws IOException if an I/O error occurs.
      */
-    @Override
+    
     public void flush() throws IOException {
         flush(true);
     }
@@ -169,7 +169,7 @@ public class Base64OutputStream extends FilterOutputStream {
      * Closes this output stream, flushing any remaining bytes that must be encoded. The
      * underlying stream is flushed but not closed.
      */
-    @Override
+    
     public void close() throws IOException {
         // Notify encoder of EOF (-1).
         if (doEncode) {

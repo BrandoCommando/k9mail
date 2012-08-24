@@ -81,7 +81,7 @@ public class AccountSetupOutgoing extends K9Activity implements OnClickListener,
         context.startActivity(i);
     }
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_setup_outgoing);
@@ -251,7 +251,7 @@ public class AccountSetupOutgoing extends K9Activity implements OnClickListener,
 
     }
 
-    @Override
+    
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(EXTRA_ACCOUNT, mAccount.getUuid());
@@ -273,7 +273,7 @@ public class AccountSetupOutgoing extends K9Activity implements OnClickListener,
         mPortView.setText(Integer.toString(smtpPorts[securityType]));
     }
 
-    @Override
+    
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (Intent.ACTION_EDIT.equals(getIntent().getAction())) {

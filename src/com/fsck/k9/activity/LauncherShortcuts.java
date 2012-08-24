@@ -10,7 +10,7 @@ import org.brandroid.k9.R;
 import com.fsck.k9.SearchSpecification;
 
 public class LauncherShortcuts extends AccountList {
-    @Override
+    
     public void onCreate(Bundle icicle) {
         // finish() immediately if we aren't supposed to be here
         if (!Intent.ACTION_CREATE_SHORTCUT.equals(getIntent().getAction())) {
@@ -21,12 +21,12 @@ public class LauncherShortcuts extends AccountList {
         super.onCreate(icicle);
     }
 
-    @Override
+    
     protected boolean displaySpecialAccounts() {
         return true;
     }
 
-    @Override
+    
     protected void onAccountSelected(BaseAccount account) {
         Intent shortcutIntent = null;
 

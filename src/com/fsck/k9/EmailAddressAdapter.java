@@ -32,7 +32,7 @@ public class EmailAddressAdapter extends ResourceCursorAdapter {
         mContacts = Contacts.getInstance(context.getApplicationContext());
     }
 
-    @Override
+    
     public final String convertToString(final Cursor cursor) {
         final String name = mContacts.getName(cursor);
         final String address = mContacts.getEmail(cursor);
@@ -40,7 +40,7 @@ public class EmailAddressAdapter extends ResourceCursorAdapter {
         return (address == null) ? "" : new Address(address, name).toString();
     }
 
-    @Override
+    
     public final void bindView(final View view, final Context context, final Cursor cursor) {
         final TextView text1 = (TextView) view.findViewById(org.brandroid.k9.R.id.text1);
         final TextView text2 = (TextView) view.findViewById(org.brandroid.k9.R.id.text2);
@@ -48,7 +48,7 @@ public class EmailAddressAdapter extends ResourceCursorAdapter {
         text2.setText(mContacts.getEmail(cursor));
     }
 
-    @Override
+    
     public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
         return mContacts.searchContacts(constraint);
     }

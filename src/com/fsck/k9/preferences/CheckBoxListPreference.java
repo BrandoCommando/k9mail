@@ -34,7 +34,7 @@ public class CheckBoxListPreference extends DialogPreference {
         super(context, attrs);
     }
 
-    @Override
+    
     protected void onPrepareDialogBuilder(final Builder builder) {
         mPendingItems = new boolean[mItems.length];
 
@@ -42,7 +42,7 @@ public class CheckBoxListPreference extends DialogPreference {
 
         builder.setMultiChoiceItems(mItems, mPendingItems,
         new DialogInterface.OnMultiChoiceClickListener() {
-            @Override
+            
             public void onClick(final DialogInterface dialog, final int which,
             final boolean isChecked) {
                 mPendingItems[which] = isChecked;
@@ -50,7 +50,7 @@ public class CheckBoxListPreference extends DialogPreference {
         });
     }
 
-    @Override
+    
     protected void onDialogClosed(boolean positiveResult) {
         if (positiveResult) {
             System.arraycopy(mPendingItems, 0, mCheckedItems, 0, mPendingItems.length);

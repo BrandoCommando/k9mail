@@ -119,7 +119,7 @@ public class TracingPowerManager {
                         timerTask = null;
                     }
                     timerTask = new TimerTask() {
-                        @Override
+                        
                         public void run() {
                             if (startTime != null) {
                                 Long endTime = System.currentTimeMillis();

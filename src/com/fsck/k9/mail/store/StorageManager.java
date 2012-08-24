@@ -183,7 +183,7 @@ public class StorageManager {
          */
         protected File mApplicationDir;
 
-        @Override
+        
         public void init(final Context context) {
             mRoot = computeRoot(context);
             // use <STORAGE_ROOT>/k9
@@ -198,7 +198,7 @@ public class StorageManager {
          */
         protected abstract boolean supportsVendor();
 
-        @Override
+        
         public boolean isReady(Context context) {
             try {
                 final File root = mRoot.getCanonicalFile();
@@ -210,22 +210,22 @@ public class StorageManager {
             }
         }
 
-        @Override
+        
         public final boolean isSupported(Context context) {
             return mRoot.isDirectory() && supportsVendor();
         }
 
-        @Override
+        
         public File getDatabase(Context context, String id) {
             return new File(mApplicationDir, id + ".db");
         }
 
-        @Override
+        
         public File getAttachmentDirectory(Context context, String id) {
             return new File(mApplicationDir, id + ".db_att");
         }
 
-        @Override
+        
         public final File getRoot(Context context) {
             return mRoot;
         }
@@ -260,44 +260,44 @@ public class StorageManager {
 
         protected File mRoot;
 
-        @Override
+        
         public String getId() {
             return ID;
         }
 
-        @Override
+        
         public void init(Context context) {
             // XXX
             mRoot = new File("/");
         }
 
-        @Override
+        
         public String getName(Context context) {
             return context.getString(R.string.local_storage_provider_internal_label);
         }
 
-        @Override
+        
         public boolean isSupported(Context context) {
             return true;
         }
 
-        @Override
+        
         public File getDatabase(Context context, String id) {
             return context.getDatabasePath(id + ".db");
         }
 
-        @Override
+        
         public File getAttachmentDirectory(Context context, String id) {
             // we store attachments in the database directory
             return context.getDatabasePath(id + ".db_att");
         }
 
-        @Override
+        
         public boolean isReady(Context context) {
             return true;
         }
 
-        @Override
+        
         public File getRoot(Context context) {
             return mRoot;
         }
@@ -339,39 +339,39 @@ public class StorageManager {
             return ID;
         }
 
-        @Override
+        
         public void init(Context context) {
             mRoot = Environment.getExternalStorageDirectory();
             mApplicationDirectory = new File(new File(new File(new File(mRoot, "Android"), "data"),
                                              context.getPackageName()), "files");
         }
 
-        @Override
+        
         public String getName(Context context) {
             return context.getString(R.string.local_storage_provider_external_label);
         }
 
-        @Override
+        
         public boolean isSupported(Context context) {
             return true;
         }
 
-        @Override
+        
         public File getDatabase(Context context, String id) {
             return new File(mApplicationDirectory, id + ".db");
         }
 
-        @Override
+        
         public File getAttachmentDirectory(Context context, String id) {
             return new File(mApplicationDirectory, id + ".db_att");
         }
 
-        @Override
+        
         public boolean isReady(Context context) {
             return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
         }
 
-        @Override
+        
         public File getRoot(Context context) {
             return mRoot;
         }
@@ -396,18 +396,18 @@ public class StorageManager {
             return ID;
         }
 
-        @Override
+        
         public String getName(Context context) {
             return context.getString(R.string.local_storage_provider_samsunggalaxy_label,
                                      Build.MODEL);
         }
 
-        @Override
+        
         protected boolean supportsVendor() {
             return "inc".equals(Build.DEVICE);
         }
 
-        @Override
+        
         protected File computeRoot(Context context) {
             return new File("/emmc");
         }
@@ -432,20 +432,20 @@ public class StorageManager {
             return ID;
         }
 
-        @Override
+        
         public String getName(Context context) {
             return context.getString(R.string.local_storage_provider_samsunggalaxy_label,
                                      Build.MODEL);
         }
 
-        @Override
+        
         protected boolean supportsVendor() {
             // FIXME
             return "GT-I5800".equals(Build.DEVICE) || "GT-I9000".equals(Build.DEVICE)
                    || "SGH-T959".equals(Build.DEVICE) || "SGH-I897".equals(Build.DEVICE);
         }
 
-        @Override
+        
         protected File computeRoot(Context context) {
             return Environment.getExternalStorageDirectory(); // was: new
             // File("/sdcard")

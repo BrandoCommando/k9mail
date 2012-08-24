@@ -13,7 +13,7 @@ class AccountReceiver extends BroadcastReceiver {
         receptor = nReceptor;
     }
 
-    @Override
+    
     public void onReceive(Context context, Intent intent) {
         if (K9RemoteControl.K9_REQUEST_ACCOUNTS.equals(intent.getAction())) {
             Bundle bundle = getResultExtras(false);

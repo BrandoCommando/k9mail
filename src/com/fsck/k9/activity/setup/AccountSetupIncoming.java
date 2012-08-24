@@ -97,7 +97,7 @@ public class AccountSetupIncoming extends K9Activity implements OnClickListener 
         context.startActivity(i);
     }
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_setup_incoming);
@@ -123,7 +123,7 @@ public class AccountSetupIncoming extends K9Activity implements OnClickListener 
         mNextButton.setOnClickListener(this);
 
         mImapAutoDetectNamespaceView.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-            @Override
+            
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mImapPathPrefixView.setEnabled(!isChecked);
                 if (isChecked && mImapPathPrefixView.hasFocus()) {
@@ -323,7 +323,7 @@ public class AccountSetupIncoming extends K9Activity implements OnClickListener 
         }
     }
 
-    @Override
+    
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(EXTRA_ACCOUNT, mAccount.getUuid());
@@ -345,7 +345,7 @@ public class AccountSetupIncoming extends K9Activity implements OnClickListener 
         }
     }
 
-    @Override
+    
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (Intent.ACTION_EDIT.equals(getIntent().getAction())) {

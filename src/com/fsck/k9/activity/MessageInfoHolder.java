@@ -29,7 +29,7 @@ public class MessageInfoHolder {
         this.selected = false;
     }
 
-    @Override
+    
     public boolean equals(Object o) {
         if (o instanceof MessageInfoHolder == false) {
             return false;
@@ -38,7 +38,7 @@ public class MessageInfoHolder {
         return message.equals(other.message);
     }
 
-    @Override
+    
     public int hashCode() {
         return uid.hashCode();
     }

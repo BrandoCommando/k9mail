@@ -76,7 +76,7 @@ public class ActivityListener extends MessagingListener {
     public void informUserOfStatus() {
     }
 
-    @Override
+    
     public void synchronizeMailboxFinished(
         Account account,
         String folder,
@@ -88,7 +88,7 @@ public class ActivityListener extends MessagingListener {
         informUserOfStatus();
     }
 
-    @Override
+    
     public void synchronizeMailboxStarted(Account account, String folder) {
         mLoadingAccountDescription = account.getDescription();
         mLoadingFolderName = folder;
@@ -99,21 +99,21 @@ public class ActivityListener extends MessagingListener {
     }
 
 
-    @Override
+    
     public void synchronizeMailboxHeadersStarted(Account account, String folder) {
         mLoadingHeaderFolderName = folder;
         informUserOfStatus();
     }
 
 
-    @Override
+    
     public void synchronizeMailboxHeadersProgress(Account account, String folder, int completed, int total) {
         mFolderCompleted = completed;
         mFolderTotal = total;
         informUserOfStatus();
     }
 
-    @Override
+    
     public void synchronizeMailboxHeadersFinished(Account account, String folder,
             int total, int completed) {
         mLoadingHeaderFolderName = null;
@@ -123,14 +123,14 @@ public class ActivityListener extends MessagingListener {
     }
 
 
-    @Override
+    
     public void synchronizeMailboxProgress(Account account, String folder, int completed, int total) {
         mFolderCompleted = completed;
         mFolderTotal = total;
         informUserOfStatus();
     }
 
-    @Override
+    
     public void synchronizeMailboxFailed(Account account, String folder,
                                          String message) {
         mLoadingAccountDescription = null;
@@ -140,25 +140,25 @@ public class ActivityListener extends MessagingListener {
 
     }
 
-    @Override
+    
     public void sendPendingMessagesStarted(Account account) {
         mSendingAccountDescription = account.getDescription();
         informUserOfStatus();
     }
 
-    @Override
+    
     public void sendPendingMessagesCompleted(Account account) {
         mSendingAccountDescription = null;
         informUserOfStatus();
     }
 
-    @Override
+    
     public void sendPendingMessagesFailed(Account account) {
         mSendingAccountDescription = null;
         informUserOfStatus();
     }
 
-    @Override
+    
     public void pendingCommandsProcessing(Account account) {
         mProcessingAccountDescription = account.getDescription();
         mFolderCompleted = 0;
@@ -166,34 +166,34 @@ public class ActivityListener extends MessagingListener {
         informUserOfStatus();
     }
 
-    @Override
+    
     public void pendingCommandsFinished(Account account) {
         mProcessingAccountDescription = null;
         informUserOfStatus();
     }
 
-    @Override
+    
     public void pendingCommandStarted(Account account, String commandTitle) {
         mProcessingCommandTitle = commandTitle;
         informUserOfStatus();
     }
 
-    @Override
+    
     public void pendingCommandCompleted(Account account, String commandTitle) {
         mProcessingCommandTitle = null;
         informUserOfStatus();
     }
 
-    @Override
+    
     public void searchStats(AccountStats stats) {
         informUserOfStatus();
     }
 
-    @Override
+    
     public void systemStatusChanged() {
         informUserOfStatus();
     }
-    @Override
+    
     public void folderStatusChanged(Account account, String folder, int unreadMessageCount) {
         informUserOfStatus();
     }

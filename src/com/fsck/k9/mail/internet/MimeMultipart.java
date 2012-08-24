@@ -56,7 +56,7 @@ public class MimeMultipart extends Multipart {
         this.mPreamble = preamble;
     }
 
-    @Override
+    
     public String getContentType() {
         return mContentType;
     }

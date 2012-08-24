@@ -106,7 +106,7 @@ public class UnreadWidgetProvider extends AppWidgetProvider {
     /**
      * Called when one or more widgets need to be updated.
      */
-    @Override
+    
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         for (int widgetId : appWidgetIds) {
             String accountUuid = UnreadWidgetConfiguration.getAccountUuid(context, widgetId);
@@ -118,7 +118,7 @@ public class UnreadWidgetProvider extends AppWidgetProvider {
     /**
      * Called when a widget instance is deleted.
      */
-    @Override
+    
     public void onDeleted(Context context, int[] appWidgetIds) {
         for (int appWidgetId : appWidgetIds) {
             UnreadWidgetConfiguration.deleteWidgetConfiguration(context, appWidgetId);

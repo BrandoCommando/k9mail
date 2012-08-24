@@ -22,7 +22,7 @@ public class BootReceiver extends CoreReceiver {
     public static String ALARMED_INTENT = "com.fsck.k9.service.BroadcastReceiver.pendingIntent";
     public static String AT_TIME = "com.fsck.k9.service.BroadcastReceiver.atTime";
 
-    @Override
+    
     public Integer receive(Context context, Intent intent, Integer tmpWakeLockId) {
         if (K9.DEBUG)
             Log.i(K9.LOG_TAG, "BootReceiver.onReceive" + intent);
@@ -128,7 +128,7 @@ public class BootReceiver extends CoreReceiver {
         final AlarmManager alarmService = (AlarmManager) context
                                           .getSystemService(Context.ALARM_SERVICE);
         alarmService.cancel(PendingIntent.getBroadcast(context, 0, new Intent() {
-            @Override
+            
             public boolean filterEquals(final Intent other) {
                 // we want to match all intents
                 return true;

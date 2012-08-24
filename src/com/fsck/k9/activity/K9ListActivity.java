@@ -10,7 +10,7 @@ import com.fsck.k9.K9;
 import com.fsck.k9.helper.DateFormatter;
 
 public class K9ListActivity extends ListActivity {
-    @Override
+    
     public void onCreate(Bundle icicle) {
         K9Activity.setLanguage(this, K9.getK9Language());
         setTheme(K9.getK9ThemeResourceId());
@@ -18,7 +18,7 @@ public class K9ListActivity extends ListActivity {
         setupFormats();
     }
 
-    @Override
+    
     public void onResume() {
         super.onResume();
         setupFormats();
@@ -40,7 +40,7 @@ public class K9ListActivity extends ListActivity {
         return mDateFormat;
     }
 
-    @Override
+    
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // Shortcuts that work no matter what is selected
         switch (keyCode) {
@@ -75,7 +75,7 @@ public class K9ListActivity extends ListActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
+    
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         // Swallow these events too to avoid the audible notification of a volume change
         if (K9.useVolumeKeysForListNavigationEnabled()) {

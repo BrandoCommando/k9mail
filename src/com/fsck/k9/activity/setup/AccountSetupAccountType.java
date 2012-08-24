@@ -37,7 +37,7 @@ public class AccountSetupAccountType extends K9Activity implements OnClickListen
         context.startActivity(i);
     }
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_setup_account_type);

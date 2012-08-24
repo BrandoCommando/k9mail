@@ -68,7 +68,7 @@ public class ContactsSdk5 extends com.fsck.k9.helper.Contacts {
         super(context);
     }
 
-    @Override
+    
     public void createContact(final Address email) {
         final Uri contactUri = Uri.fromParts("mailto", email.getAddress(), null);
 
@@ -89,7 +89,7 @@ public class ContactsSdk5 extends com.fsck.k9.helper.Contacts {
         mContext.startActivity(contactIntent);
     }
 
-    @Override
+    
     public void addPhoneContact(final String phoneNumber) {
         Intent addIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
         addIntent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
@@ -98,7 +98,7 @@ public class ContactsSdk5 extends com.fsck.k9.helper.Contacts {
         mContext.startActivity(addIntent);
     }
 
-    @Override
+    
     public boolean isInContacts(final String emailAddress) {
         boolean result = false;
 
@@ -114,7 +114,7 @@ public class ContactsSdk5 extends com.fsck.k9.helper.Contacts {
         return result;
     }
 
-    @Override
+    
     public Cursor searchContacts(final CharSequence constraint) {
         final String filter = (constraint == null) ? "" : constraint.toString();
         final Uri uri = Uri.withAppendedPath(Email.CONTENT_FILTER_URI, Uri.encode(filter));
@@ -140,7 +140,7 @@ public class ContactsSdk5 extends com.fsck.k9.helper.Contacts {
         return c;
     }
 
-    @Override
+    
     public String getNameForAddress(String address) {
         if (address == null) {
             return null;
@@ -160,17 +160,17 @@ public class ContactsSdk5 extends com.fsck.k9.helper.Contacts {
         return name;
     }
 
-    @Override
+    
     public String getName(Cursor c) {
         return c.getString(NAME_INDEX);
     }
 
-    @Override
+    
     public String getEmail(Cursor c) {
         return c.getString(EMAIL_INDEX);
     }
 
-    @Override
+    
     public void markAsContacted(final Address[] addresses) {
         //TODO: Optimize! Potentially a lot of database queries
         for (final Address address : addresses) {
@@ -187,12 +187,12 @@ public class ContactsSdk5 extends com.fsck.k9.helper.Contacts {
         }
     }
 
-    @Override
+    
     public Intent contactPickerIntent() {
         return new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
     }
 
-    @Override
+    
     public ContactItem extractInfoFromContactPickerIntent(final Intent data) {
         Cursor cursor = null;
         ArrayList<String> email = new ArrayList<String>();

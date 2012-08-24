@@ -19,12 +19,12 @@ public class FixedLengthInputStream extends InputStream {
         this.mLength = length;
     }
 
-    @Override
+    
     public int available() throws IOException {
         return mLength - mCount;
     }
 
-    @Override
+    
     public int read() throws IOException {
         if (mCount >= mLength) {
             return -1;
@@ -37,7 +37,7 @@ public class FixedLengthInputStream extends InputStream {
         return d;
     }
 
-    @Override
+    
     public int read(byte[] b, int offset, int length) throws IOException {
         if (mCount >= mLength) {
             return -1;
@@ -50,12 +50,12 @@ public class FixedLengthInputStream extends InputStream {
         return d;
     }
 
-    @Override
+    
     public int read(byte[] b) throws IOException {
         return read(b, 0, b.length);
     }
 
-    @Override
+    
     public long skip(long n) throws IOException {
         long d = mIn.skip(Math.min(n, available()));
         if (d > 0) {
@@ -64,7 +64,7 @@ public class FixedLengthInputStream extends InputStream {
         return d;
     }
 
-    @Override
+    
     public String toString() {
         return String.format("FixedLengthInputStream(in=%s, length=%d)", mIn.toString(), mLength);
     }

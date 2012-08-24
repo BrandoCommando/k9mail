@@ -1191,7 +1191,7 @@ public class Account implements BaseAccount {
     }
 
 
-    @Override
+    
     public synchronized String toString() {
         return mDescription;
     }
@@ -1222,7 +1222,7 @@ public class Account implements BaseAccount {
         return useCompression(networkType);
     }
 
-    @Override
+    
     public boolean equals(Object o) {
         if (o instanceof Account) {
             return ((Account)o).mUuid.equals(mUuid);
@@ -1230,7 +1230,7 @@ public class Account implements BaseAccount {
         return super.equals(o);
     }
 
-    @Override
+    
     public int hashCode() {
         return mUuid.hashCode();
     }

@@ -52,7 +52,7 @@ public class WebDavTransport extends Transport {
             Log.d(K9.LOG_TAG, ">>> New WebDavTransport creation complete");
     }
 
-    @Override
+    
     public void open() throws MessagingException {
         if (K9.DEBUG)
             Log.d(K9.LOG_TAG, ">>> open called on WebDavTransport ");
@@ -60,11 +60,11 @@ public class WebDavTransport extends Transport {
         store.getHttpClient();
     }
 
-    @Override
+    
     public void close() {
     }
 
-    @Override
+    
     public void sendMessage(Message message) throws MessagingException {
         store.sendMessages(new Message[] { message });
     }

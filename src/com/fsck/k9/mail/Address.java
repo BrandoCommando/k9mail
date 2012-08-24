@@ -158,7 +158,7 @@ public class Address {
         return addresses.toArray(EMPTY_ADDRESS_ARRAY);
     }
 
-    @Override
+    
     public boolean equals(Object o) {
         if (o instanceof Address) {
             return getAddress().equals(((Address) o).getAddress());
@@ -166,12 +166,12 @@ public class Address {
         return super.equals(o);
     }
 
-    @Override
+    
     public int hashCode() {
         return getAddress().hashCode();
     }
 
-    @Override
+    
     public String toString() {
         if (!StringUtils.isNullOrEmpty(mPersonal)) {
             return Utility.quoteAtoms(mPersonal) + " <" + mAddress + ">";

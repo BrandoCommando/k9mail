@@ -26,7 +26,7 @@ public class PushService extends CoreService {
         context.startService(i);
     }
 
-    @Override
+    
     public int startService(Intent intent, int startId) {
         int startFlag = START_STICKY;
         if (START_SERVICE.equals(intent.getAction())) {
@@ -42,14 +42,14 @@ public class PushService extends CoreService {
         return startFlag;
     }
 
-    @Override
+    
     public void onCreate() {
         super.onCreate();
         setAutoShutdown(false);
     }
 
 
-    @Override
+    
     public IBinder onBind(Intent arg0) {
         // TODO Auto-generated method stub
         return null;

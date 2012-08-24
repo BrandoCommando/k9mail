@@ -18,7 +18,7 @@ class Iso2022JpToShiftJisInputStream extends InputStream {
         mIn = in;
     }
 
-    @Override
+    
     public int read() throws IOException {
         if (hasOut) {
             hasOut = false;

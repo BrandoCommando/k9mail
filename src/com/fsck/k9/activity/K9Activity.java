@@ -23,7 +23,7 @@ public class K9Activity extends Activity {
 
     protected GestureDetector mGestureDetector;
 
-    @Override
+    
     public void onCreate(Bundle icicle) {
         setLanguage(this, K9.getK9Language());
         setTheme(K9.getK9ThemeResourceId());
@@ -47,7 +47,7 @@ public class K9Activity extends Activity {
                 context.getResources().getDisplayMetrics());
     }
 
-    @Override
+    
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if (mGestureDetector != null) {
             mGestureDetector.onTouchEvent(ev);
@@ -55,7 +55,7 @@ public class K9Activity extends Activity {
         return super.dispatchTouchEvent(ev);
     }
 
-    @Override
+    
     public void onResume() {
         super.onResume();
         setupFormats();
@@ -138,13 +138,13 @@ public class K9Activity extends Activity {
 
         protected MotionEvent mLastOnDownEvent = null;
 
-        @Override
+        
         public boolean onDown(MotionEvent e) {
             mLastOnDownEvent = e;
             return super.onDown(e);
         }
 
-        @Override
+        
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             // Do fling-detection if gestures are force-enabled or we have system-wide gestures enabled.
             if (gesturesEnabled || K9.gesturesEnabled()) {

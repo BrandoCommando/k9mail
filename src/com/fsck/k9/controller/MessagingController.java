@@ -226,7 +226,7 @@ public class MessagingController implements Runnable {
         return mBusy;
     }
 
-    @Override
+    
     public void run() {
         Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
         while (true) {
@@ -246,7 +246,7 @@ public class MessagingController implements Runnable {
                     } catch (UnavailableAccountException e) {
                         // retry later
                         new Thread() {
-                            @Override
+                            
                             public void run() {
                                 try {
                                     sleep(30 * 1000);
@@ -353,7 +353,7 @@ public class MessagingController implements Runnable {
      */
     public void listFolders(final Account account, final boolean refreshRemote, final MessagingListener listener) {
         threadPool.execute(new Runnable() {
-            @Override
+            
             public void run() {
                 listFoldersSynchronous(account, refreshRemote, listener);
             }
@@ -417,7 +417,7 @@ public class MessagingController implements Runnable {
 
     private void doRefreshRemote(final Account account, final MessagingListener listener) {
         put("doRefreshRemote", listener, new Runnable() {
-            @Override
+            
             public void run() {
                 List <? extends Folder > localFolders = null;
                 try {
@@ -492,7 +492,7 @@ public class MessagingController implements Runnable {
      */
     public void listLocalMessages(final Account account, final String folder, final MessagingListener listener) {
         threadPool.execute(new Runnable() {
-            @Override
+            
             public void run() {
                 listLocalMessagesSynchronous(account, folder, listener);
             }
@@ -520,9 +520,9 @@ public class MessagingController implements Runnable {
             List<Message> pendingMessages = new ArrayList<Message>();
 
 
-            @Override
+            
             public void messageStarted(String message, int number, int ofTotal) {}
-            @Override
+            
             public void messageFinished(Message message, int number, int ofTotal) {
 
                 if (!isMessageSuppressed(account, folder, message)) {
@@ -537,7 +537,7 @@ public class MessagingController implements Runnable {
                     }
                 }
             }
-            @Override
+            
             public void messagesFinished(int number) {
                 addPendingMessages();
             }
@@ -601,7 +601,7 @@ public class MessagingController implements Runnable {
         }
 
         threadPool.execute(new Runnable() {
-            @Override
+            
             public void run() {
                 searchLocalMessagesSynchronous(accountUuids, folderNames, messages,  query, integrate, requiredFlags, forbiddenFlags, listener);
             }
@@ -703,9 +703,9 @@ public class MessagingController implements Runnable {
             }
 
             MessageRetrievalListener retrievalListener = new MessageRetrievalListener() {
-                @Override
+                
                 public void messageStarted(String message, int number, int ofTotal) {}
-                @Override
+                
                 public void messageFinished(Message message, int number, int ofTotal) {
                     if (!isMessageSuppressed(message.getFolder().getAccount(), message.getFolder().getName(), message)) {
                         List<Message> messages = new ArrayList<Message>();
@@ -719,7 +719,7 @@ public class MessagingController implements Runnable {
                     }
 
                 }
-                @Override
+                
                 public void messagesFinished(int number) {
 
                 }
@@ -778,7 +778,7 @@ public class MessagingController implements Runnable {
      */
     public void synchronizeMailbox(final Account account, final String folder, final MessagingListener listener, final Folder providedRemoteFolder) {
         putBackground("synchronizeMailbox", listener, new Runnable() {
-            @Override
+            
             public void run() {
                 synchronizeMailboxSynchronous(account, folder, listener, providedRemoteFolder);
             }
@@ -1266,7 +1266,7 @@ public class MessagingController implements Runnable {
             Log.d(K9.LOG_TAG, "SYNC: Synced remote messages for folder " + folder + ", " + newMessages.get() + " new messages");
 
         localFolder.purgeToVisibleLimit(new MessageRemovalListener() {
-            @Override
+            
             public void messageRemoved(Message message) {
                 for (MessagingListener l : getListeners()) {
                     l.synchronizeMailboxRemovedMessage(account, folder, message);
@@ -1376,7 +1376,7 @@ public class MessagingController implements Runnable {
 
         remoteFolder.fetch(unsyncedMessages.toArray(EMPTY_MESSAGE_ARRAY), fp,
         new MessageRetrievalListener() {
-            @Override
+            
             public void messageFinished(Message message, int number, int ofTotal) {
                 try {
                     String newPushState = remoteFolder.getNewPushState(localFolder.getPushState(), message);
@@ -1432,10 +1432,10 @@ public class MessagingController implements Runnable {
                 }
             }
 
-            @Override
+            
             public void messageStarted(String uid, int number, int ofTotal) {}
 
-            @Override
+            
             public void messagesFinished(int total) {
                 // FIXME this method is almost never invoked by various Stores! Don't rely on it unless fixed!!
             }
@@ -1521,7 +1521,7 @@ public class MessagingController implements Runnable {
 
         remoteFolder.fetch(smallMessages.toArray(new Message[smallMessages.size()]),
         fp, new MessageRetrievalListener() {
-            @Override
+            
             public void messageFinished(final Message message, int number, int ofTotal) {
                 try {
 
@@ -1533,7 +1533,7 @@ public class MessagingController implements Runnable {
 
                     // Store the updated message locally
                     final Message localMessage = localFolder.storeSmallMessage(message, new Runnable() {
-                        @Override
+                        
                         public void run() {
                             progress.incrementAndGet();
                         }
@@ -1569,10 +1569,10 @@ public class MessagingController implements Runnable {
                 }
             }
 
-            @Override
+            
             public void messageStarted(String uid, int number, int ofTotal) {}
 
-            @Override
+            
             public void messagesFinished(int total) {}
         });
 
@@ -1801,7 +1801,7 @@ public class MessagingController implements Runnable {
 
     private void processPendingCommands(final Account account) {
         putBackground("processPendingCommands", null, new Runnable() {
-            @Override
+            
             public void run() {
                 try {
                     processPendingCommandsSynchronous(account);
@@ -2245,7 +2245,7 @@ public class MessagingController implements Runnable {
 
     private void queueSetFlag(final Account account, final String folderName, final String newState, final String flag, final String[] uids) {
         putBackground("queueSetFlag " + account.getDescription() + ":" + folderName, null, new Runnable() {
-            @Override
+            
             public void run() {
                 PendingCommand command = new PendingCommand();
                 command.command = PENDING_COMMAND_SET_FLAG_BULK;
@@ -2347,7 +2347,7 @@ public class MessagingController implements Runnable {
     }
     private void queueExpunge(final Account account, final String folderName) {
         putBackground("queueExpunge " + account.getDescription() + ":" + folderName, null, new Runnable() {
-            @Override
+            
             public void run() {
                 PendingCommand command = new PendingCommand();
                 command.command = PENDING_COMMAND_EXPUNGE;
@@ -2590,7 +2590,7 @@ public class MessagingController implements Runnable {
         final Flag flag,
         final boolean newState) {
         actOnMessages(messages, new MessageActor() {
-            @Override
+            
             public void act(final Account account, final Folder folder,
             final List<Message> messages) {
                 setFlag(account, folder.getName(), messages.toArray(EMPTY_MESSAGE_ARRAY), flag,
@@ -2721,7 +2721,7 @@ public class MessagingController implements Runnable {
     public void loadMessageForViewRemote(final Account account, final String folder,
                                          final String uid, final MessagingListener listener) {
         put("loadMessageForViewRemote", listener, new Runnable() {
-            @Override
+            
             public void run() {
                 Folder remoteFolder = null;
                 LocalFolder localFolder = null;
@@ -2798,7 +2798,7 @@ public class MessagingController implements Runnable {
             l.loadMessageForViewStarted(account, folder, uid);
         }
         threadPool.execute(new Runnable() {
-            @Override
+            
             public void run() {
 
                 try {
@@ -2883,7 +2883,7 @@ public class MessagingController implements Runnable {
         }
 
         put("loadAttachment", listener, new Runnable() {
-            @Override
+            
             public void run() {
                 Folder remoteFolder = null;
                 LocalFolder localFolder = null;
@@ -2973,7 +2973,7 @@ public class MessagingController implements Runnable {
     public void sendPendingMessages(final Account account,
                                     MessagingListener listener) {
         putBackground("sendPendingMessages", listener, new Runnable() {
-            @Override
+            
             public void run() {
                 if (!account.isAvailable(mApplication)) {
                     throw new UnavailableAccountException();
@@ -3313,7 +3313,7 @@ public class MessagingController implements Runnable {
     public void getAccountStats(final Context context, final Account account,
                                 final MessagingListener l) {
         Runnable unreadRunnable = new Runnable() {
-            @Override
+            
             public void run() {
                 try {
                     AccountStats stats = account.getStats(context);
@@ -3332,7 +3332,7 @@ public class MessagingController implements Runnable {
     public void getFolderUnreadMessageCount(final Account account, final String folderName,
                                             final MessagingListener l) {
         Runnable unreadRunnable = new Runnable() {
-            @Override
+            
             public void run() {
 
                 int unreadMessageCount = 0;
@@ -3386,7 +3386,7 @@ public class MessagingController implements Runnable {
             suppressMessage(account, srcFolder, message);
         }
         putBackground("moveMessages", null, new Runnable() {
-            @Override
+            
             public void run() {
                 moveOrCopyMessageSynchronous(account, srcFolder, messages, destFolder, false, listener);
             }
@@ -3401,7 +3401,7 @@ public class MessagingController implements Runnable {
     public void copyMessages(final Account account, final String srcFolder, final Message[] messages, final String destFolder,
                              final MessagingListener listener) {
         putBackground("copyMessages", null, new Runnable() {
-            @Override
+            
             public void run() {
                 moveOrCopyMessageSynchronous(account, srcFolder, messages, destFolder, true, listener);
             }
@@ -3507,7 +3507,7 @@ public class MessagingController implements Runnable {
 
     public void expunge(final Account account, final String folder, final MessagingListener listener) {
         putBackground("expunge", null, new Runnable() {
-            @Override
+            
             public void run() {
                 queueExpunge(account, folder);
             }
@@ -3537,7 +3537,7 @@ public class MessagingController implements Runnable {
     public void deleteMessages(final Message[] messages, final MessagingListener listener) {
         actOnMessages(messages, new MessageActor() {
 
-            @Override
+            
             public void act(final Account account, final Folder folder,
             final List<Message> messages) {
                 for (Message message : messages) {
@@ -3545,7 +3545,7 @@ public class MessagingController implements Runnable {
                 }
 
                 putBackground("deleteMessages", null, new Runnable() {
-                    @Override
+                    
                     public void run() {
                         deleteMessagesSynchronous(account, folder.getName(), messages.toArray(EMPTY_MESSAGE_ARRAY), listener);
                     }
@@ -3679,7 +3679,7 @@ public class MessagingController implements Runnable {
 
     public void emptyTrash(final Account account, MessagingListener listener) {
         putBackground("emptyTrash", listener, new Runnable() {
-            @Override
+            
             public void run() {
                 LocalFolder localFolder = null;
                 try {
@@ -3720,7 +3720,7 @@ public class MessagingController implements Runnable {
 
         loadMessageForView(account, message.getFolder().getName(),
         message.getUid(), new MessagingListener() {
-            @Override
+            
             public void loadMessageForViewBodyAvailable(Account account, String folder, String uid,
             Message message) {
                 if (K9.DEBUG)
@@ -3801,7 +3801,7 @@ public class MessagingController implements Runnable {
             l.checkMailStarted(context, account);
         }
         putBackground("checkMail", listener, new Runnable() {
-            @Override
+            
             public void run() {
 
                 try {
@@ -3826,7 +3826,7 @@ public class MessagingController implements Runnable {
                     addErrorMessage(account, null, e);
                 }
                 putBackground("finalize sync", null, new Runnable() {
-                    @Override
+                    
                     public void run() {
 
                         if (K9.DEBUG)
@@ -3912,7 +3912,7 @@ public class MessagingController implements Runnable {
             addErrorMessage(account, null, e);
         } finally {
             putBackground("clear notification flag for " + account.getDescription(), null, new Runnable() {
-                @Override
+                
                 public void run() {
                     if (K9.DEBUG)
                         Log.v(K9.LOG_TAG, "Clearing notification flag for " + account.getDescription());
@@ -3956,7 +3956,7 @@ public class MessagingController implements Runnable {
             return;
         }
         putBackground("sync" + folder.getName(), null, new Runnable() {
-            @Override
+            
             public void run() {
                 LocalFolder tLocalFolder = null;
                 try {
@@ -3999,7 +3999,7 @@ public class MessagingController implements Runnable {
 
     public void compact(final Account account, final MessagingListener ml) {
         putBackground("compact:" + account.getDescription(), ml, new Runnable() {
-            @Override
+            
             public void run() {
                 try {
                     LocalStore localStore = account.getLocalStore();
@@ -4021,7 +4021,7 @@ public class MessagingController implements Runnable {
 
     public void clear(final Account account, final MessagingListener ml) {
         putBackground("clear:" + account.getDescription(), ml, new Runnable() {
-            @Override
+            
             public void run() {
                 try {
                     LocalStore localStore = account.getLocalStore();
@@ -4049,7 +4049,7 @@ public class MessagingController implements Runnable {
 
     public void recreate(final Account account, final MessagingListener ml) {
         putBackground("recreate:" + account.getDescription(), ml, new Runnable() {
-            @Override
+            
             public void run() {
                 try {
                     LocalStore localStore = account.getLocalStore();
@@ -4374,7 +4374,7 @@ public class MessagingController implements Runnable {
 
         int sequence = sequencing.getAndIncrement();
 
-        @Override
+        
         public int compareTo(Command other) {
             if (other.isForeground && !isForeground) {
                 return 1;
@@ -4527,7 +4527,7 @@ public class MessagingController implements Runnable {
         final CountDownLatch latch = new CountDownLatch(1);
         putBackground("Push messageArrived of account " + account.getDescription()
         + ", folder " + remoteFolder.getName(), null, new Runnable() {
-            @Override
+            
             public void run() {
                 LocalFolder localFolder = null;
                 try {
@@ -4636,7 +4636,7 @@ public class MessagingController implements Runnable {
             return memory;
         }
 
-        @Override
+        
         public synchronized void synchronizeMailboxStarted(Account account, String folder) {
             Memory memory = getMemory(account, folder);
             memory.syncingState = MemorizingState.STARTED;
@@ -4644,7 +4644,7 @@ public class MessagingController implements Runnable {
             memory.folderTotal = 0;
         }
 
-        @Override
+        
         public synchronized void synchronizeMailboxFinished(Account account, String folder,
                 int totalMessagesInMailbox, int numNewMessages) {
             Memory memory = getMemory(account, folder);
@@ -4653,7 +4653,7 @@ public class MessagingController implements Runnable {
             memory.syncingNumNewMessages = numNewMessages;
         }
 
-        @Override
+        
         public synchronized void synchronizeMailboxFailed(Account account, String folder,
                 String message) {
 
@@ -4746,13 +4746,13 @@ public class MessagingController implements Runnable {
 
             }
         }
-        @Override
+        
         public synchronized void setPushActive(Account account, String folderName, boolean active) {
             Memory memory = getMemory(account, folderName);
             memory.pushingState = (active ? MemorizingState.STARTED : MemorizingState.FINISHED);
         }
 
-        @Override
+        
         public synchronized void sendPendingMessagesStarted(Account account) {
             Memory memory = getMemory(account, null);
             memory.sendingState = MemorizingState.STARTED;
@@ -4760,20 +4760,20 @@ public class MessagingController implements Runnable {
             memory.folderTotal = 0;
         }
 
-        @Override
+        
         public synchronized void sendPendingMessagesCompleted(Account account) {
             Memory memory = getMemory(account, null);
             memory.sendingState = MemorizingState.FINISHED;
         }
 
-        @Override
+        
         public synchronized void sendPendingMessagesFailed(Account account) {
             Memory memory = getMemory(account, null);
             memory.sendingState = MemorizingState.FAILED;
         }
 
 
-        @Override
+        
         public synchronized void synchronizeMailboxProgress(Account account, String folderName, int completed, int total) {
             Memory memory = getMemory(account, folderName);
             memory.folderCompleted = completed;
@@ -4781,25 +4781,25 @@ public class MessagingController implements Runnable {
         }
 
 
-        @Override
+        
         public synchronized void pendingCommandsProcessing(Account account) {
             Memory memory = getMemory(account, null);
             memory.processingState = MemorizingState.STARTED;
             memory.folderCompleted = 0;
             memory.folderTotal = 0;
         }
-        @Override
+        
         public synchronized void pendingCommandsFinished(Account account) {
             Memory memory = getMemory(account, null);
             memory.processingState = MemorizingState.FINISHED;
         }
-        @Override
+        
         public synchronized void pendingCommandStarted(Account account, String commandTitle) {
             Memory memory = getMemory(account, null);
             memory.processingCommandTitle = commandTitle;
         }
 
-        @Override
+        
         public synchronized void pendingCommandCompleted(Account account, String commandTitle) {
             Memory memory = getMemory(account, null);
             memory.processingCommandTitle = null;

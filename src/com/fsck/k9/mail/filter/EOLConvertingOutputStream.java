@@ -12,7 +12,7 @@ public class EOLConvertingOutputStream extends FilterOutputStream {
         super(out);
     }
 
-    @Override
+    
     public void write(int oneByte) throws IOException {
         if (!ignoreNextIfLF) {
             if ((oneByte == '\n') && (lastChar != '\r')) {
@@ -24,7 +24,7 @@ public class EOLConvertingOutputStream extends FilterOutputStream {
         ignoreNextIfLF = false;
     }
 
-    @Override
+    
     public void flush() throws IOException {
         if (lastChar == '\r') {
             super.write('\n');

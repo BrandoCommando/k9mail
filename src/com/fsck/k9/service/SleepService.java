@@ -112,7 +112,7 @@ public class SleepService extends CoreService {
         }
     }
 
-    @Override
+    
     public int startService(Intent intent, int startId) {
         try {
           if (intent.getAction().startsWith(ALARM_FIRED)) {

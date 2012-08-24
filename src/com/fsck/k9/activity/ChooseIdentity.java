@@ -24,7 +24,7 @@ public class ChooseIdentity extends K9ListActivity {
 
     protected List<Identity> identities = null;
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -44,7 +44,7 @@ public class ChooseIdentity extends K9ListActivity {
     }
 
 
-    @Override
+    
     public void onResume() {
         super.onResume();
         refreshView();

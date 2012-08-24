@@ -95,24 +95,24 @@ public class MessageView extends K9Activity implements OnClickListener {
 
 
     private final class StorageListenerImplementation implements StorageManager.StorageListener {
-        @Override
+        
         public void onUnmount(String providerId) {
             if (!providerId.equals(mAccount.getLocalStorageProviderId())) {
                 return;
             }
             runOnUiThread(new Runnable() {
-                @Override
+                
                 public void run() {
                     onAccountUnavailable();
                 }
             });
         }
 
-        @Override
+        
         public void onMount(String providerId) { /* no-op */ }
     }
 
-    @Override
+    
     public boolean dispatchKeyEvent(KeyEvent event) {
         boolean ret = false;
         if (KeyEvent.ACTION_DOWN == event.getAction()) {
@@ -222,7 +222,7 @@ public class MessageView extends K9Activity implements OnClickListener {
         return false;
     }
 
-    @Override
+    
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         // Swallow these events too to avoid the audible notification of a volume change
         if (K9.useVolumeKeysForNavigationEnabled()) {
@@ -235,7 +235,7 @@ public class MessageView extends K9Activity implements OnClickListener {
         return super.onKeyUp(keyCode, event);
     }
 
-    @Override
+    
     public void onBackPressed() {
         if (K9.manageBack()) {
             if (mMessageListExtras != null) {
@@ -298,7 +298,7 @@ public class MessageView extends K9Activity implements OnClickListener {
         context.startActivity(i);
     }
 
-    @Override
+    
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
@@ -311,7 +311,7 @@ public class MessageView extends K9Activity implements OnClickListener {
         //request the start of a filebrowser activity.
         mMessageView.setAttachmentCallback(new AttachmentFileDownloadCallback() {
 
-            @Override
+            
             public void showFileBrowser(final AttachmentView caller) {
                 FileBrowserHelper.getInstance()
                 .showFileBrowserActivity(MessageView.this,
@@ -322,12 +322,12 @@ public class MessageView extends K9Activity implements OnClickListener {
             }
             FileBrowserFailOverCallback callback = new FileBrowserFailOverCallback() {
 
-                @Override
+                
                 public void onPathEntered(String path) {
                     attachmentTmpStore.writeFile(new File(path));
                 }
 
-                @Override
+                
                 public void onCancel() {
                     // canceled, do nothing
                 }
@@ -429,7 +429,7 @@ public class MessageView extends K9Activity implements OnClickListener {
         }
     }
 
-    @Override
+    
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(EXTRA_MESSAGE_REFERENCE, mMessageReference);
@@ -437,7 +437,7 @@ public class MessageView extends K9Activity implements OnClickListener {
         outState.putSerializable(STATE_PGP_DATA, mPgpData);
     }
 
-    @Override
+    
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         mPgpData = (PgpData) savedInstanceState.getSerializable(STATE_PGP_DATA);
@@ -511,7 +511,7 @@ public class MessageView extends K9Activity implements OnClickListener {
             mPreviousMessage = mMessageReferences.get(i + 1);
     }
 
-    @Override
+    
     public void onResume() {
         super.onResume();
         if (!mAccount.isAvailable(this)) {
@@ -521,7 +521,7 @@ public class MessageView extends K9Activity implements OnClickListener {
         StorageManager.getInstance(getApplication()).addListener(mStorageListener);
     }
 
-    @Override
+    
     protected void onPause() {
         StorageManager.getInstance(getApplication()).removeListener(mStorageListener);
         super.onPause();
@@ -677,7 +677,7 @@ public class MessageView extends K9Activity implements OnClickListener {
     }
 
 
-    @Override
+    
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (mAccount.getCryptoProvider().onActivityResult(this, requestCode, resultCode, data, mPgpData)) {
             return;
@@ -731,7 +731,7 @@ public class MessageView extends K9Activity implements OnClickListener {
     /**
      * Handle a right-to-left swipe starting at the edge of the screen as "move to next message."
      */
-    @Override
+    
     protected void onSwipeRightToLeft(MotionEvent e1, MotionEvent e2) {
         if ((int) e1.getRawX() > mScreenWidthInPixels - BEZEL_SWIPE_THRESHOLD) {
             onNext();
@@ -742,7 +742,7 @@ public class MessageView extends K9Activity implements OnClickListener {
      * Handle a left-to-right swipe starting at the edge of the screen as
      * "move to previous message."
      */
-    @Override
+    
     protected void onSwipeLeftToRight(MotionEvent e1, MotionEvent e2) {
         if ((int) e1.getRawX() < BEZEL_SWIPE_THRESHOLD) {
             onPrevious();
@@ -836,7 +836,7 @@ public class MessageView extends K9Activity implements OnClickListener {
         }
     }
 
-    @Override
+    
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.delete:
@@ -874,7 +874,7 @@ public class MessageView extends K9Activity implements OnClickListener {
             break;
         case R.id.show_full_header:
             runOnUiThread(new Runnable() {
-                @Override
+                
                 public void run() {
                     mMessageView.showAllHeaders();
                 }
@@ -889,7 +889,7 @@ public class MessageView extends K9Activity implements OnClickListener {
         return true;
     }
 
-    @Override
+    
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.message_view_option, menu);
@@ -917,7 +917,7 @@ public class MessageView extends K9Activity implements OnClickListener {
      * @return The dialog. If you return null, the dialog will not be created.
      * @see android.app.Activity#onCreateDialog(int)
      */
-    @Override
+    
     protected Dialog onCreateDialog(final int id) {
         switch (id) {
         case R.id.dialog_confirm_delete:
@@ -927,7 +927,7 @@ public class MessageView extends K9Activity implements OnClickListener {
                                              R.string.dialog_confirm_delete_confirm_button,
                                              R.string.dialog_confirm_delete_cancel_button,
             new Runnable() {
-                @Override
+                
                 public void run() {
                     delete();
                 }
@@ -939,7 +939,7 @@ public class MessageView extends K9Activity implements OnClickListener {
                                              R.string.dialog_confirm_spam_confirm_button,
                                              R.string.dialog_confirm_spam_cancel_button,
             new Runnable() {
-                @Override
+                
                 public void run() {
                     refileMessage(mDstFolder);
                     mDstFolder = null;
@@ -954,7 +954,7 @@ public class MessageView extends K9Activity implements OnClickListener {
         return super.onCreateDialog(id);
     }
 
-    @Override
+    
     public boolean onPrepareOptionsMenu(Menu menu) {
         if (menu != null) {
             MenuItem flagItem = menu.findItem(R.id.flag);
@@ -977,7 +977,7 @@ public class MessageView extends K9Activity implements OnClickListener {
     }
 
     class Listener extends MessagingListener {
-        @Override
+        
         public void loadMessageForViewHeadersAvailable(final Account account, String folder, String uid,
                 final Message message) {
             if (!mMessageReference.uid.equals(uid) || !mMessageReference.folderName.equals(folder)
@@ -1008,7 +1008,7 @@ public class MessageView extends K9Activity implements OnClickListener {
                     }
                     mMessageView.setHeaders(clonedMessage, account);
                     mMessageView.setOnFlagListener(new OnClickListener() {
-                        @Override
+                        
                         public void onClick(View v) {
                             onFlag();
                         }
@@ -1017,7 +1017,7 @@ public class MessageView extends K9Activity implements OnClickListener {
             });
         }
 
-        @Override
+        
         public void loadMessageForViewBodyAvailable(final Account account, String folder,
                 String uid, final Message message) {
             if (!mMessageReference.uid.equals(uid) ||
@@ -1027,7 +1027,7 @@ public class MessageView extends K9Activity implements OnClickListener {
             }
 
             runOnUiThread(new Runnable() {
-                @Override
+                
                 public void run() {
                     try {
                         mMessage = message;
@@ -1041,7 +1041,7 @@ public class MessageView extends K9Activity implements OnClickListener {
             });
         }
 
-        @Override
+        
         public void loadMessageForViewFailed(Account account, String folder, String uid, final Throwable t) {
             if (!mMessageReference.uid.equals(uid) || !mMessageReference.folderName.equals(folder)
                     || !mMessageReference.accountUuid.equals(account.getUuid())) {
@@ -1063,7 +1063,7 @@ public class MessageView extends K9Activity implements OnClickListener {
             });
         }
 
-        @Override
+        
         public void loadMessageForViewFinished(Account account, String folder, String uid, final Message message) {
             if (!mMessageReference.uid.equals(uid) || !mMessageReference.folderName.equals(folder)
                     || !mMessageReference.accountUuid.equals(account.getUuid())) {
@@ -1077,7 +1077,7 @@ public class MessageView extends K9Activity implements OnClickListener {
             });
         }
 
-        @Override
+        
         public void loadMessageForViewStarted(Account account, String folder, String uid) {
             if (!mMessageReference.uid.equals(uid) || !mMessageReference.folderName.equals(folder)
                     || !mMessageReference.accountUuid.equals(account.getUuid())) {
@@ -1090,7 +1090,7 @@ public class MessageView extends K9Activity implements OnClickListener {
             });
         }
 
-        @Override
+        
         public void loadAttachmentStarted(Account account, Message message, Part part, Object tag, final boolean requiresDownload) {
             if (mMessage != message) {
                 return;
@@ -1106,7 +1106,7 @@ public class MessageView extends K9Activity implements OnClickListener {
             });
         }
 
-        @Override
+        
         public void loadAttachmentFinished(Account account, Message message, Part part, final Object tag) {
             if (mMessage != message) {
                 return;
@@ -1127,7 +1127,7 @@ public class MessageView extends K9Activity implements OnClickListener {
             });
         }
 
-        @Override
+        
         public void loadAttachmentFailed(Account account, Message message, Part part, Object tag, String reason) {
             if (mMessage != message) {
                 return;

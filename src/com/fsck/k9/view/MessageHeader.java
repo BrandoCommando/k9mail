@@ -126,7 +126,7 @@ public class MessageHeader extends ScrollView implements OnClickListener {
         mCcView.setOnClickListener(this);
     }
 
-    @Override
+    
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.additional_headers_row:
@@ -353,7 +353,7 @@ public class MessageHeader extends ScrollView implements OnClickListener {
         mAdditionalHeadersView.setText(sb);
     }
 
-    @Override
+    
     public Parcelable onSaveInstanceState() {
         Parcelable superState = super.onSaveInstanceState();
 
@@ -364,7 +364,7 @@ public class MessageHeader extends ScrollView implements OnClickListener {
         return savedState;
     }
 
-    @Override
+    
     public void onRestoreInstanceState(Parcelable state) {
         if(!(state instanceof SavedState)) {
             super.onRestoreInstanceState(state);
@@ -383,12 +383,12 @@ public class MessageHeader extends ScrollView implements OnClickListener {
         @SuppressWarnings("hiding")
         public static final Parcelable.Creator<SavedState> CREATOR =
                 new Parcelable.Creator<SavedState>() {
-            @Override
+            
             public SavedState createFromParcel(Parcel in) {
                 return new SavedState(in);
             }
 
-            @Override
+            
             public SavedState[] newArray(int size) {
                 return new SavedState[size];
             }
@@ -404,7 +404,7 @@ public class MessageHeader extends ScrollView implements OnClickListener {
             this.additionalHeadersVisible = (in.readInt() != 0);
         }
 
-        @Override
+        
         public void writeToParcel(Parcel out, int flags) {
             super.writeToParcel(out, flags);
             out.writeInt((this.additionalHeadersVisible) ? 1 : 0);

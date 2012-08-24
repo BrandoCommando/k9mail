@@ -21,7 +21,7 @@ public class ContactsSdk5p extends ContactsSdk5 {
         super(context);
     }
 
-    @Override
+    
     public Cursor searchContacts(final CharSequence constraint) {
         if (constraint == null) {
             return null;

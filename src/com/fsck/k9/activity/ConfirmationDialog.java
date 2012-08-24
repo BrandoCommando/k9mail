@@ -48,7 +48,7 @@ public class ConfirmationDialog {
         builder.setMessage(message);
         builder.setPositiveButton(confirmButton,
         new DialogInterface.OnClickListener() {
-            @Override
+            
             public void onClick(DialogInterface dialog, int which) {
                 activity.dismissDialog(dialogId);
                 action.run();
@@ -56,7 +56,7 @@ public class ConfirmationDialog {
         });
         builder.setNegativeButton(cancelButton,
         new DialogInterface.OnClickListener() {
-            @Override
+            
             public void onClick(DialogInterface dialog, int which) {
                 activity.dismissDialog(dialogId);
                 if (negativeAction != null) {

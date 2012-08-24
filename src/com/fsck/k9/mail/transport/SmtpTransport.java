@@ -228,7 +228,7 @@ public class SmtpTransport extends Transport {
         mPassword = settings.password;
     }
 
-    @Override
+    
     public void open() throws MessagingException {
         try {
             InetAddress[] addresses = InetAddress.getAllByName(mHost);
@@ -436,7 +436,7 @@ public class SmtpTransport extends Transport {
         return new ArrayList<String>(0);
     }
 
-    @Override
+    
     public void sendMessage(Message message) throws MessagingException {
         ArrayList<Address> addresses = new ArrayList<Address>();
         {
@@ -528,7 +528,7 @@ public class SmtpTransport extends Transport {
 
     }
 
-    @Override
+    
     public void close() {
         try {
             executeSimpleCommand("QUIT");

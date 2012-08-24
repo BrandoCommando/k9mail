@@ -99,7 +99,7 @@ public class MessageCryptoView extends LinearLayout {
 
 
         mDecryptButton.setOnClickListener(new OnClickListener() {
-            @Override
+            
             public void onClick(View v) {
                 try {
                     String data = null;

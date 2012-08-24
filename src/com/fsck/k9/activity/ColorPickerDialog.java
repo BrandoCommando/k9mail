@@ -69,7 +69,7 @@ public class ColorPickerDialog extends AlertDialog {
         updateView();
 
         viewHue.setOnTouchListener(new View.OnTouchListener() {
-            @Override
+            
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_MOVE
                         || event.getAction() == MotionEvent.ACTION_DOWN
@@ -94,7 +94,7 @@ public class ColorPickerDialog extends AlertDialog {
             }
         });
         viewBox.setOnTouchListener(new View.OnTouchListener() {
-            @Override
+            
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_MOVE
                         || event.getAction() == MotionEvent.ACTION_DOWN
@@ -125,7 +125,7 @@ public class ColorPickerDialog extends AlertDialog {
         this.setView(view);
         this.setButton(BUTTON_POSITIVE, context.getString(R.string.okay_action),
                 new DialogInterface.OnClickListener() {
-            @Override
+            
             public void onClick(DialogInterface dialog, int which) {
                 if (ColorPickerDialog.this.listener != null) {
                     ColorPickerDialog.this.listener.colorChanged(colorNew);
@@ -159,7 +159,7 @@ public class ColorPickerDialog extends AlertDialog {
         updateView();
     }
 
-    @Override
+    
     public Bundle onSaveInstanceState() {
         Bundle parentBundle = super.onSaveInstanceState();
 
@@ -171,7 +171,7 @@ public class ColorPickerDialog extends AlertDialog {
         return savedInstanceState;
     }
 
-    @Override
+    
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         Bundle parentBundle = savedInstanceState.getBundle(BUNDLE_KEY_PARENT_BUNDLE);
         super.onRestoreInstanceState(parentBundle);

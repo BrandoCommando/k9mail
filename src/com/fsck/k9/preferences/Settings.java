@@ -390,7 +390,7 @@ public class Settings {
             super(defaultValue);
         }
 
-        @Override
+        
         public Object fromString(String value) {
             return value;
         }
@@ -404,7 +404,7 @@ public class Settings {
             super(defaultValue);
         }
 
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             if (Boolean.TRUE.toString().equals(value)) {
                 return true;
@@ -423,7 +423,7 @@ public class Settings {
             super(defaultValue);
         }
 
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             try {
                 return Integer.parseInt(value);
@@ -432,13 +432,13 @@ public class Settings {
             }
         }
 
-        @Override
+        
         public String toPrettyString(Object value) {
             int color = ((Integer) value) & 0x00FFFFFF;
             return String.format("#%06x", color);
         }
 
-        @Override
+        
         public Object fromPrettyString(String value) throws InvalidSettingValueException {
             try {
                 if (value.length() == 7) {
@@ -466,7 +466,7 @@ public class Settings {
         }
 
         @SuppressWarnings("unchecked")
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             try {
                 return Enum.valueOf((Class<? extends Enum>)mEnumClass, value);
@@ -489,12 +489,12 @@ public class Settings {
 
         protected abstract Map<A, String> getMapping();
 
-        @Override
+        
         public String toPrettyString(Object value) {
             return getMapping().get(value);
         }
 
-        @Override
+        
         public Object fromPrettyString(String value) throws InvalidSettingValueException {
             for (Entry<A, String> entry : getMapping().entrySet()) {
                 if (entry.getValue().equals(value)) {
@@ -526,12 +526,12 @@ public class Settings {
             mMapping = Collections.unmodifiableMap(mapping);
         }
 
-        @Override
+        
         protected Map<Integer, String> getMapping() {
             return mMapping;
         }
 
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             try {
                 Integer fontSize = Integer.parseInt(value);
@@ -562,12 +562,12 @@ public class Settings {
             mMapping = Collections.unmodifiableMap(mapping);
         }
 
-        @Override
+        
         protected Map<Integer, String> getMapping() {
             return mMapping;
         }
 
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             try {
                 Integer fontSize = Integer.parseInt(value);
@@ -593,7 +593,7 @@ public class Settings {
             mEnd = end;
         }
 
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             try {
                 int intValue = Integer.parseInt(value);

@@ -513,7 +513,7 @@ public class ImapResponseParser {
             }
         }
 
-        @Override
+        
         public String toString() {
             return "#" + (mCommandContinuationRequested ? "+" : mTag) + "# " + super.toString();
         }

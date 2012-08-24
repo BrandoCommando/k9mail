@@ -398,7 +398,7 @@ public class K9 extends Application {
 
         // starting a new thread to handle unmount events
         new Thread(new Runnable() {
-            @Override
+            
             public void run() {
                 Looper.prepare();
                 try {
@@ -480,7 +480,7 @@ public class K9 extends Application {
         fontSizes.save(editor);
     }
 
-    @Override
+    
     public void onCreate() {
         maybeSetupStrictMode();
         super.onCreate();
@@ -545,31 +545,31 @@ public class K9 extends Application {
                 }
             }
 
-            @Override
+            
             public void synchronizeMailboxRemovedMessage(Account account, String folder, Message message) {
                 broadcastIntent(K9.Intents.EmailReceived.ACTION_EMAIL_DELETED, account, folder, message);
                 updateUnreadWidget();
             }
 
-            @Override
+            
             public void messageDeleted(Account account, String folder, Message message) {
                 broadcastIntent(K9.Intents.EmailReceived.ACTION_EMAIL_DELETED, account, folder, message);
                 updateUnreadWidget();
             }
 
-            @Override
+            
             public void synchronizeMailboxNewMessage(Account account, String folder, Message message) {
                 broadcastIntent(K9.Intents.EmailReceived.ACTION_EMAIL_RECEIVED, account, folder, message);
                 updateUnreadWidget();
             }
 
-            @Override
+            
             public void folderStatusChanged(Account account, String folderName,
                     int unreadMessageCount) {
                 updateUnreadWidget();
             }
 
-            @Override
+            
             public void searchStats(final AccountStats stats) {
                 // let observers know a fetch occurred
                 K9.this.sendBroadcast(new Intent(K9.Intents.EmailReceived.ACTION_REFRESH_OBSERVER, null));

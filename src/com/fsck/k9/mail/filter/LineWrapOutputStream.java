@@ -18,7 +18,7 @@ public class LineWrapOutputStream extends FilterOutputStream {
         buffer = new byte[maxLineLength - 2];
     }
 
-    @Override
+    
     public void write(int oneByte) throws IOException {
         // Buffer full?
         if (lineLength == buffer.length) {
@@ -69,7 +69,7 @@ public class LineWrapOutputStream extends FilterOutputStream {
         }
     }
 
-    @Override
+    
     public void flush() throws IOException {
         // Buffer empty?
         if (lineLength > bufferStart) {

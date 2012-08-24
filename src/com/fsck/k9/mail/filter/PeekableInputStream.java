@@ -18,7 +18,7 @@ public class PeekableInputStream extends InputStream {
         this.mIn = in;
     }
 
-    @Override
+    
     public int read() throws IOException {
         if (!mPeeked) {
             return mIn.read();
@@ -36,7 +36,7 @@ public class PeekableInputStream extends InputStream {
         return mPeekedByte;
     }
 
-    @Override
+    
     public int read(byte[] b, int offset, int length) throws IOException {
         if (!mPeeked) {
             return mIn.read(b, offset, length);
@@ -52,12 +52,12 @@ public class PeekableInputStream extends InputStream {
         }
     }
 
-    @Override
+    
     public int read(byte[] b) throws IOException {
         return read(b, 0, b.length);
     }
 
-    @Override
+    
     public String toString() {
         return String.format("PeekableInputStream(in=%s, peeked=%b, peekedByte=%d)",
                              mIn.toString(), mPeeked, mPeekedByte);

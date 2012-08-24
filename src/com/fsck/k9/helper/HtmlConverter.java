@@ -63,7 +63,7 @@ public class HtmlConverter {
             TAGS_WITH_IGNORED_CONTENT = Collections.unmodifiableSet(set);
         }
 
-        @Override
+        
         public void handleTag(boolean opening, String tag, Editable output, XMLReader xmlReader) {
             tag = tag.toLowerCase(Locale.US);
             if (tag.equals("hr") && opening) {

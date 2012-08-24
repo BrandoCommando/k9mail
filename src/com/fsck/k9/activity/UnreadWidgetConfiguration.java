@@ -34,7 +34,7 @@ public class UnreadWidgetConfiguration extends AccountList {
     private int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 
 
-    @Override
+    
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
@@ -55,12 +55,12 @@ public class UnreadWidgetConfiguration extends AccountList {
         setTitle(R.string.unread_widget_select_account);
     }
 
-    @Override
+    
     protected boolean displaySpecialAccounts() {
         return false;
     }
 
-    @Override
+    
     protected void onAccountSelected(BaseAccount baseAccount) {
         if (!(baseAccount instanceof Account)) {
             finish();

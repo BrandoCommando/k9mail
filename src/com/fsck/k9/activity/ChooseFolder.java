@@ -73,7 +73,7 @@ public class ChooseFolder extends K9ListActivity {
     private FolderListFilter<String> mMyFilter = null;
 
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -102,7 +102,7 @@ public class ChooseFolder extends K9ListActivity {
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1) {
             private Filter myFilter = null;
 
-            @Override
+            
             public Filter getFilter() {
                 if (myFilter == null) {
                     myFilter = new FolderListFilter<String>(this);
@@ -117,7 +117,7 @@ public class ChooseFolder extends K9ListActivity {
         MessagingController.getInstance(getApplication()).listFolders(mAccount, false, mListener);
 
         this.getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
+            
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent result = new Intent();
                 result.putExtra(EXTRA_ACCOUNT, mAccount.getUuid());
@@ -138,7 +138,7 @@ public class ChooseFolder extends K9ListActivity {
         private static final int MSG_PROGRESS = 1;
         private static final int MSG_SET_SELECTED_FOLDER = 2;
 
-        @Override
+        
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
                 case MSG_PROGRESS: {
@@ -167,14 +167,14 @@ public class ChooseFolder extends K9ListActivity {
         }
     }
 
-    @Override
+    
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.folder_select_option, menu);
         return true;
     }
 
-    @Override
+    
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.display_1st_class: {
@@ -220,16 +220,16 @@ public class ChooseFolder extends K9ListActivity {
 
         final EditText input = new EditText(this);
         input.addTextChangedListener(new TextWatcher() {
-            @Override
+            
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 mAdapter.getFilter().filter(input.getText().toString());
             }
 
-            @Override
+            
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 /* not used */ }
 
-            @Override
+            
             public void afterTextChanged(Editable s) { /* not used */ }
         });
         input.setHint(R.string.folder_list_filter_hint);
@@ -237,7 +237,7 @@ public class ChooseFolder extends K9ListActivity {
 
         String okay = getString(R.string.okay_action);
         filterAlert.setPositiveButton(okay, new DialogInterface.OnClickListener() {
-            @Override
+            
             public void onClick(DialogInterface dialog, int whichButton) {
                 String value = input.getText().toString().trim();
                 mAdapter.getFilter().filter(value);
@@ -246,7 +246,7 @@ public class ChooseFolder extends K9ListActivity {
 
         String cancel = getString(R.string.cancel_action);
         filterAlert.setNegativeButton(cancel, new DialogInterface.OnClickListener() {
-            @Override
+            
             public void onClick(DialogInterface dialog, int whichButton) {
                 mAdapter.getFilter().filter("");
             }
@@ -266,7 +266,7 @@ public class ChooseFolder extends K9ListActivity {
     }
 
     private MessagingListener mListener = new MessagingListener() {
-        @Override
+        
         public void listFoldersStarted(Account account) {
             if (!account.equals(mAccount)) {
                 return;
@@ -274,7 +274,7 @@ public class ChooseFolder extends K9ListActivity {
             mHandler.progress(true);
         }
 
-        @Override
+        
         public void listFoldersFailed(Account account, String message) {
             if (!account.equals(mAccount)) {
                 return;
@@ -282,14 +282,14 @@ public class ChooseFolder extends K9ListActivity {
             mHandler.progress(false);
         }
 
-        @Override
+        
         public void listFoldersFinished(Account account) {
             if (!account.equals(mAccount)) {
                 return;
             }
             mHandler.progress(false);
         }
-        @Override
+        
         public void listFolders(Account account, Folder[] folders) {
             if (!account.equals(mAccount)) {
                 return;
@@ -335,7 +335,7 @@ public class ChooseFolder extends K9ListActivity {
             }
 
             final Comparator<String> comparator = new Comparator<String>() {
-                @Override
+                
                 public int compare(String s1, String s2) {
                     int ret = s1.compareToIgnoreCase(s2);
                     return (ret != 0) ? ret : s1.compareTo(s2);
@@ -391,7 +391,7 @@ public class ChooseFolder extends K9ListActivity {
                 }
             } finally {
                 runOnUiThread(new Runnable() {
-                    @Override
+                    
                     public void run() {
                         // Now we're in the UI-thread, we can safely change the contents of the adapter.
                         mAdapter.clear();

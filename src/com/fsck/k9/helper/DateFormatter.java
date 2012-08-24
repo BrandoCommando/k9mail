@@ -37,7 +37,7 @@ public class DateFormatter {
     }
 
     private static ThreadLocal<Map<String, DateFormat>> storedFormats = new ThreadLocal<Map<String, DateFormat>>() {
-        @Override
+        
         public synchronized Map<String, DateFormat> initialValue() {
             return new HashMap<String, DateFormat>();
         }

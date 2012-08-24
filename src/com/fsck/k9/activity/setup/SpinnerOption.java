@@ -26,7 +26,7 @@ public class SpinnerOption {
         this.label = label;
     }
 
-    @Override
+    
     public String toString() {
         return label;
     }

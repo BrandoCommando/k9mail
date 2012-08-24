@@ -334,7 +334,7 @@ public class ImapStore extends Store {
             this.pathPrefix = pathPrefix;
         }
 
-        @Override
+        
         public Map<String, String> getExtra() {
             Map<String, String> extra = new HashMap<String, String>();
             extra.put(AUTODETECT_NAMESPACE_KEY, Boolean.valueOf(autoDetectNamespace).toString());
@@ -342,7 +342,7 @@ public class ImapStore extends Store {
             return extra;
         }
 
-        @Override
+        
         public ServerSettings newPassword(String newPassword) {
             return new ImapStoreSettings(host, port, connectionSecurity, authenticationType,
                     username, newPassword, autoDetectNamespace, pathPrefix);
@@ -362,67 +362,67 @@ public class ImapStore extends Store {
 
     public class StoreImapSettings implements ImapSettings {
 
-        @Override
+        
         public String getHost() {
             return mHost;
         }
 
-        @Override
+        
         public int getPort() {
             return mPort;
         }
 
-        @Override
+        
         public int getConnectionSecurity() {
             return mConnectionSecurity;
         }
 
-        @Override
+        
         public AuthType getAuthType() {
             return mAuthType;
         }
 
-        @Override
+        
         public String getUsername() {
             return mUsername;
         }
 
-        @Override
+        
         public String getPassword() {
             return mPassword;
         }
 
-        @Override
+        
         public boolean useCompression(final int type) {
             return mAccount.useCompression(type);
         }
 
-        @Override
+        
         public String getPathPrefix() {
             return mPathPrefix;
         }
 
-        @Override
+        
         public void setPathPrefix(String prefix) {
             mPathPrefix = prefix;
         }
 
-        @Override
+        
         public String getPathDelimeter() {
             return mPathDelimeter;
         }
 
-        @Override
+        
         public void setPathDelimeter(String delimeter) {
             mPathDelimeter = delimeter;
         }
 
-        @Override
+        
         public String getCombinedPrefix() {
             return mCombinedPrefix;
         }
 
-        @Override
+        
         public void setCombinedPrefix(String prefix) {
             mCombinedPrefix = prefix;
         }
@@ -488,7 +488,7 @@ public class ImapStore extends Store {
         mModifiedUtf7Charset = new CharsetProvider().charsetForName("X-RFC-3501");
     }
 
-    @Override
+    
     public Folder getFolder(String name) {
         ImapFolder folder;
         synchronized (mFolderCache) {
@@ -520,7 +520,7 @@ public class ImapStore extends Store {
         return mCombinedPrefix;
     }
 
-    @Override
+    
     public List <? extends Folder > getPersonalNamespaces(boolean forceListAll) throws MessagingException {
         ImapConnection connection = getConnection();
         try {
@@ -695,7 +695,7 @@ public class ImapStore extends Store {
         }
     }
 
-    @Override
+    
     public void checkSettings() throws MessagingException {
         try {
             ImapConnection connection = new ImapConnection(new StoreImapSettings());
@@ -789,20 +789,20 @@ public class ImapStore extends Store {
         }
     }
 
-    @Override
+    
     public boolean isMoveCapable() {
         return true;
     }
 
-    @Override
+    
     public boolean isCopyCapable() {
         return true;
     }
-    @Override
+    
     public boolean isPushCapable() {
         return true;
     }
-    @Override
+    
     public boolean isExpungeCapable() {
         return true;
     }
@@ -861,7 +861,7 @@ public class ImapStore extends Store {
             return handleUntaggedResponses(mConnection.executeSimpleCommand(command, sensitve, untaggedHandler));
         }
 
-        @Override
+        
         public void open(OpenMode mode) throws MessagingException {
             internalOpen(mode);
 
@@ -942,17 +942,17 @@ public class ImapStore extends Store {
 
         }
 
-        @Override
+        
         public boolean isOpen() {
             return mConnection != null;
         }
 
-        @Override
+        
         public OpenMode getMode() {
             return mMode;
         }
 
-        @Override
+        
         public void close() {
             if (mMessageCount != -1) {
                 mMessageCount = -1;
@@ -967,7 +967,7 @@ public class ImapStore extends Store {
             }
         }
 
-        @Override
+        
         public String getName() {
             return mName;
         }
@@ -997,7 +997,7 @@ public class ImapStore extends Store {
             }
         }
 
-        @Override
+        
         public boolean exists() throws MessagingException {
             if (mExists) {
                 return true;
@@ -1032,7 +1032,7 @@ public class ImapStore extends Store {
             }
         }
 
-        @Override
+        
         public boolean create(FolderType type) throws MessagingException {
             /*
              * This method needs to operate in the unselected mode as well as the selected mode
@@ -1079,7 +1079,7 @@ public class ImapStore extends Store {
          *
          * @return The mapping of original message UIDs to the new server UIDs.
          */
-        @Override
+        
         public Map<String, String> copyMessages(Message[] messages, Folder folder)
                 throws MessagingException {
             if (!(folder instanceof ImapFolder)) {
@@ -1168,7 +1168,7 @@ public class ImapStore extends Store {
             }
         }
 
-        @Override
+        
         public Map<String, String> moveMessages(Message[] messages, Folder folder) throws MessagingException {
             if (messages.length == 0)
                 return null;
@@ -1177,7 +1177,7 @@ public class ImapStore extends Store {
             return uidMap;
         }
 
-        @Override
+        
         public void delete(Message[] messages, String trashFolderName) throws MessagingException {
             if (messages.length == 0)
                 return;
@@ -1210,7 +1210,7 @@ public class ImapStore extends Store {
         }
 
 
-        @Override
+        
         public int getMessageCount() {
             return mMessageCount;
         }
@@ -1236,12 +1236,12 @@ public class ImapStore extends Store {
 
         }
 
-        @Override
+        
         public int getUnreadMessageCount() throws MessagingException {
             return getRemoteMessageCount("UNSEEN NOT DELETED");
         }
 
-        @Override
+        
         public int getFlaggedMessageCount() throws MessagingException {
             return getRemoteMessageCount("FLAGGED NOT DELETED");
         }
@@ -1264,18 +1264,18 @@ public class ImapStore extends Store {
 
         }
 
-        @Override
+        
         public void delete(boolean recurse) throws MessagingException {
             throw new Error("ImapStore.delete() not yet implemented");
         }
 
-        @Override
+        
         public Message getMessage(String uid) throws MessagingException {
             return new ImapMessage(uid, this);
         }
 
 
-        @Override
+        
         public Message[] getMessages(int start, int end, Date earliestDate, MessageRetrievalListener listener)
         throws MessagingException {
             return getMessages(start, end, earliestDate, false, listener);
@@ -1362,12 +1362,12 @@ public class ImapStore extends Store {
         }
 
 
-        @Override
+        
         public Message[] getMessages(MessageRetrievalListener listener) throws MessagingException {
             return getMessages(null, listener);
         }
 
-        @Override
+        
         public Message[] getMessages(String[] uids, MessageRetrievalListener listener)
         throws MessagingException {
             checkOpen();
@@ -1401,7 +1401,7 @@ public class ImapStore extends Store {
             return messages.toArray(EMPTY_MESSAGE_ARRAY);
         }
 
-        @Override
+        
         public void fetch(Message[] messages, FetchProfile fp, MessageRetrievalListener listener)
         throws MessagingException {
             if (messages == null || messages.length == 0) {
@@ -1529,7 +1529,7 @@ public class ImapStore extends Store {
         }
 
 
-        @Override
+        
         public void fetchPart(Message message, Part part, MessageRetrievalListener listener)
         throws MessagingException {
             checkOpen();
@@ -1673,7 +1673,7 @@ public class ImapStore extends Store {
             return result;
         }
 
-        @Override
+        
         public Flag[] getPermanentFlags() {
             return PERMANENT_FLAGS;
         }
@@ -1934,7 +1934,7 @@ public class ImapStore extends Store {
          *
          * @return The mapping of original message UIDs to the new server UIDs.
          */
-        @Override
+        
         public Map<String, String> appendMessages(Message[] messages) throws MessagingException {
             checkOpen();
             try {
@@ -2012,7 +2012,7 @@ public class ImapStore extends Store {
             }
         }
 
-        @Override
+        
         public String getUidFromMessageId(Message message) throws MessagingException {
             try {
                 /*
@@ -2046,7 +2046,7 @@ public class ImapStore extends Store {
         }
 
 
-        @Override
+        
         public void expunge() throws MessagingException {
             checkOpen();
             try {
@@ -2074,7 +2074,7 @@ public class ImapStore extends Store {
         }
 
 
-        @Override
+        
         public void setFlags(Flag[] flags, boolean value)
         throws MessagingException {
             checkOpen();
@@ -2088,7 +2088,7 @@ public class ImapStore extends Store {
             }
         }
 
-        @Override
+        
         public String getNewPushState(String oldPushStateS, Message message) {
             try {
                 String messageUidS = message.getUid();
@@ -2108,7 +2108,7 @@ public class ImapStore extends Store {
         }
 
 
-        @Override
+        
         public void setFlags(Message[] messages, Flag[] flags, boolean value)
         throws MessagingException {
             checkOpen();
@@ -2141,7 +2141,7 @@ public class ImapStore extends Store {
             return new MessagingException("IO Error", ioe);
         }
 
-        @Override
+        
         public boolean equals(Object o) {
             if (o instanceof ImapFolder) {
                 return ((ImapFolder)o).getName().equalsIgnoreCase(getName());
@@ -2149,7 +2149,7 @@ public class ImapStore extends Store {
             return super.equals(o);
         }
 
-        @Override
+        
         public int hashCode() {
             return getName().hashCode();
         }
@@ -2686,7 +2686,7 @@ public class ImapStore extends Store {
             this.mSize = size;
         }
 
-        @Override
+        
         public void parse(InputStream in) throws IOException, MessagingException {
             super.parse(in);
         }
@@ -2696,13 +2696,13 @@ public class ImapStore extends Store {
         }
 
 
-        @Override
+        
         public void setFlag(Flag flag, boolean set) throws MessagingException {
             super.setFlag(flag, set);
             mFolder.setFlags(new Message[] { this }, new Flag[] { flag }, set);
         }
 
-        @Override
+        
         public void delete(String trashFolderName) throws MessagingException {
             getFolder().delete(new Message[] { this }, trashFolderName);
         }
@@ -2935,7 +2935,7 @@ public class ImapStore extends Store {
             listeningThread.start();
         }
 
-        @Override
+        
         protected void handleUntaggedResponse(ImapResponse response) {
             if (response.mTag == null && response.size() > 1) {
                 Object responseType = response.get(1);
@@ -3212,7 +3212,7 @@ public class ImapStore extends Store {
             }
         }
     }
-    @Override
+    
     public Pusher getPusher(PushReceiver receiver) {
         return new ImapPusher(this, receiver);
     }
@@ -3319,7 +3319,7 @@ public class ImapStore extends Store {
             }
             return new ImapPushState(newUidNext);
         }
-        @Override
+        
         public String toString() {
             return "uidNext=" + uidNext;
         }
@@ -3336,7 +3336,7 @@ public class ImapStore extends Store {
             mMessageMap = mesageMap;
         }
 
-        @Override
+        
         public Object foundLiteral(ImapResponse response,
                                    FixedLengthInputStream literal) throws IOException, Exception {
             if (response.mTag == null &&
@@ -3361,7 +3361,7 @@ public class ImapStore extends Store {
             mPart = part;
         }
 
-        @Override
+        
         public Object foundLiteral(ImapResponse response,
                                    FixedLengthInputStream literal) throws IOException, Exception {
             if (response.mTag == null &&

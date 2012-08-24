@@ -76,14 +76,14 @@ public class MailService extends CoreService {
         context.startService(i);
     }
 
-    @Override
+    
     public void onCreate() {
         super.onCreate();
         if (K9.DEBUG)
             Log.v(K9.LOG_TAG, "***** MailService *****: onCreate");
     }
 
-    @Override
+    
     public int startService(Intent intent, int startId) {
         long startTime = System.currentTimeMillis();
         boolean oldIsSyncDisabled = isSyncDisabled();
@@ -169,7 +169,7 @@ public class MailService extends CoreService {
         return START_NOT_STICKY;
     }
 
-    @Override
+    
     public void onDestroy() {
         if (K9.DEBUG)
             Log.v(K9.LOG_TAG, "***** MailService *****: onDestroy()");
@@ -202,7 +202,7 @@ public class MailService extends CoreService {
             final boolean doBackground, Integer startId) {
 
         execute(getApplication(), new Runnable() {
-            @Override
+            
             public void run() {
                 reschedulePoll(hasConnectivity, doBackground, true);
                 reschedulePushers(hasConnectivity, doBackground);
@@ -433,7 +433,7 @@ public class MailService extends CoreService {
     }
 
 
-    @Override
+    
     public IBinder onBind(Intent intent) {
         // Unused
         return null;

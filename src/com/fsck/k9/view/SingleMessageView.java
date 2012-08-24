@@ -171,7 +171,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
         mClipboardManager = ClipboardManager.getInstance(activity);
     }
 
-    @Override
+    
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu);
 
@@ -184,7 +184,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
             case HitTestResult.SRC_ANCHOR_TYPE: {
                 final String url = result.getExtra();
                 OnMenuItemClickListener listener = new OnMenuItemClickListener() {
-                    @Override
+                    
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case MENU_ITEM_LINK_VIEW: {
@@ -231,7 +231,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
                 final String url = result.getExtra();
                 final boolean externalImage = url.startsWith("http");
                 OnMenuItemClickListener listener = new OnMenuItemClickListener() {
-                    @Override
+                    
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case MENU_ITEM_IMAGE_VIEW: {
@@ -283,7 +283,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
             case HitTestResult.PHONE_TYPE: {
                 final String phoneNumber = result.getExtra();
                 OnMenuItemClickListener listener = new OnMenuItemClickListener() {
-                    @Override
+                    
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case MENU_ITEM_PHONE_CALL: {
@@ -328,7 +328,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
             case WebView.HitTestResult.EMAIL_TYPE: {
                 final String email = result.getExtra();
                 OnMenuItemClickListener listener = new OnMenuItemClickListener() {
-                    @Override
+                    
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case MENU_ITEM_EMAIL_SEND: {
@@ -373,7 +373,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
         }
     }
 
-    @Override
+    
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.show_hidden_attachments: {
@@ -747,7 +747,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
         }
     }
 
-    @Override
+    
     public Parcelable onSaveInstanceState() {
         Parcelable superState = super.onSaveInstanceState();
 
@@ -762,7 +762,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
         return savedState;
     }
 
-    @Override
+    
     public void onRestoreInstanceState(Parcelable state) {
         if(!(state instanceof SavedState)) {
             super.onRestoreInstanceState(state);
@@ -775,7 +775,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
         mSavedState = savedState;
     }
 
-    @Override
+    
     public void onLayoutChanged() {
         if (mMessageContentView != null) {
             mMessageContentView.invalidate();
@@ -790,12 +790,12 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
         @SuppressWarnings("hiding")
         public static final Parcelable.Creator<SavedState> CREATOR =
                 new Parcelable.Creator<SavedState>() {
-            @Override
+            
             public SavedState createFromParcel(Parcel in) {
                 return new SavedState(in);
             }
 
-            @Override
+            
             public SavedState[] newArray(int size) {
                 return new SavedState[size];
             }
@@ -813,7 +813,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
             this.showPictures = (in.readInt() != 0);
         }
 
-        @Override
+        
         public void writeToParcel(Parcel out, int flags) {
             super.writeToParcel(out, flags);
             out.writeInt((this.attachmentViewVisible) ? 1 : 0);
@@ -823,7 +823,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
     }
 
     class DownloadImageTask extends AsyncTask<String, Void, String> {
-        @Override
+        
         protected String doInBackground(String... params) {
             String urlString = params[0];
             try {
@@ -922,7 +922,7 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
             }
         }
 
-        @Override
+        
         protected void onPostExecute(String filename) {
             String text;
             if (filename == null) {

@@ -212,12 +212,12 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
     }
 
     ActivityListener mListener = new ActivityListener() {
-        @Override
+        
         public void informUserOfStatus() {
             mHandler.refreshTitle();
         }
 
-        @Override
+        
         public void folderStatusChanged(Account account, String folderName, int unreadMessageCount) {
             try {
                 AccountStats stats = account.getStats(Accounts.this);
@@ -230,7 +230,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
                 Log.e(K9.LOG_TAG, "Unable to get account stats", e);
             }
         }
-        @Override
+        
         public void accountStatusChanged(BaseAccount account, AccountStats stats) {
             AccountStats oldStats = accountStats.get(account.getUuid());
             int oldUnreadMessageCount = 0;
@@ -257,12 +257,12 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             }
         }
 
-        @Override
+        
         public void accountSizeChanged(Account account, long oldSize, long newSize) {
             mHandler.accountSizeChanged(account, oldSize, newSize);
         }
 
-        @Override
+        
         public void synchronizeMailboxFinished(
             Account account,
             String folder,
@@ -275,13 +275,13 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
 
         }
 
-        @Override
+        
         public void synchronizeMailboxStarted(Account account, String folder) {
             super.synchronizeMailboxStarted(account, folder);
             mHandler.progress(true);
         }
 
-        @Override
+        
         public void synchronizeMailboxFailed(Account account, String folder,
         String message) {
             super.synchronizeMailboxFailed(account, folder, message);
@@ -309,7 +309,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
         context.startActivity(intent);
     }
 
-    @Override
+    
     public void onNewIntent(Intent intent) {
         Uri uri = intent.getData();
         Log.i(K9.LOG_TAG, "Accounts Activity got uri " + uri);
@@ -325,7 +325,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
         }
     }
 
-    @Override
+    
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
@@ -391,7 +391,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
         }
     }
 
-    @Override
+    
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         if (mSelectedContextAccount != null) {
@@ -402,18 +402,18 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
 
     private StorageManager.StorageListener storageListener = new StorageManager.StorageListener() {
 
-        @Override
+        
         public void onUnmount(String providerId) {
             refresh();
         }
 
-        @Override
+        
         public void onMount(String providerId) {
             refresh();
         }
     };
 
-    @Override
+    
     public void onResume() {
         super.onResume();
 
@@ -422,7 +422,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
         StorageManager.getInstance(getApplication()).addListener(storageListener);
     }
 
-    @Override
+    
     public void onPause() {
         super.onPause();
         MessagingController.getInstance(getApplication()).removeListener(mListener);
@@ -432,7 +432,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
     /**
      * Save the reference to a currently displayed dialog or a running AsyncTask (if available).
      */
-    @Override
+    
     public Object onRetainNonConfigurationInstance() {
         Object retain = null;
         if (mNonConfigurationInstance != null && mNonConfigurationInstance.retain()) {
@@ -498,7 +498,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
                 final SearchAccount searchAccount = (SearchAccount)account;
 
                 MessagingController.getInstance(getApplication()).searchLocalMessages(searchAccount, null, new MessagingListener() {
-                    @Override
+                    
                     public void searchStats(AccountStats stats) {
                         mListener.accountStatusChanged(searchAccount, stats);
                     }
@@ -636,12 +636,12 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             mRemainingAccounts = accounts;
         }
 
-        @Override
+        
         public void restore(Activity activity) {
             show((Accounts) activity, true);
         }
 
-        @Override
+        
         public boolean retain() {
             if (mDialog != null) {
                 // Retain entered passwords and checkbox state
@@ -685,7 +685,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             builder.setView(scrollView);
             builder.setPositiveButton(activity.getString(R.string.okay_action),
             new DialogInterface.OnClickListener() {
-                @Override
+                
                 public void onClick(DialogInterface dialog, int which) {
                     String incomingPassword = mIncomingPasswordView.getText().toString();
                     String outgoingPassword = null;
@@ -705,7 +705,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             });
             builder.setNegativeButton(activity.getString(R.string.cancel_action),
             new DialogInterface.OnClickListener() {
-                @Override
+                
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                     activity.setNonConfigurationInstance(null);
@@ -749,7 +749,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
                         R.id.use_incoming_server_password);
                 mUseIncomingView.setChecked(true);
                 mUseIncomingView.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    @Override
+                    
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if (isChecked) {
                             mOutgoingPasswordView.setText(null);
@@ -785,7 +785,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             }
         }
 
-        @Override
+        
         public void afterTextChanged(Editable arg0) {
             boolean enable = false;
             // Is the password box for the incoming server password empty?
@@ -806,12 +806,12 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             mDialog.getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(enable);
         }
 
-        @Override
+        
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             // Not used
         }
 
-        @Override
+        
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             // Not used
         }
@@ -838,7 +838,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             mApplication = mActivity.getApplication();
         }
 
-        @Override
+        
         protected void showProgressDialog() {
             String title = mActivity.getString(R.string.settings_import_activate_account_header);
             int passwordCount = (mOutgoingPassword == null) ? 1 : 2;
@@ -847,7 +847,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             mProgressDialog = ProgressDialog.show(mActivity, title, message, true);
         }
 
-        @Override
+        
         protected Void doInBackground(Void... params) {
             try {
                 // Set incoming server password
@@ -883,7 +883,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             return null;
         }
 
-        @Override
+        
         protected void onPostExecute(Void result) {
             Accounts activity = (Accounts) mActivity;
 
@@ -910,7 +910,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
         showDialog(DIALOG_REMOVE_ACCOUNT);
     }
 
-    @Override
+    
     public Dialog onCreateDialog(int id) {
         // Android recreates our dialogs on configuration changes even when they have been
         // dismissed. Make sure we have all information necessary before creating a new dialog.
@@ -927,7 +927,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
                         R.string.okay_action,
                         R.string.cancel_action,
                         new Runnable() {
-                            @Override
+                            
                             public void run() {
                                 if (mSelectedContextAccount instanceof Account) {
                                     Account realAccount = (Account) mSelectedContextAccount;
@@ -959,7 +959,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
                         R.string.okay_action,
                         R.string.cancel_action,
                         new Runnable() {
-                            @Override
+                            
                             public void run() {
                                 if (mSelectedContextAccount instanceof Account) {
                                     Account realAccount = (Account) mSelectedContextAccount;
@@ -983,7 +983,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
                         R.string.okay_action,
                         R.string.cancel_action,
                         new Runnable() {
-                            @Override
+                            
                             public void run() {
                                 if (mSelectedContextAccount instanceof Account) {
                                     Account realAccount = (Account) mSelectedContextAccount;
@@ -1002,7 +1002,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
                         R.string.open_market,
                         R.string.close,
                         new Runnable() {
-                            @Override
+                            
                             public void run() {
                                 Uri uri = Uri.parse(ANDROID_MARKET_URL);
                                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -1015,7 +1015,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
         return super.onCreateDialog(id);
     }
 
-    @Override
+    
     public void onPrepareDialog(int id, Dialog d) {
         AlertDialog alert = (AlertDialog) d;
         switch (id) {
@@ -1039,7 +1039,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
         super.onPrepareDialog(id, d);
     }
 
-    @Override
+    
     public boolean onContextItemSelected(MenuItem item) {
         AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo)item.getMenuInfo();
         // submenus don't actually set the menuInfo, so the "advanced"
@@ -1120,7 +1120,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
         onOpenAccount(account);
     }
 
-    @Override
+    
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.add_new_account:
@@ -1239,14 +1239,14 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
         return true;
     }
 
-    @Override
+    
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.accounts_option, menu);
         return true;
     }
 
-    @Override
+    
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.setHeaderTitle(R.string.accounts_context_menu_title);
@@ -1301,7 +1301,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
         }
     }
 
-    @Override
+    
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.i(K9.LOG_TAG, "onActivityResult requestCode = " + requestCode + ", resultCode = " + resultCode + ", data = " + data);
         if (resultCode != RESULT_OK)
@@ -1344,12 +1344,12 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             this.mArguments = args;
         }
 
-        @Override
+        
         public void restore(Activity activity) {
             show((Accounts) activity);
         }
 
-        @Override
+        
         public boolean retain() {
             if (mDialog != null) {
                 mDialog.dismiss();
@@ -1367,7 +1367,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             builder.setMessage(message);
             builder.setPositiveButton(R.string.okay_action,
             new DialogInterface.OnClickListener() {
-                @Override
+                
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                     activity.setNonConfigurationInstance(null);
@@ -1427,7 +1427,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             mFilename = filename;
         }
 
-        @Override
+        
         protected String generateMessage(Accounts activity) {
             //TODO: display names of imported accounts (name from file *and* possibly new name)
 
@@ -1437,7 +1437,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             return activity.getString(R.string.settings_import_success, accounts, mFilename);
         }
 
-        @Override
+        
         protected void okayAction(Accounts activity) {
             Context context = activity.getApplicationContext();
             Preferences preferences = Preferences.getPreferences(context);
@@ -1486,12 +1486,12 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             mUri = uri;
         }
 
-        @Override
+        
         public void restore(Activity activity) {
             show((Accounts) activity, mSelection);
         }
 
-        @Override
+        
         public boolean retain() {
             if (mDialog != null) {
                 // Save the selection state of each list item
@@ -1536,7 +1536,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             //TODO: listview footer: "Overwrite existing accounts?" checkbox
 
             OnMultiChoiceClickListener listener = new OnMultiChoiceClickListener() {
-                @Override
+                
                 public void onClick(DialogInterface dialog, int which, boolean isChecked) {
                     ((AlertDialog) dialog).getListView().setItemChecked(which, isChecked);
                 }
@@ -1549,7 +1549,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             builder.setPositiveButton(R.string.okay_action,
                 new DialogInterface.OnClickListener() {
 
-                    @Override
+                    
                     public void onClick(DialogInterface dialog, int which) {
                         ListView listView = ((AlertDialog) dialog).getListView();
                         SparseBooleanArray pos = listView.getCheckedItemPositions();
@@ -1581,7 +1581,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
                 });
             builder.setNegativeButton(R.string.cancel_action,
                     new DialogInterface.OnClickListener() {
-                        @Override
+                        
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                             activity.setNonConfigurationInstance(null);
@@ -1608,7 +1608,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             super(Accounts.this, 0, accounts);
         }
 
-        @Override
+        
         public View getView(int position, View convertView, ViewGroup parent) {
             final BaseAccount account = getItem(position);
             View view;
@@ -1751,7 +1751,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             account = nAccount;
             searchModifier = nSearchModifier;
         }
-        @Override
+        
         public void onClick(View v) {
             String description = getString(R.string.search_title, account.getDescription(), getString(searchModifier.resId));
             if (account instanceof SearchAccount) {
@@ -1763,32 +1763,32 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
                                          combine(searchAccount.getForbiddenFlags(), searchModifier.forbiddenFlags));
             } else {
                 SearchSpecification searchSpec = new SearchSpecification() {
-                    @Override
+                    
                     public String[] getAccountUuids() {
                         return new String[] { account.getUuid() };
                     }
 
-                    @Override
+                    
                     public Flag[] getForbiddenFlags() {
                         return searchModifier.forbiddenFlags;
                     }
 
-                    @Override
+                    
                     public String getQuery() {
                         return "";
                     }
 
-                    @Override
+                    
                     public Flag[] getRequiredFlags() {
                         return searchModifier.requiredFlags;
                     }
 
-                    @Override
+                    
                     public boolean isIntegrate() {
                         return false;
                     }
 
-                    @Override
+                    
                     public String[] getFolderNames() {
                         return null;
                     }
@@ -1830,14 +1830,14 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             mAccountUuids = accountUuids;
         }
 
-        @Override
+        
         protected void showProgressDialog() {
             String title = mContext.getString(R.string.settings_export_dialog_title);
             String message = mContext.getString(R.string.settings_exporting);
             mProgressDialog = ProgressDialog.show(mActivity, title, message, true);
         }
 
-        @Override
+        
         protected Boolean doInBackground(Void... params) {
             try {
                 mFileName = SettingsExporter.exportToFile(mContext, mIncludeGlobals,
@@ -1849,7 +1849,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             return true;
         }
 
-        @Override
+        
         protected void onPostExecute(Boolean success) {
             Accounts activity = (Accounts) mActivity;
 
@@ -1888,14 +1888,14 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             mUri = uri;
         }
 
-        @Override
+        
         protected void showProgressDialog() {
             String title = mContext.getString(R.string.settings_import_dialog_title);
             String message = mContext.getString(R.string.settings_importing);
             mProgressDialog = ProgressDialog.show(mActivity, title, message, true);
         }
 
-        @Override
+        
         protected Boolean doInBackground(Void... params) {
             try {
                 InputStream is = mContext.getContentResolver().openInputStream(mUri);
@@ -1920,7 +1920,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             return true;
         }
 
-        @Override
+        
         protected void onPostExecute(Boolean success) {
             Accounts activity = (Accounts) mActivity;
 
@@ -1959,14 +1959,14 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             mUri = uri;
         }
 
-        @Override
+        
         protected void showProgressDialog() {
             String title = mContext.getString(R.string.settings_import_dialog_title);
             String message = mContext.getString(R.string.settings_import_scanning_file);
             mProgressDialog = ProgressDialog.show(mActivity, title, message, true);
         }
 
-        @Override
+        
         protected Boolean doInBackground(Void... params) {
             try {
                 ContentResolver resolver = mContext.getContentResolver();
@@ -1989,7 +1989,7 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             return true;
         }
 
-        @Override
+        
         protected void onPostExecute(Boolean success) {
             Accounts activity = (Accounts) mActivity;
 
@@ -2019,19 +2019,19 @@ public class Accounts extends K9ListActivity implements OnItemClickListener, OnC
             mUp = up;
         }
 
-        @Override
+        
         protected void showProgressDialog() {
             String message = mActivity.getString(R.string.manage_accounts_moving_message);
             mProgressDialog = ProgressDialog.show(mActivity, null, message, true);
         }
 
-        @Override
+        
         protected Void doInBackground(Void... args) {
             mAccount.move(Preferences.getPreferences(mContext), mUp);
             return null;
         }
 
-        @Override
+        
         protected void onPostExecute(Void arg) {
             Accounts activity = (Accounts) mActivity;
 

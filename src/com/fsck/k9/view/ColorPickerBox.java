@@ -42,7 +42,7 @@ public class ColorPickerBox extends View {
         sizeUiPx = sizeUiDp * onedp;
     }
 
-    @Override
+    
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 

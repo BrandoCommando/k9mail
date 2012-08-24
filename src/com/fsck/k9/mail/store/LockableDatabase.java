@@ -64,7 +64,7 @@ public class LockableDatabase {
      * Open the DB on mount and close the DB on unmount
      */
     private class StorageListener implements StorageManager.StorageListener {
-        @Override
+        
         public void onUnmount(final String providerId) {
             if (!providerId.equals(mStorageProviderId)) {
                 return;
@@ -86,7 +86,7 @@ public class LockableDatabase {
             }
         }
 
-        @Override
+        
         public void onMount(final String providerId) {
             if (!providerId.equals(mStorageProviderId)) {
                 return;

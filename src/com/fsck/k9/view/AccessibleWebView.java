@@ -52,7 +52,7 @@ public class AccessibleWebView extends TextView {
         setFocusable(true);
         setFocusableInTouchMode(true);
         setOnClickListener(new OnClickListener() {
-            @Override
+            
             public void onClick(View arg0) {
                 diveIn();
             }

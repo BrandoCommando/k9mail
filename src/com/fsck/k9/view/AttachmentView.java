@@ -181,7 +181,7 @@ public class AttachmentView extends FrameLayout implements OnClickListener, OnLo
         return firstClassAttachment;
     }
 
-    @Override
+    
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.view: {
@@ -195,7 +195,7 @@ public class AttachmentView extends FrameLayout implements OnClickListener, OnLo
         }
     }
 
-    @Override
+    
     public boolean onLongClick(View view) {
         if (view.getId() == R.id.download) {
             callback.showFileBrowser(this);

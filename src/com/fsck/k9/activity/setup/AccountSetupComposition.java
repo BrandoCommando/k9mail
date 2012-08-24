@@ -37,7 +37,7 @@ public class AccountSetupComposition extends K9Activity {
     }
 
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -113,19 +113,19 @@ public class AccountSetupComposition extends K9Activity {
         mAccount.save(Preferences.getPreferences(this));
     }
 
-    @Override
+    
     public void onBackPressed() {
         saveSettings();
         super.onBackPressed();
     }
 
-    @Override
+    
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(EXTRA_ACCOUNT, mAccount.getUuid());
     }
 
-    @Override
+    
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         mAccount.save(Preferences.getPreferences(this));
         finish();

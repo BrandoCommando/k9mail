@@ -17,7 +17,7 @@ import java.util.List;
  * <p>
  * This class is defined as non-abstract so that someone who wants to receive only a few messages
  * can do so without implementing the entire interface. It is highly recommended that users of this
- * interface use the {@code @Override} annotation in their implementations to avoid being caught by
+ * interface use the {@code } annotation in their implementations to avoid being caught by
  * changes in this class.
  * </p>
  */

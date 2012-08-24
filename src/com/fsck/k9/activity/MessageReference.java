@@ -87,7 +87,7 @@ public class MessageReference implements Parcelable {
         return refString.toString();
     }
 
-    @Override
+    
     public boolean equals(Object o) {
         if (o instanceof MessageReference == false) {
             return false;
@@ -101,7 +101,7 @@ public class MessageReference implements Parcelable {
         return false;
     }
 
-    @Override
+    
     public int hashCode() {
         final int MULTIPLIER = 31;
 
@@ -112,7 +112,7 @@ public class MessageReference implements Parcelable {
         return result;
     }
 
-    @Override
+    
     public String toString() {
         return "MessageReference{" +
                "accountUuid='" + accountUuid + '\'' +
@@ -123,7 +123,7 @@ public class MessageReference implements Parcelable {
     }
 
     public static final Creator<MessageReference> CREATOR = new Creator<MessageReference>() {
-        @Override
+        
         public MessageReference createFromParcel(Parcel source) {
             MessageReference ref = new MessageReference();
             ref.uid = source.readString();
@@ -134,18 +134,18 @@ public class MessageReference implements Parcelable {
             return ref;
         }
 
-        @Override
+        
         public MessageReference[] newArray(int size) {
             return new MessageReference[size];
         }
     };
 
-    @Override
+    
     public int describeContents() {
         return 0;
     }
 
-    @Override
+    
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(uid);
         dest.writeString(accountUuid);

@@ -188,7 +188,7 @@ public abstract class CoreService extends Service {
         return wakeLock;
     }
 
-    @Override
+    
     public void onCreate() {
         if (K9.DEBUG) {
             Log.i(K9.LOG_TAG, "CoreService: " + className + ".onCreate()");
@@ -198,7 +198,7 @@ public abstract class CoreService extends Service {
         super.onCreate();
     }
 
-    @Override
+    
     public final int onStartCommand(Intent intent, int flags, int startId) {
         /*
          * When a process is killed due to low memory, it's later restarted and services that were
@@ -390,7 +390,7 @@ public abstract class CoreService extends Service {
      */
     public abstract int startService(Intent intent, int startId);
 
-    @Override
+    
     public void onLowMemory() {
         Log.w(K9.LOG_TAG, "CoreService: " + className + ".onLowMemory() - Running low on memory");
     }
@@ -398,7 +398,7 @@ public abstract class CoreService extends Service {
     /**
      * Clean up when the service is stopped.
      */
-    @Override
+    
     public void onDestroy() {
         if (K9.DEBUG) {
             Log.i(K9.LOG_TAG, "CoreService: " + className + ".onDestroy()");
@@ -432,7 +432,7 @@ public abstract class CoreService extends Service {
         mAutoShutdown = autoShutdown;
     }
 
-    @Override
+    
     public IBinder onBind(Intent intent) {
         // Unused
         return null;

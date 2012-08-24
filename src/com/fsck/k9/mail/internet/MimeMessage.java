@@ -102,7 +102,7 @@ public class MimeMessage extends Message {
         }
     }
 
-    @Override
+    
     public Date getSentDate() {
         if (mSentDate == null) {
             try {
@@ -132,7 +132,7 @@ public class MimeMessage extends Message {
         setInternalSentDate(sentDate);
     }
 
-    @Override
+    
     public void setSentDate(Date sentDate) throws MessagingException {
         removeHeader("Date");
         addSentDate(sentDate);
@@ -142,7 +142,7 @@ public class MimeMessage extends Message {
         this.mSentDate = sentDate;
     }
 
-    @Override
+    
     public String getContentType() throws MessagingException {
         String contentType = getFirstHeader(MimeHeader.HEADER_CONTENT_TYPE);
         return (contentType == null) ? "text/plain" : contentType.toLowerCase(Locale.US);
@@ -166,7 +166,7 @@ public class MimeMessage extends Message {
      * Returns a list of the given recipient type from this message. If no addresses are
      * found the method returns an empty array.
      */
-    @Override
+    
     public Address[] getRecipients(RecipientType type) throws MessagingException {
         if (type == RecipientType.TO) {
             if (mTo == null) {
@@ -188,7 +188,7 @@ public class MimeMessage extends Message {
         }
     }
 
-    @Override
+    
     public void setRecipients(RecipientType type, Address[] addresses) throws MessagingException {
         if (type == RecipientType.TO) {
             if (addresses == null || addresses.length == 0) {
@@ -222,17 +222,17 @@ public class MimeMessage extends Message {
     /**
      * Returns the unfolded, decoded value of the Subject header.
      */
-    @Override
+    
     public String getSubject() {
         return MimeUtility.unfoldAndDecode(getFirstHeader("Subject"), this);
     }
 
-    @Override
+    
     public void setSubject(String subject) throws MessagingException {
         setHeader("Subject", subject);
     }
 
-    @Override
+    
     public Address[] getFrom() {
         if (mFrom == null) {
             String list = MimeUtility.unfold(getFirstHeader("From"));
@@ -244,7 +244,7 @@ public class MimeMessage extends Message {
         return mFrom;
     }
 
-    @Override
+    
     public void setFrom(Address from) throws MessagingException {
         if (from != null) {
             setHeader("From", from.toEncodedString());
@@ -256,7 +256,7 @@ public class MimeMessage extends Message {
         }
     }
 
-    @Override
+    
     public Address[] getReplyTo() {
         if (mReplyTo == null) {
             mReplyTo = Address.parse(MimeUtility.unfold(getFirstHeader("Reply-to")));
@@ -264,7 +264,7 @@ public class MimeMessage extends Message {
         return mReplyTo;
     }
 
-    @Override
+    
     public void setReplyTo(Address[] replyTo) throws MessagingException {
         if (replyTo == null || replyTo.length == 0) {
             removeHeader("Reply-to");
@@ -275,7 +275,7 @@ public class MimeMessage extends Message {
         }
     }
 
-    @Override
+    
     public String getMessageId() throws MessagingException {
         if (mMessageId == null) {
             mMessageId = getFirstHeader("Message-ID");
@@ -295,12 +295,12 @@ public class MimeMessage extends Message {
         mMessageId = messageId;
     }
 
-    @Override
+    
     public void setInReplyTo(String inReplyTo) throws MessagingException {
         setHeader("In-Reply-To", inReplyTo);
     }
 
-    @Override
+    
     public String[] getReferences() throws MessagingException {
         if (mReferences == null) {
             mReferences = getHeader("References");
@@ -308,7 +308,7 @@ public class MimeMessage extends Message {
         return mReferences;
     }
 
-    @Override
+    
     public void setReferences(String references) throws MessagingException {
         /*
          * Make sure the References header doesn't exceed the maximum header
@@ -345,17 +345,17 @@ public class MimeMessage extends Message {
         setHeader("References", references);
     }
 
-    @Override
+    
     public void saveChanges() throws MessagingException {
         throw new MessagingException("saveChanges not yet implemented");
     }
 
-    @Override
+    
     public Body getBody() {
         return mBody;
     }
 
-    @Override
+    
     public void setBody(Body body) throws MessagingException {
         this.mBody = body;
         setHeader("MIME-Version", "1.0");
@@ -374,27 +374,27 @@ public class MimeMessage extends Message {
         return mHeader.getFirstHeader(name);
     }
 
-    @Override
+    
     public void addHeader(String name, String value) throws UnavailableStorageException {
         mHeader.addHeader(name, value);
     }
 
-    @Override
+    
     public void setHeader(String name, String value) throws UnavailableStorageException {
         mHeader.setHeader(name, value);
     }
 
-    @Override
+    
     public String[] getHeader(String name) throws UnavailableStorageException {
         return mHeader.getHeader(name);
     }
 
-    @Override
+    
     public void removeHeader(String name) throws UnavailableStorageException {
         mHeader.removeHeader(name);
     }
 
-    @Override
+    
     public Set<String> getHeaderNames() throws UnavailableStorageException {
         return mHeader.getHeaderNames();
     }
@@ -414,7 +414,7 @@ public class MimeMessage extends Message {
         return null;
     }
 
-    @Override
+    
     public void setEncoding(String encoding) throws UnavailableStorageException {
         if (mBody instanceof Multipart) {
             ((Multipart)mBody).setEncoding(encoding);
@@ -424,7 +424,7 @@ public class MimeMessage extends Message {
         }
     }
 
-    @Override
+    
     public void setCharset(String charset) throws MessagingException {
         mHeader.setCharset(charset);
         if (mBody instanceof Multipart) {
@@ -548,7 +548,7 @@ public class MimeMessage extends Message {
             throw new UnsupportedOperationException("Not supported");
         }
 
-        @Override
+        
         public void field(Field parsedField) throws MimeException {
             expect(Part.class);
             try {
@@ -586,7 +586,7 @@ public class MimeMessage extends Message {
         message.mInReplyTo = mInReplyTo;
     }
 
-    @Override
+    
     public MimeMessage clone() {
         MimeMessage message = new MimeMessage();
         copy(message);

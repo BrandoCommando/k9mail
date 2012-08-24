@@ -100,7 +100,7 @@ public class MessageList
             mDelegate = delegate;
         }
 
-        @Override
+        
         public int compare(final T object1, final T object2) {
             // arg1 & 2 are mixed up, this is done on purpose
             return mDelegate.compare(object2, object1);
@@ -125,7 +125,7 @@ public class MessageList
             mChain = chain;
         }
 
-        @Override
+        
         public int compare(T object1, T object2) {
             int result = 0;
             for (final Comparator<T> comparator : mChain) {
@@ -141,7 +141,7 @@ public class MessageList
 
     public static class AttachmentComparator implements Comparator<MessageInfoHolder> {
 
-        @Override
+        
         public int compare(MessageInfoHolder object1, MessageInfoHolder object2) {
             return (object1.message.hasAttachments() ? 0 : 1) - (object2.message.hasAttachments() ? 0 : 1);
         }
@@ -150,7 +150,7 @@ public class MessageList
 
     public static class FlaggedComparator implements Comparator<MessageInfoHolder> {
 
-        @Override
+        
         public int compare(MessageInfoHolder object1, MessageInfoHolder object2) {
             return (object1.flagged ? 0 : 1) - (object2.flagged ? 0 : 1);
         }
@@ -159,7 +159,7 @@ public class MessageList
 
     public static class UnreadComparator implements Comparator<MessageInfoHolder> {
 
-        @Override
+        
         public int compare(MessageInfoHolder object1, MessageInfoHolder object2) {
             return (object1.read ? 1 : 0) - (object2.read ? 1 : 0);
         }
@@ -168,7 +168,7 @@ public class MessageList
 
     public static class SenderComparator implements Comparator<MessageInfoHolder> {
 
-        @Override
+        
         public int compare(MessageInfoHolder object1, MessageInfoHolder object2) {
             return object1.compareCounterparty.toLowerCase().compareTo(object2.compareCounterparty.toLowerCase());
         }
@@ -177,7 +177,7 @@ public class MessageList
 
     public static class DateComparator implements Comparator<MessageInfoHolder> {
 
-        @Override
+        
         public int compare(MessageInfoHolder object1, MessageInfoHolder object2) {
             return object1.compareDate.compareTo(object2.compareDate);
         }
@@ -186,7 +186,7 @@ public class MessageList
 
     public static class ArrivalComparator implements Comparator<MessageInfoHolder> {
 
-        @Override
+        
         public int compare(MessageInfoHolder object1, MessageInfoHolder object2) {
             return object1.compareArrival.compareTo(object2.compareArrival);
         }
@@ -195,7 +195,7 @@ public class MessageList
 
     public static class SubjectComparator implements Comparator<MessageInfoHolder> {
 
-        @Override
+        
         public int compare(MessageInfoHolder arg0, MessageInfoHolder arg1) {
             // XXX doesn't respect the Comparator contract since it alters the compared object
             if (arg0.compareSubject == null) {
@@ -330,11 +330,11 @@ public class MessageList
     private StorageManager.StorageListener mStorageListener = new StorageListenerImplementation();
 
     private final class StorageListenerImplementation implements StorageManager.StorageListener {
-        @Override
+        
         public void onUnmount(String providerId) {
             if (mAccount != null && providerId.equals(mAccount.getLocalStorageProviderId())) {
                 runOnUiThread(new Runnable() {
-                    @Override
+                    
                     public void run() {
                         onAccountUnavailable();
                     }
@@ -342,7 +342,7 @@ public class MessageList
             }
         }
 
-        @Override
+        
         public void onMount(String providerId) {
             // no-op
         }
@@ -357,7 +357,7 @@ public class MessageList
                 return;
             }
             runOnUiThread(new Runnable() {
-                @Override
+                
                 public void run() {
                     for (MessageInfoHolder message : messages) {
                         if (message != null && (mFolderName == null || (
@@ -386,7 +386,7 @@ public class MessageList
             }
             final boolean wasEmpty = mAdapter.messages.isEmpty();
             runOnUiThread(new Runnable() {
-                @Override
+                
                 public void run() {
                     for (final MessageInfoHolder message : messages) {
                         if (mFolderName == null || (message.folder != null && message.folder.name.equals(mFolderName))) {
@@ -415,7 +415,7 @@ public class MessageList
 
         private void resetUnreadCount() {
             runOnUiThread(new Runnable() {
-                @Override
+                
                 public void run() {
                     resetUnreadCountOnThread();
                 }
@@ -439,7 +439,7 @@ public class MessageList
             final Comparator<MessageInfoHolder> chainComparator = getComparator();
 
             runOnUiThread(new Runnable() {
-                @Override
+                
                 public void run() {
                     synchronized (mAdapter.messages) {
                         Collections.sort(mAdapter.messages, chainComparator);
@@ -489,7 +489,7 @@ public class MessageList
                 mCurrentFolder.loading = loading;
             }
             runOnUiThread(new Runnable() {
-                @Override public void run() {
+                 public void run() {
                     updateFooterView();
                 }
             });
@@ -497,7 +497,7 @@ public class MessageList
 
         private void refreshTitle() {
             runOnUiThread(new Runnable() {
-                @Override
+                
                 public void run() {
                     refreshTitleOnThread();
                 }
@@ -551,7 +551,7 @@ public class MessageList
 
         public void progress(final boolean progress) {
             runOnUiThread(new Runnable() {
-                @Override
+                
                 public void run() {
                     showProgressIndicator(progress);
                 }
@@ -654,7 +654,7 @@ public class MessageList
         context.startActivity(intent);
     }
 
-    @Override
+    
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (view == mFooterView) {
             if (mCurrentFolder != null) {
@@ -673,7 +673,7 @@ public class MessageList
         }
     }
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         context = this;
         super.onCreate(savedInstanceState);
@@ -692,7 +692,7 @@ public class MessageList
         mGestureDetector = new GestureDetector(new MyGestureDetector(true));
     }
 
-    @Override
+    
     public void onNewIntent(Intent intent) {
         setIntent(intent); // onNewIntent doesn't autoset our "internal" intent
         initializeMessageList(intent, false);
@@ -770,7 +770,7 @@ public class MessageList
         }
     }
 
-    @Override
+    
     public void onPause() {
         super.onPause();
         mController.removeListener(mAdapter.mListener);
@@ -807,7 +807,7 @@ public class MessageList
      * This guarantees that things like unread message count and read status
      * are updated.
      */
-    @Override
+    
     public void onResume() {
         super.onResume();
 
@@ -861,7 +861,7 @@ public class MessageList
             mMessageHelper.refresh();
 
             new Thread() {
-                @Override
+                
                 public void run() {
                     mAdapter.markAllMessagesAsDirty();
 
@@ -874,7 +874,7 @@ public class MessageList
 
                     mAdapter.pruneDirtyMessages();
                     runOnUiThread(new Runnable() {
-                        @Override
+                        
                         public void run() {
                             mAdapter.notifyDataSetChanged();
                             restoreListState();
@@ -948,7 +948,7 @@ public class MessageList
      *
      * @see android.app.Activity#onRetainNonConfigurationInstance()
      */
-    @Override
+    
     public ActivityState onRetainNonConfigurationInstance() {
         final ActivityState state = new ActivityState();
         state.messages = mAdapter.messages;
@@ -964,12 +964,12 @@ public class MessageList
      *
      * @see android.app.Activity#getLastNonConfigurationInstance()
      */
-    @Override
+    
     public ActivityState getLastNonConfigurationInstance() {
         return (ActivityState) super.getLastNonConfigurationInstance();
     }
 
-    @Override
+    
     public void onBackPressed() {
         if (K9.manageBack()) {
             if (mQueryString == null) {
@@ -982,7 +982,7 @@ public class MessageList
         }
     }
 
-    @Override
+    
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         // Shortcuts that work no matter what is selected
         switch (keyCode) {
@@ -1117,7 +1117,7 @@ public class MessageList
         return retval;
     }
 
-    @Override
+    
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         // Swallow these events too to avoid the audible notification of a volume change
         if (K9.useVolumeKeysForListNavigationEnabled()) {
@@ -1290,7 +1290,7 @@ public class MessageList
         mController.deleteMessages(messagesToRemove.toArray(EMPTY_MESSAGE_ARRAY), null);
     }
 
-    @Override
+    
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_OK) {
             return;
@@ -1367,7 +1367,7 @@ public class MessageList
         mController.expunge(account, folderName, null);
     }
 
-    @Override
+    
     public Dialog onCreateDialog(int id) {
         switch (id) {
         case DIALOG_MARK_ALL_AS_READ:
@@ -1378,7 +1378,7 @@ public class MessageList
                                              R.string.okay_action,
                                              R.string.cancel_action,
             new Runnable() {
-                @Override
+                
                 public void run() {
                     markAllAsRead();
                 }
@@ -1390,14 +1390,14 @@ public class MessageList
                                              R.string.dialog_confirm_spam_confirm_button,
                                              R.string.dialog_confirm_spam_cancel_button,
             new Runnable() {
-                @Override
+                
                 public void run() {
                     onSpamConfirmed(mActiveMessages);
                     // No further need for this reference
                     mActiveMessages = null;
                 }
             }, new Runnable() {
-                @Override
+                
                 public void run() {
                     // event for cancel, we don't need this reference any more
                     mActiveMessages = null;
@@ -1416,7 +1416,7 @@ public class MessageList
      * reloading following a configuration change (orientation, keyboard,
      * locale, etc.).
      */
-    @Override
+    
     public void onPrepareDialog(final int id, final Dialog dialog) {
         switch (id) {
         case DIALOG_MARK_ALL_AS_READ: {
@@ -1470,7 +1470,7 @@ public class MessageList
         mController.sendPendingMessages(account, mAdapter.mListener);
     }
 
-    @Override
+    
     public boolean onOptionsItemSelected(MenuItem item) {
         final List<MessageInfoHolder> selection = getSelectionFromCheckboxes();
         int itemId = item.getItemId();
@@ -1626,7 +1626,7 @@ public class MessageList
         }
     }
 
-    @Override
+    
     public boolean onPrepareOptionsMenu(Menu menu) {
         boolean anySelected = anySelected();
 
@@ -1690,7 +1690,7 @@ public class MessageList
         return true;
     }
 
-    @Override
+    
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.message_list_option, menu);
@@ -1698,7 +1698,7 @@ public class MessageList
         return true;
     }
 
-    @Override
+    
     public boolean onContextItemSelected(MenuItem item) {
         AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
         final MessageInfoHolder holder = mSelectedMessage == null ? (MessageInfoHolder) mAdapter.getItem(info.position) : mSelectedMessage;
@@ -1797,13 +1797,13 @@ public class MessageList
         }
     }
 
-    @Override
+    
     protected void onSwipeRightToLeft(final MotionEvent e1, final MotionEvent e2) {
         // Handle right-to-left as an un-select
         handleSwipe(e1, false);
     }
 
-    @Override
+    
     protected void onSwipeLeftToRight(final MotionEvent e1, final MotionEvent e2) {
         // Handle left-to-right as a select.
         handleSwipe(e1, true);
@@ -1830,7 +1830,7 @@ public class MessageList
         }
     }
 
-    @Override
+    
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
 
@@ -1889,12 +1889,12 @@ public class MessageList
 
         private final ActivityListener mListener = new ActivityListener() {
 
-            @Override
+            
             public void informUserOfStatus() {
                 mHandler.refreshTitle();
             }
 
-            @Override
+            
             public void synchronizeMailboxStarted(Account account, String folder) {
                 if (updateForMe(account, folder)) {
                     mHandler.progress(true);
@@ -1903,7 +1903,7 @@ public class MessageList
                 super.synchronizeMailboxStarted(account, folder);
             }
 
-            @Override
+            
             public void synchronizeMailboxFinished(Account account, String folder,
             int totalMessagesInMailbox, int numNewMessages) {
 
@@ -1915,7 +1915,7 @@ public class MessageList
                 super.synchronizeMailboxFinished(account, folder, totalMessagesInMailbox, numNewMessages);
             }
 
-            @Override
+            
             public void synchronizeMailboxFailed(Account account, String folder, String message) {
 
                 if (updateForMe(account, folder)) {
@@ -1926,12 +1926,12 @@ public class MessageList
                 super.synchronizeMailboxFailed(account, folder, message);
             }
 
-            @Override
+            
             public void synchronizeMailboxAddOrUpdateMessage(Account account, String folder, Message message) {
                 addOrUpdateMessage(account, folder, message, true);
             }
 
-            @Override
+            
             public void synchronizeMailboxRemovedMessage(Account account, String folder, Message message) {
                 MessageInfoHolder holder = getMessage(message);
                 if (holder == null) {
@@ -1941,7 +1941,7 @@ public class MessageList
                 }
             }
 
-            @Override
+            
             public void listLocalMessagesStarted(Account account, String folder) {
                 if ((mQueryString != null && folder == null) || (account != null && account.equals(mAccount))) {
                     mHandler.progress(true);
@@ -1951,7 +1951,7 @@ public class MessageList
                 }
             }
 
-            @Override
+            
             public void listLocalMessagesFailed(Account account, String folder, String message) {
                 if ((mQueryString != null && folder == null) || (account != null && account.equals(mAccount))) {
                     mHandler.sortMessages();
@@ -1962,7 +1962,7 @@ public class MessageList
                 }
             }
 
-            @Override
+            
             public void listLocalMessagesFinished(Account account, String folder) {
                 if ((mQueryString != null && folder == null) || (account != null && account.equals(mAccount))) {
                     mHandler.sortMessages();
@@ -1973,7 +1973,7 @@ public class MessageList
                 }
             }
 
-            @Override
+            
             public void listLocalMessagesRemoveMessage(Account account, String folder, Message message) {
                 MessageInfoHolder holder = getMessage(message);
                 if (holder != null) {
@@ -1981,23 +1981,23 @@ public class MessageList
                 }
             }
 
-            @Override
+            
             public void listLocalMessagesAddMessages(Account account, String folder, List<Message> messages) {
                 addOrUpdateMessages(account, folder, messages, false);
             }
 
-            @Override
+            
             public void listLocalMessagesUpdateMessage(Account account, String folder, Message message) {
                 addOrUpdateMessage(account, folder, message, false);
             }
 
-            @Override
+            
             public void searchStats(AccountStats stats) {
                 mUnreadMessageCount = stats.unreadMessageCount;
                 super.searchStats(stats);
             }
 
-            @Override
+            
             public void folderStatusChanged(Account account, String folder, int unreadMessageCount) {
                 if (updateForMe(account, folder)) {
                     mUnreadMessageCount = unreadMessageCount;
@@ -2005,7 +2005,7 @@ public class MessageList
                 super.folderStatusChanged(account, folder, unreadMessageCount);
             }
 
-            @Override
+            
             public void messageUidChanged(Account account, String folder, String oldUid, String newUid) {
                 MessageReference ref = new MessageReference();
                 ref.accountUuid = account.getUuid();
@@ -2120,7 +2120,7 @@ public class MessageList
             if (!messagesToSearch.isEmpty()) {
                 mController.searchLocalMessages(mAccountUuids, mFolderNames, messagesToSearch.toArray(EMPTY_MESSAGE_ARRAY), mQueryString, mIntegrate, mQueryFlags, mForbiddenFlags,
                 new MessagingListener() {
-                    @Override
+                    
                     public void listLocalMessagesAddMessages(Account account, String folder, List<Message> messages) {
                         addOrUpdateMessages(account, folder, messages, false);
                     }
@@ -2181,7 +2181,7 @@ public class MessageList
         }
 
         private final OnClickListener flagClickListener = new OnClickListener() {
-            @Override
+            
             public void onClick(View v) {
                 // Perform action on clicks
                 MessageInfoHolder message = (MessageInfoHolder) getItem((Integer)v.getTag());
@@ -2189,12 +2189,12 @@ public class MessageList
             }
         };
 
-        @Override
+        
         public int getCount() {
             return messages.size();
         }
 
-        @Override
+        
         public long getItemId(int position) {
             try {
                 MessageInfoHolder messageHolder = (MessageInfoHolder) getItem(position);
@@ -2211,7 +2211,7 @@ public class MessageList
             return getItem((int)position);
         }
 
-        @Override
+        
         public Object getItem(int position) {
             try {
                 synchronized (mAdapter.messages) {
@@ -2225,7 +2225,7 @@ public class MessageList
             return null;
         }
 
-        @Override
+        
         public View getView(int position, View convertView, ViewGroup parent) {
             MessageInfoHolder message = (MessageInfoHolder) getItem(position);
             View view;
@@ -2426,7 +2426,7 @@ public class MessageList
 
 
 
-        @Override
+        
         public boolean hasStableIds() {
             return true;
         }
@@ -2452,7 +2452,7 @@ public class MessageList
         public CheckBox selected;
         public int position = -1;
 
-        @Override
+        
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (position != -1) {
                 MessageInfoHolder message = (MessageInfoHolder) mAdapter.getItem(position);
@@ -2538,7 +2538,7 @@ public class MessageList
     private void toggleBatchButtons() {
 
         runOnUiThread(new Runnable() {
-            @Override
+            
             public void run() {
 
                 if (mSelectedCount < 0) {
@@ -2616,7 +2616,7 @@ public class MessageList
         return false;
     }
 
-    @Override
+    
     public void onClick(View v) {
         boolean newState = false;
         List<Message> messageList = new ArrayList<Message>();
@@ -2676,15 +2676,15 @@ public class MessageList
         mHandler.sortMessages();
     }
 
-    @Override
+    
     public void onAnimationEnd(Animation animation) {
     }
 
-    @Override
+    
     public void onAnimationRepeat(Animation animation) {
     }
 
-    @Override
+    
     public void onAnimationStart(Animation animation) {
     }
 

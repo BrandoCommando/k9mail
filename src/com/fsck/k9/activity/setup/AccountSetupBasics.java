@@ -57,7 +57,7 @@ public class AccountSetupBasics extends K9Activity
         context.startActivity(i);
     }
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_setup_basics);
@@ -88,13 +88,13 @@ public class AccountSetupBasics extends K9Activity
         }
     }
 
-    @Override
+    
     public void onResume() {
         super.onResume();
         validateFields();
     }
 
-    @Override
+    
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         if (mAccount != null) {
@@ -154,7 +154,7 @@ public class AccountSetupBasics extends K9Activity
         return name;
     }
 
-    @Override
+    
     public Dialog onCreateDialog(int id) {
         if (id == DIALOG_NOTE) {
             if (mProvider != null && mProvider.note != null) {
@@ -272,7 +272,7 @@ public class AccountSetupBasics extends K9Activity
         }
     }
 
-    @Override
+    
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             mAccount.setDescription(mAccount.getEmail());

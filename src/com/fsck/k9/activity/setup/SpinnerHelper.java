@@ -57,7 +57,7 @@ public class SpinnerHelper {
             this.entry = entry;
             this.value = value;
         }
-        @Override
+        
         public String toString() {
             return entry;
         }

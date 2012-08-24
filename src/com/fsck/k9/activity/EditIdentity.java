@@ -30,7 +30,7 @@ public class EditIdentity extends K9Activity {
     private EditText mNameView;
     private EditText mReplyTo;
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -118,13 +118,13 @@ public class EditIdentity extends K9Activity {
         finish();
     }
 
-    @Override
+    
     public void onBackPressed() {
         saveIdentity();
         super.onBackPressed();
     }
 
-    @Override
+    
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(EXTRA_IDENTITY, mIdentity);

@@ -283,7 +283,7 @@ public class WebDavStore extends Store {
             this.mailboxPath = mailboxPath;
         }
 
-        @Override
+        
         public Map<String, String> getExtra() {
             Map<String, String> extra = new HashMap<String, String>();
             putIfNotNull(extra, ALIAS_KEY, alias);
@@ -293,7 +293,7 @@ public class WebDavStore extends Store {
             return extra;
         }
 
-        @Override
+        
         public ServerSettings newPassword(String newPassword) {
             return new WebDavStoreSettings(host, port, connectionSecurity, authenticationType,
                     username, newPassword, alias, path, authPath, mailboxPath);
@@ -404,12 +404,12 @@ public class WebDavStore extends Store {
         return root;
     }
 
-    @Override
+    
     public void checkSettings() throws MessagingException {
         authenticate();
     }
 
-    @Override
+    
     public List <? extends Folder > getPersonalNamespaces(boolean forceListAll) throws MessagingException {
         LinkedList<Folder> folderList = new LinkedList<Folder>();
         /**
@@ -542,7 +542,7 @@ public class WebDavStore extends Store {
         return null;
     }
 
-    @Override
+    
     public Folder getFolder(String name) {
         WebDavFolder folder;
 
@@ -560,12 +560,12 @@ public class WebDavStore extends Store {
         return mSendFolder;
     }
 
-    @Override
+    
     public boolean isMoveCapable() {
         return true;
     }
 
-    @Override
+    
     public boolean isCopyCapable() {
         return true;
     }
@@ -1250,12 +1250,12 @@ public class WebDavStore extends Store {
         return baos.toString();
     }
 
-    @Override
+    
     public boolean isSendCapable() {
         return true;
     }
 
-    @Override
+    
     public void sendMessages(Message[] messages) throws MessagingException {
         WebDavFolder tmpFolder = (WebDavStore.WebDavFolder) getFolder(mAccount.getDraftsFolderName());
         try {
@@ -1326,26 +1326,26 @@ public class WebDavStore extends Store {
             }
         }
 
-        @Override
+        
         public void open(OpenMode mode) throws MessagingException {
             getHttpClient();
 
             this.mIsOpen = true;
         }
 
-        @Override
+        
         public Map<String, String> copyMessages(Message[] messages, Folder folder) throws MessagingException {
             moveOrCopyMessages(messages, folder.getName(), false);
             return null;
         }
 
-        @Override
+        
         public Map<String, String> moveMessages(Message[] messages, Folder folder) throws MessagingException {
             moveOrCopyMessages(messages, folder.getName(), true);
             return null;
         }
 
-        @Override
+        
         public void delete(Message[] msgs, String trashFolderName) throws MessagingException {
             moveOrCopyMessages(msgs, trashFolderName, true);
         }
@@ -1406,68 +1406,68 @@ public class WebDavStore extends Store {
             return messageCount;
         }
 
-        @Override
+        
         public int getMessageCount() throws MessagingException {
             open(OpenMode.READ_WRITE);
             this.mMessageCount = getMessageCount(true);
             return this.mMessageCount;
         }
 
-        @Override
+        
         public int getUnreadMessageCount() throws MessagingException {
             open(OpenMode.READ_WRITE);
             this.mUnreadMessageCount = getMessageCount(false);
             return this.mUnreadMessageCount;
         }
 
-        @Override
+        
         public int getFlaggedMessageCount() throws MessagingException {
             return -1;
         }
 
-        @Override
+        
         public boolean isOpen() {
             return this.mIsOpen;
         }
 
-        @Override
+        
         public OpenMode getMode() {
             return OpenMode.READ_WRITE;
         }
 
-        @Override
+        
         public String getName() {
             return this.mName;
         }
 
-        @Override
+        
         public boolean exists() {
             return true;
         }
 
-        @Override
+        
         public void close() {
             this.mMessageCount = 0;
             this.mUnreadMessageCount = 0;
             this.mIsOpen = false;
         }
 
-        @Override
+        
         public boolean create(FolderType type) throws MessagingException {
             return true;
         }
 
-        @Override
+        
         public void delete(boolean recursive) throws MessagingException {
             throw new Error("WebDavFolder.delete() not implemeneted");
         }
 
-        @Override
+        
         public Message getMessage(String uid) throws MessagingException {
             return new WebDavMessage(uid, this);
         }
 
-        @Override
+        
         public Message[] getMessages(int start, int end, Date earliestDate, MessageRetrievalListener listener)
         throws MessagingException {
             ArrayList<Message> messages = new ArrayList<Message>();
@@ -1517,12 +1517,12 @@ public class WebDavStore extends Store {
             return messages.toArray(EMPTY_MESSAGE_ARRAY);
         }
 
-        @Override
+        
         public Message[] getMessages(MessageRetrievalListener listener) throws MessagingException {
             return getMessages(null, listener);
         }
 
-        @Override
+        
         public Message[] getMessages(String[] uids, MessageRetrievalListener listener) throws MessagingException {
             ArrayList<Message> messageList = new ArrayList<Message>();
             Message[] messages;
@@ -1563,7 +1563,7 @@ public class WebDavStore extends Store {
             return uidToUrl;
         }
 
-        @Override
+        
         public void fetch(Message[] messages, FetchProfile fp, MessageRetrievalListener listener)
         throws MessagingException {
             if (messages == null ||
@@ -1846,12 +1846,12 @@ public class WebDavStore extends Store {
             }
         }
 
-        @Override
+        
         public Flag[] getPermanentFlags() {
             return PERMANENT_FLAGS;
         }
 
-        @Override
+        
         public void setFlags(Message[] messages, Flag[] flags, boolean value)
         throws MessagingException {
             String[] uids = new String[messages.length];
@@ -1916,7 +1916,7 @@ public class WebDavStore extends Store {
             return finalUrl;
         }
 
-        @Override
+        
         public Map<String, String> appendMessages(Message[] messages) throws MessagingException {
             appendWebDavMessages(messages);
             return null;
@@ -1986,12 +1986,12 @@ public class WebDavStore extends Store {
             return retMessages;
         }
 
-        @Override
+        
         public boolean equals(Object o) {
             return false;
         }
 
-        @Override
+        
         public String getUidFromMessageId(Message message) throws MessagingException {
             Log.e(K9.LOG_TAG,
                   "Unimplemented method getUidFromMessageId in WebDavStore.WebDavFolder could lead to duplicate messages "
@@ -1999,7 +1999,7 @@ public class WebDavStore extends Store {
             return null;
         }
 
-        @Override
+        
         public void setFlags(Flag[] flags, boolean value) throws MessagingException {
             Log.e(K9.LOG_TAG,
                   "Unimplemented method setFlags(Flag[], boolean) breaks markAllMessagesAsRead and EmptyTrash");
@@ -2071,7 +2071,7 @@ public class WebDavStore extends Store {
             this.mSize = size;
         }
 
-        @Override
+        
         public void parse(InputStream in) throws IOException, MessagingException {
             super.parse(in);
         }
@@ -2098,14 +2098,14 @@ public class WebDavStore extends Store {
             }
         }
 
-        @Override
+        
         public void delete(String trashFolderName) throws MessagingException {
             WebDavFolder wdFolder = (WebDavFolder) getFolder();
             Log.i(K9.LOG_TAG, "Deleting message by moving to " + trashFolderName);
             wdFolder.moveMessages(new Message[] { this }, wdFolder.getStore().getFolder(trashFolderName));
         }
 
-        @Override
+        
         public void setFlag(Flag flag, boolean set) throws MessagingException {
             super.setFlag(flag, set);
             mFolder.setFlags(new Message[] { this }, new Flag[] { flag }, set);
@@ -2123,23 +2123,23 @@ public class WebDavStore extends Store {
             return this.mDataSet;
         }
 
-        @Override
+        
         public void startDocument() throws SAXException {
             this.mDataSet = new DataSet();
         }
 
-        @Override
+        
         public void endDocument() throws SAXException {
             /* Do nothing */
         }
 
-        @Override
+        
         public void startElement(String namespaceURI, String localName,
                                  String qName, Attributes atts) throws SAXException {
             mOpenTags.addFirst(localName);
         }
 
-        @Override
+        
         public void endElement(String namespaceURI, String localName, String qName) {
             mOpenTags.removeFirst();
 
@@ -2149,7 +2149,7 @@ public class WebDavStore extends Store {
             }
         }
 
-        @Override
+        
         public void characters(char ch[], int start, int length) {
             String value = new String(ch, start, length);
             mDataSet.addValue(value, mOpenTags.peek());
@@ -2481,7 +2481,7 @@ public class WebDavStore extends Store {
             setURI(URI.create(url));
         }
 
-        @Override
+        
         public String getMethod() {
             return METHOD_NAME;
         }

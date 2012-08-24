@@ -273,12 +273,12 @@ public class AccountSettings {
             mMapping = Collections.unmodifiableMap(mapping);
         }
 
-        @Override
+        
         protected Map<Integer, String> getMapping() {
             return mMapping;
         }
 
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             try {
                 return Integer.parseInt(value);
@@ -309,12 +309,12 @@ public class AccountSettings {
             mMapping = Collections.unmodifiableMap(mapping);
         }
 
-        @Override
+        
         protected Map<String, String> getMapping() {
             return mMapping;
         }
 
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             if (!mMapping.containsKey(value)) {
                 throw new InvalidSettingValueException();
@@ -331,7 +331,7 @@ public class AccountSettings {
             super(defaultValue);
         }
 
-        @Override
+        
         public Object fromString(String value) {
             //TODO: add validation
             return value;
@@ -346,12 +346,12 @@ public class AccountSettings {
             super(null);
         }
 
-        @Override
+        
         public Object getDefaultValue() {
             return StorageManager.getInstance(K9.app).getDefaultProviderId();
         }
 
-        @Override
+        
         public Object fromString(String value) {
             StorageManager storageManager = StorageManager.getInstance(K9.app);
             Map<String, String> providers = storageManager.getAvailableProviders();
@@ -377,12 +377,12 @@ public class AccountSettings {
             mMapping = Collections.unmodifiableMap(mapping);
         }
 
-        @Override
+        
         protected Map<Integer, String> getMapping() {
             return mMapping;
         }
 
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             try {
                 Integer deletePolicy = Integer.parseInt(value);

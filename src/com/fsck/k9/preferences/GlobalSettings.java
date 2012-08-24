@@ -270,7 +270,7 @@ public class GlobalSettings {
      */
     public static class SettingsUpgraderV12 implements SettingsUpgrader {
 
-        @Override
+        
         public Set<String> upgrade(Map<String, Object> settings) {
             Boolean keyguardPrivacy = (Boolean) settings.get("keyguardPrivacy");
             if (keyguardPrivacy != null && keyguardPrivacy.booleanValue()) {
@@ -299,7 +299,7 @@ public class GlobalSettings {
             super(false);
         }
 
-        @Override
+        
         public Object getDefaultValue() {
             return K9.isGalleryBuggy();
         }
@@ -331,12 +331,12 @@ public class GlobalSettings {
             mMapping = Collections.unmodifiableMap(mapping);
         }
 
-        @Override
+        
         protected Map<String, String> getMapping() {
             return mMapping;
         }
 
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             if (mMapping.containsKey(value)) {
                 return value;
@@ -357,7 +357,7 @@ public class GlobalSettings {
             super(defaultValue);
         }
 
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             try {
                 Integer theme = Integer.parseInt(value);
@@ -375,7 +375,7 @@ public class GlobalSettings {
             throw new InvalidSettingValueException();
         }
 
-        @Override
+        
         public Object fromPrettyString(String value) throws InvalidSettingValueException {
             if (THEME_LIGHT.equals(value)) {
                 return K9.THEME_LIGHT;
@@ -386,7 +386,7 @@ public class GlobalSettings {
             throw new InvalidSettingValueException();
         }
 
-        @Override
+        
         public String toPrettyString(Object value) {
             return (((Integer)value).intValue() == K9.THEME_LIGHT) ? THEME_LIGHT : THEME_DARK;
         }
@@ -400,7 +400,7 @@ public class GlobalSettings {
             super(defaultValue);
         }
 
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             try {
                 // The placeholders "SHORT" and "MEDIUM" are fine.
@@ -426,7 +426,7 @@ public class GlobalSettings {
             super(defaultValue);
         }
 
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             if (!value.matches(TimePickerPreference.VALIDATION_EXPRESSION)) {
                 throw new InvalidSettingValueException();
@@ -443,7 +443,7 @@ public class GlobalSettings {
             super(defaultValue);
         }
 
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             try {
                 if (new File(value).isDirectory()) {

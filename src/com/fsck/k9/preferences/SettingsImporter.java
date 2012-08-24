@@ -1090,7 +1090,7 @@ public class SettingsImporter {
             mImportedServer = server;
         }
 
-        @Override
+        
         public Map<String, String> getExtra() {
             return (mImportedServer.extras != null) ?
                     Collections.unmodifiableMap(mImportedServer.extras.settings) : null;

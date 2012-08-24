@@ -68,7 +68,7 @@ public class FontSizeSettings extends K9PreferenceActivity {
         context.startActivity(i);
     }
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -167,7 +167,7 @@ public class FontSizeSettings extends K9PreferenceActivity {
         editor.commit();
     }
 
-    @Override
+    
     public void onBackPressed() {
         saveSettings();
         super.onBackPressed();

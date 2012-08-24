@@ -35,13 +35,13 @@ public class PollService extends CoreService {
         context.startService(i);
     }
 
-    @Override
+    
     public void onCreate() {
         super.onCreate();
         setAutoShutdown(false);
     }
 
-    @Override
+    
     public int startService(Intent intent, int startId) {
         if (START_SERVICE.equals(intent.getAction())) {
             if (K9.DEBUG)
@@ -71,7 +71,7 @@ public class PollService extends CoreService {
         return START_NOT_STICKY;
     }
 
-    @Override
+    
     public IBinder onBind(Intent arg0) {
         return null;
     }
@@ -102,17 +102,17 @@ public class PollService extends CoreService {
                 wakeLock = null;
             }
         }
-        @Override
+        
         public void checkMailStarted(Context context, Account account) {
             accountsChecked.clear();
         }
 
-        @Override
+        
         public void checkMailFailed(Context context, Account account, String reason) {
             release();
         }
 
-        @Override
+        
         public void synchronizeMailboxFinished(
             Account account,
             String folder,
@@ -141,7 +141,7 @@ public class PollService extends CoreService {
             stopSelf(startId);
         }
 
-        @Override
+        
         public void checkMailFinished(Context context, Account account) {
 
             if (K9.DEBUG)

@@ -45,7 +45,7 @@ public class FolderListFilter<T> extends Filter {
      *
      * @see #publishResults(CharSequence, FilterResults)
      */
-    @Override
+    
     protected FilterResults performFiltering(CharSequence searchTerm) {
         FilterResults results = new FilterResults();
 
@@ -95,7 +95,7 @@ public class FolderListFilter<T> extends Filter {
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
-    @Override
+    
     protected void publishResults(CharSequence constraint, FilterResults results) {
         // Don't notify for every change
         mFolders.setNotifyOnChange(false);

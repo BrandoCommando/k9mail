@@ -59,7 +59,7 @@ public class BinaryTempFileBody implements Body {
             super(in);
         }
 
-        @Override
+        
         public void close() throws IOException {
             super.close();
             mFile.delete();

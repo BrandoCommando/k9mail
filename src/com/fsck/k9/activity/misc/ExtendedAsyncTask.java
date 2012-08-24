@@ -49,7 +49,7 @@ public abstract class ExtendedAsyncTask<Params, Progress, Result>
      * @param activity
      *         The new {@code Activity} instance. Never {@code null}.
      */
-    @Override
+    
     public void restore(Activity activity) {
         mActivity = activity;
         showProgressDialog();
@@ -69,7 +69,7 @@ public abstract class ExtendedAsyncTask<Params, Progress, Result>
      *
      * @see Activity#onRetainNonConfigurationInstance()
      */
-    @Override
+    
     public boolean retain() {
         boolean retain = false;
         if (mProgressDialog != null) {
@@ -104,7 +104,7 @@ public abstract class ExtendedAsyncTask<Params, Progress, Result>
      * Be sure to call {@link #removeProgressDialog()} in {@link AsyncTask#onPostExecute(Object)}.
      * </p>
      */
-    @Override
+    
     protected void onPreExecute() {
         showProgressDialog();
     }

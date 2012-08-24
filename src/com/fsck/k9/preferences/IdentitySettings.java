@@ -83,12 +83,12 @@ public class IdentitySettings {
             super(null);
         }
 
-        @Override
+        
         public Object getDefaultValue() {
             return K9.app.getResources().getString(R.string.default_signature);
         }
 
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             return value;
         }
@@ -105,7 +105,7 @@ public class IdentitySettings {
             mValidator = new EmailAddressValidator();
         }
 
-        @Override
+        
         public Object fromString(String value) throws InvalidSettingValueException {
             if (value != null && !mValidator.isValidAddressOnly(value)) {
                 throw new InvalidSettingValueException();
@@ -113,17 +113,17 @@ public class IdentitySettings {
             return value;
         }
 
-        @Override
+        
         public String toString(Object value) {
             return (value != null) ? value.toString() : null;
         }
 
-        @Override
+        
         public String toPrettyString(Object value) {
             return (value == null) ? "" : value.toString();
         }
 
-        @Override
+        
         public Object fromPrettyString(String value) throws InvalidSettingValueException {
             return ("".equals(value)) ? null : fromString(value);
         }

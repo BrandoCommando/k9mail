@@ -21,7 +21,7 @@ import com.fsck.k9.K9;
  */
 public class ShutdownReceiver extends BroadcastReceiver {
 
-    @Override
+    
     public void onReceive(final Context context, final Intent intent) {
         if (Intent.ACTION_SHUTDOWN.equals(intent.getAction())) {
             Log.i(K9.LOG_TAG, "System is shutting down, releasing resources");

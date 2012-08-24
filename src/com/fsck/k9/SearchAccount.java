@@ -72,12 +72,12 @@ public class SearchAccount implements BaseAccount, SearchSpecification, Serializ
         integrate = nintegrate;
     }
 
-    @Override
+    
     public synchronized String getEmail() {
         return email;
     }
 
-    @Override
+    
     public synchronized void setEmail(String email) {
         this.email = email;
     }
@@ -141,7 +141,7 @@ public class SearchAccount implements BaseAccount, SearchSpecification, Serializ
         this.accountUuids = accountUuids;
     }
 
-    @Override
+    
     public String[] getFolderNames() {
         return folderNames;
     }

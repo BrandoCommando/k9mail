@@ -117,7 +117,7 @@ public class AttachmentProvider extends ContentProvider {
     }
 
 
-    @Override
+    
     public boolean onCreate() {
         /*
          * We use the cache dir as a temporary directory (since Android doesn't give us one) so
@@ -140,7 +140,7 @@ public class AttachmentProvider extends ContentProvider {
         return true;
     }
 
-    @Override
+    
     public String getType(Uri uri) {
         List<String> segments = uri.getPathSegments();
         String dbName = segments.get(0);
@@ -150,7 +150,7 @@ public class AttachmentProvider extends ContentProvider {
         return getType(dbName, id, format);
     }
 
-    @Override
+    
     public ParcelFileDescriptor openFile(Uri uri, String mode) throws FileNotFoundException {
         File file;
 
@@ -193,7 +193,7 @@ public class AttachmentProvider extends ContentProvider {
         return ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY);
     }
 
-    @Override
+    
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
                         String sortOrder) {
 
@@ -236,17 +236,17 @@ public class AttachmentProvider extends ContentProvider {
         return ret;
     }
 
-    @Override
+    
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         return 0;
     }
 
-    @Override
+    
     public int delete(Uri uri, String arg1, String[] arg2) {
         return 0;
     }
 
-    @Override
+    
     public Uri insert(Uri uri, ContentValues values) {
         return null;
     }

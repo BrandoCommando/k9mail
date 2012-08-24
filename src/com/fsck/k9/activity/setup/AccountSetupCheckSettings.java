@@ -77,7 +77,7 @@ public class AccountSetupCheckSettings extends K9Activity implements OnClickList
         context.startActivityForResult(i, ACTIVITY_REQUEST_CODE);
     }
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_setup_check_settings);
@@ -94,7 +94,7 @@ public class AccountSetupCheckSettings extends K9Activity implements OnClickList
         mCheckOutgoing = getIntent().getBooleanExtra(EXTRA_CHECK_OUTGOING, false);
 
         new Thread() {
-            @Override
+            
             public void run() {
                 Store store = null;
                 Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
@@ -178,7 +178,7 @@ public class AccountSetupCheckSettings extends K9Activity implements OnClickList
         .start();
     }
 
-    @Override
+    
     public void onDestroy() {
         super.onDestroy();
         mDestroyed = true;
@@ -387,7 +387,7 @@ public class AccountSetupCheckSettings extends K9Activity implements OnClickList
         });
     }
 
-    @Override
+    
     public void onActivityResult(int reqCode, int resCode, Intent data) {
         setResult(resCode);
         finish();

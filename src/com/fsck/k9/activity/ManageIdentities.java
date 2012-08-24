@@ -17,7 +17,7 @@ public class ManageIdentities extends ChooseIdentity {
 
     private static final int ACTIVITY_EDIT_IDENTITY = 1;
 
-    @Override
+    
     protected void setupClickListeners() {
         this.getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -37,14 +37,14 @@ public class ManageIdentities extends ChooseIdentity {
         startActivityForResult(intent, ACTIVITY_EDIT_IDENTITY);
     }
 
-    @Override
+    
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.manage_identities_option, menu);
         return true;
     }
 
-    @Override
+    
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.new_identity:
@@ -58,14 +58,14 @@ public class ManageIdentities extends ChooseIdentity {
         return true;
     }
 
-    @Override
+    
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.setHeaderTitle(R.string.manage_identities_context_menu_title);
         getMenuInflater().inflate(R.menu.manage_identities_context, menu);
     }
 
-    @Override
+    
     public boolean onContextItemSelected(MenuItem item) {
         AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo)item.getMenuInfo();
         switch (item.getItemId()) {
@@ -110,7 +110,7 @@ public class ManageIdentities extends ChooseIdentity {
     }
 
 
-    @Override
+    
     public void onResume() {
         super.onResume();
         //mAccount.refresh(Preferences.getPreferences(getApplication().getApplicationContext()));
@@ -118,7 +118,7 @@ public class ManageIdentities extends ChooseIdentity {
     }
 
 
-    @Override
+    
     public void onBackPressed() {
         saveIdentities();
         super.onBackPressed();

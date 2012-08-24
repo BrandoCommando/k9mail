@@ -291,22 +291,22 @@ public class Storage implements SharedPreferences {
         return storage.size();
     }
 
-    //@Override
+    //
     public boolean contains(String key) {
         return storage.contains(key);
     }
 
-    //@Override
+    //
     public com.fsck.k9.preferences.Editor edit() {
         return new com.fsck.k9.preferences.Editor(this);
     }
 
-    //@Override
+    //
     public Map<String, String> getAll() {
         return storage;
     }
 
-    //@Override
+    //
     public boolean getBoolean(String key, boolean defValue) {
         String val = storage.get(key);
         if (val == null) {
@@ -315,7 +315,7 @@ public class Storage implements SharedPreferences {
         return Boolean.parseBoolean(val);
     }
 
-    //@Override
+    //
     public float getFloat(String key, float defValue) {
         String val = storage.get(key);
         if (val == null) {
@@ -324,7 +324,7 @@ public class Storage implements SharedPreferences {
         return Float.parseFloat(val);
     }
 
-    //@Override
+    //
     public int getInt(String key, int defValue) {
         String val = storage.get(key);
         if (val == null) {
@@ -333,7 +333,7 @@ public class Storage implements SharedPreferences {
         return Integer.parseInt(val);
     }
 
-    //@Override
+    //
     public long getLong(String key, long defValue) {
         String val = storage.get(key);
         if (val == null) {
@@ -342,7 +342,7 @@ public class Storage implements SharedPreferences {
         return Long.parseLong(val);
     }
 
-    //@Override
+    //
     public String getString(String key, String defValue) {
         String val = storage.get(key);
         if (val == null) {
@@ -351,13 +351,13 @@ public class Storage implements SharedPreferences {
         return val;
     }
 
-    //@Override
+    //
     public void registerOnSharedPreferenceChangeListener(
         OnSharedPreferenceChangeListener listener) {
         listeners.addIfAbsent(listener);
     }
 
-    //@Override
+    //
     public void unregisterOnSharedPreferenceChangeListener(
         OnSharedPreferenceChangeListener listener) {
         listeners.remove(listener);
@@ -402,7 +402,7 @@ public class Storage implements SharedPreferences {
     }
 
 
-    @Override
+    
     public Set<String> getStringSet(String arg0, Set<String> arg1) {
         throw new RuntimeException("Not implemented");
     }

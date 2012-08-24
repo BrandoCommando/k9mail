@@ -139,7 +139,7 @@ public class Prefs extends K9PreferenceActivity {
         context.startActivity(i);
     }
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -353,7 +353,7 @@ public class Prefs extends K9PreferenceActivity {
         mAttachmentPathPreference.setSummary(K9.getAttachmentDefaultPath());
         mAttachmentPathPreference
         .setOnPreferenceClickListener(new OnPreferenceClickListener() {
-            @Override
+            
             public boolean onPreferenceClick(Preference preference) {
                 FileBrowserHelper
                 .getInstance()
@@ -366,13 +366,13 @@ public class Prefs extends K9PreferenceActivity {
 
             FileBrowserFailOverCallback callback = new FileBrowserFailOverCallback() {
 
-                @Override
+                
                 public void onPathEntered(String path) {
                     mAttachmentPathPreference.setSummary(path);
                     K9.setAttachmentDefaultPath(path);
                 }
 
-                @Override
+                
                 public void onCancel() {
                     // canceled, do nothing
                 }
@@ -470,13 +470,13 @@ public class Prefs extends K9PreferenceActivity {
         }
     }
 
-    @Override
+    
     protected void onPause() {
         saveSettings();
         super.onPause();
     }
 
-    @Override
+    
     public void onBackPressed() {
         if (K9.manageBack()) {
             Accounts.listAccounts(this);
@@ -499,7 +499,7 @@ public class Prefs extends K9PreferenceActivity {
         K9.getContactNameColor()).show();
     }
 
-    @Override
+    
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
         case ACTIVITY_CHOOSE_FOLDER:

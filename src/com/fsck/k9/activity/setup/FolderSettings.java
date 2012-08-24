@@ -47,7 +47,7 @@ public class FolderSettings extends K9PreferenceActivity {
         context.startActivity(i);
     }
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -147,7 +147,7 @@ public class FolderSettings extends K9PreferenceActivity {
         }
     }
 
-    @Override
+    
     public void onPause() {
         try {
             saveSettings();

@@ -15,7 +15,7 @@ public class ClipboardManagerApi11 extends com.fsck.k9.helper.ClipboardManager {
         super(context);
     }
 
-    @Override
+    
     public void setText(String label, String text) {
         ClipboardManager clipboardManager =
                 (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);

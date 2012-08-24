@@ -54,7 +54,7 @@ public class TitleBarWebView extends WebView implements TitleBarDelegate {
             super(context);
         }
 
-        @Override
+        
         public boolean dispatchTouchEvent(MotionEvent ev) {
             if(!mTouchInTitleBar) {
                 return false;
@@ -110,7 +110,7 @@ public class TitleBarWebView extends WebView implements TitleBarDelegate {
      * <p>
      * {@inheritDoc}
      */
-    @Override
+    
     public boolean dispatchTouchEvent(MotionEvent event) {
         if(mTitleBar != null) {
             final int sy = getScrollY();
@@ -184,19 +184,19 @@ public class TitleBarWebView extends WebView implements TitleBarDelegate {
         mTitleBarView = v;
     }
 
-    @Override
+    
     protected int computeVerticalScrollExtent() {
         if(mTitleBar == null) return super.computeVerticalScrollExtent();
         return getViewHeightWithTitle() - getVisibleTitleHeightCompat();
     }
 
-    @Override
+    
     protected int computeVerticalScrollOffset() {
         if(mTitleBar == null) return super.computeVerticalScrollOffset();
         return Math.max(getScrollY() - getTitleHeight(), 0);
     }
 
-    @Override
+    
     protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
         canvas.save();
 
@@ -233,7 +233,7 @@ public class TitleBarWebView extends WebView implements TitleBarDelegate {
         return Math.max(getTitleHeight() - Math.max(0, getScrollY()), 0);
     }
 
-    @Override
+    
     protected void onDraw(Canvas canvas) {
         if (Build.VERSION.SDK_INT >= 16) {
             super.onDraw(canvas);
@@ -293,7 +293,7 @@ public class TitleBarWebView extends WebView implements TitleBarDelegate {
      * what we do on Jelly Bean anyway.
      * </p>
      */
-    @Override
+    
     public int getTitleHeight() {
         if (mTitleBarView != null) {
             return mTitleBarView.getHeight();
@@ -348,6 +348,6 @@ public class TitleBarWebView extends WebView implements TitleBarDelegate {
         mTitleBar = v;
     }
 
-    @Override
+    
     public void onSetEmbeddedTitleBar(View title) { /* unused */ }
 }

@@ -252,7 +252,7 @@ public class Pop3Store extends Store {
         mAuthType = AuthType.valueOf(settings.authenticationType);
     }
 
-    @Override
+    
     public Folder getFolder(String name) {
         Folder folder = mFolders.get(name);
         if (folder == null) {
@@ -262,14 +262,14 @@ public class Pop3Store extends Store {
         return folder;
     }
 
-    @Override
+    
     public List <? extends Folder > getPersonalNamespaces(boolean forceListAll) throws MessagingException {
         List<Folder> folders = new LinkedList<Folder>();
         folders.add(getFolder(mAccount.getInboxFolderName()));
         return folders;
     }
 
-    @Override
+    
     public void checkSettings() throws MessagingException {
         Pop3Folder folder = new Pop3Folder(mAccount.getInboxFolderName());
         folder.open(OpenMode.READ_WRITE);
@@ -308,7 +308,7 @@ public class Pop3Store extends Store {
             }
         }
 
-        @Override
+        
         public synchronized void open(OpenMode mode) throws MessagingException {
             if (isOpen()) {
                 return;
@@ -407,18 +407,18 @@ public class Pop3Store extends Store {
             mUidToMsgNumMap.clear();
         }
 
-        @Override
+        
         public boolean isOpen() {
             return (mIn != null && mOut != null && mSocket != null
                     && mSocket.isConnected() && !mSocket.isClosed());
         }
 
-        @Override
+        
         public OpenMode getMode() {
             return OpenMode.READ_WRITE;
         }
 
-        @Override
+        
         public void close() {
             try {
                 if (isOpen()) {
@@ -461,36 +461,36 @@ public class Pop3Store extends Store {
             mSocket = null;
         }
 
-        @Override
+        
         public String getName() {
             return mName;
         }
 
-        @Override
+        
         public boolean create(FolderType type) throws MessagingException {
             return false;
         }
 
-        @Override
+        
         public boolean exists() throws MessagingException {
             return mName.equalsIgnoreCase(mAccount.getInboxFolderName());
         }
 
-        @Override
+        
         public int getMessageCount() {
             return mMessageCount;
         }
 
-        @Override
+        
         public int getUnreadMessageCount() throws MessagingException {
             return -1;
         }
-        @Override
+        
         public int getFlaggedMessageCount() throws MessagingException {
             return -1;
         }
 
-        @Override
+        
         public Message getMessage(String uid) throws MessagingException {
             Pop3Message message = mUidToMsgMap.get(uid);
             if (message == null) {
@@ -499,7 +499,7 @@ public class Pop3Store extends Store {
             return message;
         }
 
-        @Override
+        
         public Message[] getMessages(int start, int end, Date earliestDate, MessageRetrievalListener listener)
         throws MessagingException {
             if (start < 1 || end < 1 || end < start) {
@@ -669,12 +669,12 @@ public class Pop3Store extends Store {
             mUidToMsgNumMap.put(message.getUid(), msgNum);
         }
 
-        @Override
+        
         public Message[] getMessages(MessageRetrievalListener listener) throws MessagingException {
             throw new UnsupportedOperationException("Pop3: No getMessages");
         }
 
-        @Override
+        
         public Message[] getMessages(String[] uids, MessageRetrievalListener listener)
         throws MessagingException {
             throw new UnsupportedOperationException("Pop3: No getMessages by uids");
@@ -687,7 +687,7 @@ public class Pop3Store extends Store {
          * @param fp
          * @throws MessagingException
          */
-        @Override
+        
         public void fetch(Message[] messages, FetchProfile fp, MessageRetrievalListener listener)
         throws MessagingException {
             if (messages == null || messages.length == 0) {
@@ -884,36 +884,36 @@ public class Pop3Store extends Store {
             }
         }
 
-        @Override
+        
         public Flag[] getPermanentFlags() {
             return PERMANENT_FLAGS;
         }
 
-        @Override
+        
         public Map<String, String> appendMessages(Message[] messages) throws MessagingException {
             return null;
         }
 
-        @Override
+        
         public void delete(boolean recurse) throws MessagingException {
         }
 
-        @Override
+        
         public void delete(Message[] msgs, String trashFolderName) throws MessagingException {
             setFlags(msgs, new Flag[] { Flag.DELETED }, true);
         }
 
-        @Override
+        
         public String getUidFromMessageId(Message message) throws MessagingException {
             return null;
         }
 
-        @Override
+        
         public void setFlags(Flag[] flags, boolean value) throws MessagingException {
             throw new UnsupportedOperationException("POP3: No setFlags(Flag[],boolean)");
         }
 
-        @Override
+        
         public void setFlags(Message[] messages, Flag[] flags, boolean value)
         throws MessagingException {
             if (!value || !Utility.arrayContains(flags, Flag.DELETED)) {
@@ -1046,17 +1046,17 @@ public class Pop3Store extends Store {
             }
         }
 
-        @Override
+        
         public boolean isFlagSupported(Flag flag) {
             return (flag == Flag.DELETED);
         }
 
-        @Override
+        
         public boolean supportsFetchingFlags() {
             return false;
         }
 
-        @Override
+        
         public boolean equals(Object o) {
             if (o instanceof Pop3Folder) {
                 return ((Pop3Folder) o).mName.equals(mName);
@@ -1064,7 +1064,7 @@ public class Pop3Store extends Store {
             return super.equals(o);
         }
 
-        @Override
+        
         public int hashCode() {
             return mName.hashCode();
         }
@@ -1082,18 +1082,18 @@ public class Pop3Store extends Store {
             mSize = size;
         }
 
-        @Override
+        
         protected void parse(InputStream in) throws IOException, MessagingException {
             super.parse(in);
         }
 
-        @Override
+        
         public void setFlag(Flag flag, boolean set) throws MessagingException {
             super.setFlag(flag, set);
             mFolder.setFlags(new Message[] { this }, new Flag[] { flag }, set);
         }
 
-        @Override
+        
         public void delete(String trashFolderName) throws MessagingException {
             //  try
             //  {
@@ -1114,7 +1114,7 @@ public class Pop3Store extends Store {
         public boolean uidl;
         public boolean pipelining;
 
-        @Override
+        
         public String toString() {
             return String.format("STLS %b, TOP %b, USER %b, UIDL %b, PIPELINING %b",
                                  stls,
@@ -1134,7 +1134,7 @@ public class Pop3Store extends Store {
             mIn = in;
         }
 
-        @Override
+        
         public int read() throws IOException {
             if (mFinished) {
                 return -1;

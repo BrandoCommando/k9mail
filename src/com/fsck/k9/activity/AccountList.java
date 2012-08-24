@@ -35,7 +35,7 @@ import com.fsck.k9.SearchAccount;
 public abstract class AccountList extends K9ListActivity implements OnItemClickListener {
     private FontSizes mFontSizes = K9.getFontSizes();
 
-    @Override
+    
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
@@ -51,13 +51,13 @@ public abstract class AccountList extends K9ListActivity implements OnItemClickL
     /**
      * Reload list of accounts when this activity is resumed.
      */
-    @Override
+    
     public void onResume() {
         super.onResume();
         new LoadAccounts().execute();
     }
 
-    @Override
+    
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         BaseAccount account = (BaseAccount) parent.getItemAtPosition(position);
         onAccountSelected(account);
@@ -107,7 +107,7 @@ public abstract class AccountList extends K9ListActivity implements OnItemClickL
             super(AccountList.this, 0, accounts);
         }
 
-        @Override
+        
         public View getView(int position, View convertView, ViewGroup parent) {
             final BaseAccount account = getItem(position);
 
@@ -173,13 +173,13 @@ public abstract class AccountList extends K9ListActivity implements OnItemClickL
      * Load accounts in a background thread
      */
     class LoadAccounts extends AsyncTask<Void, Void, Account[]> {
-        @Override
+        
         protected Account[] doInBackground(Void... params) {
             Account[] accounts = Preferences.getPreferences(getApplicationContext()).getAccounts();
             return accounts;
         }
 
-        @Override
+        
         protected void onPostExecute(Account[] accounts) {
             populateListView(accounts);
         }

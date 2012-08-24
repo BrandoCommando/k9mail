@@ -45,13 +45,13 @@ public class MessagingControllerPushReceiver implements PushReceiver {
             Log.v(K9.LOG_TAG, "syncFolder(" + folder.getName() + ")");
         final CountDownLatch latch = new CountDownLatch(1);
         controller.synchronizeMailbox(account, folder.getName(), new MessagingListener() {
-            @Override
+            
             public void synchronizeMailboxFinished(Account account, String folder,
             int totalMessagesInMailbox, int numNewMessages) {
                 latch.countDown();
             }
 
-            @Override
+            
             public void synchronizeMailboxFailed(Account account, String folder,
             String message) {
                 latch.countDown();
@@ -69,7 +69,7 @@ public class MessagingControllerPushReceiver implements PushReceiver {
         }
     }
 
-    @Override
+    
     public void sleep(TracingWakeLock wakeLock, long millis) {
         SleepService.sleep(mApplication, millis, wakeLock, K9.PUSH_WAKE_LOCK_TIMEOUT);
     }
@@ -107,7 +107,7 @@ public class MessagingControllerPushReceiver implements PushReceiver {
         }
     }
 
-    @Override
+    
     public Context getContext() {
         return mApplication;
     }

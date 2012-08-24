@@ -143,7 +143,7 @@ class InsertableHtmlContent implements Serializable {
      * Build the composed string with the inserted and original content.
      * @return Composed string.
      */
-    @Override
+    
     public String toString() {
         final int insertionPoint = getInsertionPoint();
         // Inserting and deleting was twice as fast as instantiating a new StringBuilder and

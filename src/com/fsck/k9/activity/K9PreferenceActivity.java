@@ -8,7 +8,7 @@ import android.preference.Preference;
 
 
 public class K9PreferenceActivity extends PreferenceActivity {
-    @Override
+    
     public void onCreate(Bundle icicle) {
         K9Activity.setLanguage(this, K9.getK9Language());
         // http://code.google.com/p/k9mail/issues/detail?id=2439
@@ -71,7 +71,7 @@ public class K9PreferenceActivity extends PreferenceActivity {
         /**
          * Show the preference value in the preference summary field.
          */
-        @Override
+        
         public boolean onPreferenceChange(final Preference preference, final Object newValue) {
             final String summary = newValue.toString();
             final int index = mPrefView.findIndexOfValue(summary);

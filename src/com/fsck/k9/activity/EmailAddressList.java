@@ -17,7 +17,7 @@ public class EmailAddressList extends K9ListActivity implements OnItemClickListe
     public static final String EXTRA_EMAIL_ADDRESS = "emailAddress";
 
 
-    @Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -39,7 +39,7 @@ public class EmailAddressList extends K9ListActivity implements OnItemClickListe
         setTitle(contact.displayName);
     }
 
-    @Override
+    
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String item = (String)parent.getItemAtPosition(position);
 

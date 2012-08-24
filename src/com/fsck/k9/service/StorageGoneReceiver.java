@@ -19,7 +19,7 @@ import com.fsck.k9.mail.store.StorageManager;
  */
 public class StorageGoneReceiver extends BroadcastReceiver {
 
-    @Override
+    
     public void onReceive(final Context context, final Intent intent) {
         final String action = intent.getAction();
         final Uri uri = intent.getData();

@@ -46,7 +46,7 @@ public abstract class Message implements Part, Body {
         }
         return false;
     }
-    @Override
+    
     public boolean equals(Object o) {
         if (o == null || !(o instanceof Message)) {
             return false;
@@ -57,7 +57,7 @@ public abstract class Message implements Part, Body {
                 && mUid.equals(other.getUid()));
     }
 
-    @Override
+    
     public int hashCode() {
         final int MULTIPLIER = 31;
 

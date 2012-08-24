@@ -15,7 +15,7 @@ public class SmtpDataStuffing extends FilterOutputStream {
         super(out);
     }
 
-    @Override
+    
     public void write(int oneByte) throws IOException {
         if (oneByte == '\r') {
             state = STATE_CR;

@@ -167,7 +167,7 @@ public class MessageWebView extends TitleBarWebView {
      * Emulate the shift key being pressed to trigger the text selection mode
      * of a WebView.
      */
-    @Override
+    
     public void emulateShiftHeld() {
         try {
 
