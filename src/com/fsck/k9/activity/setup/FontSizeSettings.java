@@ -1,4 +1,3 @@
-
 package com.fsck.k9.activity.setup;
 
 import org.brandroid.k9.R;

@@ -87,14 +87,14 @@ http://k9mail.googlecode.com/
     <string name="activity_header_format"><xliff:g id="activity_prefix">%s</xliff:g><xliff:g id="unread_count">%s</xliff:g><xliff:g id="operation">%s</xliff:g></string>
 
     <string name="activity_unread_count">\u0020[<xliff:g id="unread_count">%d</xliff:g>]</string>
-    <string name="status_loading_account_folder">\u0020(Verificação <xliff:g id="account">%s</xliff:g>:<xliff:g id="folder">%s</xliff:g><xliff:g id="progress">%s</xliff:g>)</string>
-    <string name="status_loading_account_folder_headers">\u0020(Buscando cabeçalhos <xliff:g id="account">%s</xliff:g>:<xliff:g id="folder">%s</xliff:g><xliff:g id="progress">%s</xliff:g>)</string>
-    <string name="status_sending_account">\u0020(Enviando <xliff:g id="account">%s</xliff:g><xliff:g id="progress">%s</xliff:g>)</string>
-    <string name="status_processing_account">\u0020(Proc <xliff:g id="account">%s</xliff:g>:<xliff:g id="command">%s</xliff:g><xliff:g id="progress">%s</xliff:g>)</string>
+    <string name="status_loading_account_folder">Verificação <xliff:g id="account">%s</xliff:g>:<xliff:g id="folder">%s</xliff:g><xliff:g id="progress">%s</xliff:g></string>
+    <string name="status_loading_account_folder_headers">Buscando cabeçalhos <xliff:g id="account">%s</xliff:g>:<xliff:g id="folder">%s</xliff:g><xliff:g id="progress">%s</xliff:g></string>
+    <string name="status_sending_account">Enviando <xliff:g id="account">%s</xliff:g><xliff:g id="progress">%s</xliff:g></string>
+    <string name="status_processing_account">Proc <xliff:g id="account">%s</xliff:g>:<xliff:g id="command">%s</xliff:g><xliff:g id="progress">%s</xliff:g></string>
     <string name="folder_progress">\u0020<xliff:g id="completed">%s</xliff:g>/<xliff:g id="total">%s</xliff:g></string>
 
-    <string name="status_next_poll">\u0020(Nova verif. às @ <xliff:g id="nexttime">%s</xliff:g>)</string>
-    <string name="status_syncing_off">\u0020(Sincronização desabilitada)</string>
+    <string name="status_next_poll">Nova verif. às @ <xliff:g id="nexttime">%s</xliff:g></string>
+    <string name="status_syncing_off">Sincronização desabilitada</string>
 
     <!-- Actions will be used as buttons and in menu items -->
     <string name="next_action">Próximo</string> <!-- Used as part of a multi-step process -->
@@ -869,16 +869,10 @@ http://k9mail.googlecode.com/
     <string name="gestures_title">Gestos</string>
     <string name="gestures_summary">Aceitar controle de gestos</string>
 
-    <string name="compact_layouts_title">Layout compacto</string>
-    <string name="compact_layouts_summary">Ajusta o layout para mostrar mais em cada página</string>
-
     <string name="volume_navigation_title">Tecla de volume para navegação</string>
     <string name="volume_navigation_summary">Percorrer itens usando controle de volume</string>
     <string name="volume_navigation_message">Visualizar mensagem</string>
     <string name="volume_navigation_list">Vários modos de exibição da lista</string>
-
-    <string name="manage_back_title">Gerenciar botão \"Voltar\"</string>
-    <string name="manage_back_summary">Tormar \"Voltar\" padrão para subir um nível</string>
 
     <string name="start_integrated_inbox_title">Iniciar com Caixas de Entrada Unificadas</string>
     <string name="start_integrated_inbox_summary">Mostra Caixas Unificadas ao abrir o K-9 Mail</string>

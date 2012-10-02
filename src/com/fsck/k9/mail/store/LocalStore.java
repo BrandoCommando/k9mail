@@ -1,7 +1,15 @@
 
 package com.fsck.k9.mail.store;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +25,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-import com.fsck.k9.helper.HtmlConverter;
 import org.apache.commons.io.IOUtils;
 
 import android.app.Application;
@@ -36,8 +43,10 @@ import com.fsck.k9.K9;
 import com.fsck.k9.Preferences;
 import org.brandroid.k9.R;
 import com.fsck.k9.Account.MessageFormat;
+import com.fsck.k9.activity.Search;
 import com.fsck.k9.controller.MessageRemovalListener;
 import com.fsck.k9.controller.MessageRetrievalListener;
+import com.fsck.k9.helper.HtmlConverter;
 import com.fsck.k9.helper.Utility;
 import com.fsck.k9.mail.Address;
 import com.fsck.k9.mail.Body;
@@ -80,21 +89,6 @@ public class LocalStore extends Store implements Serializable {
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
     private static final Flag[] PERMANENT_FLAGS = { Flag.DELETED, Flag.X_DESTROYED, Flag.SEEN, Flag.FLAGGED };
-
-    private static final Set<String> HEADERS_TO_SAVE;
-    static {
-        Set<String> set = new HashSet<String>();
-        set.add(K9.IDENTITY_HEADER);
-        set.add("To");
-        set.add("Cc");
-        set.add("From");
-        set.add("In-Reply-To");
-        set.add("References");
-        set.add(MimeHeader.HEADER_CONTENT_ID);
-        set.add(MimeHeader.HEADER_CONTENT_DISPOSITION);
-        set.add("User-Agent");
-        HEADERS_TO_SAVE = Collections.unmodifiableSet(set);
-    }
 
     /*
      * a String containing the columns getMessages expects to work with
@@ -1142,9 +1136,15 @@ public class LocalStore extends Store implements Serializable {
 
         
         public void open(final OpenMode mode) throws MessagingException {
-            if (isOpen()) {
+
+            if (isOpen() && (getMode() == mode || mode == OpenMode.READ_ONLY)) {
                 return;
+            } else if (isOpen()) {
+                //previously opened in READ_ONLY and now requesting READ_WRITE
+                //so close connection and reopen
+                close();
             }
+
             try {
                 database.execute(false, new DbCallback<Void>() {
                     
@@ -1351,6 +1351,8 @@ public class LocalStore extends Store implements Serializable {
         }
 
         public void purgeToVisibleLimit(MessageRemovalListener listener) throws MessagingException {
+            //don't purge messages while a Search is active since it might throw away search results
+            if (!Search.isActive()) {
             if (mVisibleLimit == 0) {
                 return ;
             }
@@ -1361,8 +1363,8 @@ public class LocalStore extends Store implements Serializable {
                     listener.messageRemoved(messages[i]);
                 }
                 messages[i].destroy();
-
             }
+        }
         }
 
 
@@ -1846,11 +1848,11 @@ public class LocalStore extends Store implements Serializable {
         }
 
         
-        public Message getMessage(final String uid) throws MessagingException {
+        public LocalMessage getMessage(final String uid) throws MessagingException {
             try {
-                return database.execute(false, new DbCallback<Message>() {
+                return database.execute(false, new DbCallback<LocalMessage>() {
                     
-                    public Message doDbWork(final SQLiteDatabase db) throws WrappedException, UnavailableStorageException {
+                    public LocalMessage doDbWork(final SQLiteDatabase db) throws WrappedException, UnavailableStorageException {
                         try {
                             open(OpenMode.READ_WRITE);
                             LocalMessage message = new LocalMessage(uid, LocalFolder.this);
@@ -2125,7 +2127,7 @@ public class LocalStore extends Store implements Serializable {
                                     /*
                                      * Replace an existing message in the database
                                      */
-                                    LocalMessage oldMessage = (LocalMessage) getMessage(uid);
+                                    LocalMessage oldMessage = getMessage(uid);
 
                                     if (oldMessage != null) {
                                         oldMessageId = oldMessage.getId();
@@ -2314,12 +2316,9 @@ public class LocalStore extends Store implements Serializable {
             database.execute(true, new DbCallback<Void>() {
                 
                 public Void doDbWork(final SQLiteDatabase db) throws WrappedException, UnavailableStorageException {
-                    boolean saveAllHeaders = mAccount.saveAllHeaders();
-                    boolean gotAdditionalHeaders = false;
 
                     deleteHeaders(id);
                     for (String name : message.getHeaderNames()) {
-                        if (saveAllHeaders || HEADERS_TO_SAVE.contains(name)) {
                             String[] values = message.getHeader(name);
                             for (String value : values) {
                                 ContentValues cv = new ContentValues();
@@ -2328,12 +2327,8 @@ public class LocalStore extends Store implements Serializable {
                                 cv.put("value", value);
                                 db.insert("headers", "name", cv);
                             }
-                        } else {
-                            gotAdditionalHeaders = true;
                         }
-                    }
 
-                    if (!gotAdditionalHeaders) {
                         // Remember that all headers for this message have been saved, so it is
                         // not necessary to download them again in case the user wants to see all headers.
                         List<Flag> appendedFlags = new ArrayList<Flag>();
@@ -2343,7 +2338,6 @@ public class LocalStore extends Store implements Serializable {
                         db.execSQL("UPDATE messages " + "SET flags = ? " + " WHERE id = ?",
                                    new Object[]
                                    { Utility.combine(appendedFlags.toArray(), ',').toUpperCase(Locale.US), id });
-                    }
                     return null;
                 }
             });

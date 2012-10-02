@@ -48,17 +48,11 @@ public class GlobalSettings {
         s.put("changeRegisteredNameColor", Settings.versions(
                 new V(1, new BooleanSetting(false))
             ));
-        s.put("compactLayouts", Settings.versions(
-                new V(1, new BooleanSetting(false))
-            ));
         s.put("confirmDelete", Settings.versions(
                 new V(1, new BooleanSetting(false))
             ));
         s.put("confirmDeleteStarred", Settings.versions(
                 new V(2, new BooleanSetting(false))
-            ));
-        s.put("confirmMarkAllAsRead", Settings.versions(
-                new V(1, new BooleanSetting(false))
             ));
         s.put("confirmSpam", Settings.versions(
                 new V(1, new BooleanSetting(false))
@@ -140,23 +134,11 @@ public class GlobalSettings {
         s.put("language", Settings.versions(
                 new V(1, new LanguageSetting())
             ));
-        s.put("manageBack", Settings.versions(
-                new V(1, new BooleanSetting(false))
-            ));
         s.put("measureAccounts", Settings.versions(
                 new V(1, new BooleanSetting(true))
             ));
-        s.put("messageListCheckboxes", Settings.versions(
-                new V(1, new BooleanSetting(false))
-            ));
         s.put("messageListPreviewLines", Settings.versions(
                 new V(1, new IntegerRangeSetting(1, 100, 2))
-            ));
-        s.put("messageListStars", Settings.versions(
-                new V(1, new BooleanSetting(true))
-            ));
-        s.put("messageListTouchable", Settings.versions(
-                new V(1, new BooleanSetting(false))
             ));
         s.put("messageViewFixedWidthFont", Settings.versions(
                 new V(1, new BooleanSetting(false))
@@ -199,6 +181,9 @@ public class GlobalSettings {
             ));
         s.put("theme", Settings.versions(
                 new V(1, new ThemeSetting(K9.THEME_LIGHT))
+            ));
+        s.put("messageViewTheme", Settings.versions(
+                new V(16, new ThemeSetting(K9.THEME_LIGHT))
             ));
         s.put("useGalleryBugWorkaround", Settings.versions(
                 new V(1, new GalleryBugWorkaroundSetting())

@@ -38,6 +38,7 @@ import com.fsck.k9.crypto.CryptoProvider;
 import com.fsck.k9.crypto.PgpData;
 import com.fsck.k9.helper.ClipboardManager;
 import com.fsck.k9.helper.Contacts;
+import com.fsck.k9.helper.HtmlConverter;
 import com.fsck.k9.helper.Utility;
 import com.fsck.k9.mail.*;
 import com.fsck.k9.mail.internet.MimeUtility;
@@ -494,6 +495,15 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
         mShowAttachmentsAction.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
+    /**
+     * Fetch the message header view.  This is not the same as the message headers; this is the View shown at the top
+     * of messages.
+     * @return MessageHeader View.
+     */
+    public MessageHeader getMessageHeaderView() {
+        return mHeaderContainer;
+    }
+
     public void setHeaders(final Message message, Account account) {
         try {
             mHeaderContainer.populate(message, account);
@@ -533,11 +543,12 @@ public class SingleMessageView extends LinearLayout implements OnClickListener,
         String text = null;
         if (pgpData != null) {
             text = pgpData.getDecryptedData();
+            if (text != null) {
+                text = HtmlConverter.textToHtml(text, true);
+            }
         }
-        if (text != null) {
-            text = "<html><body><pre>" + text + "</pre></body></html>";
-        } else {
-            // getTextForDisplay() always returns HTML-ified content.
+
+        if (text == null) {
             text = message.getTextForDisplay();
         }
 
